@@ -1,0 +1,107 @@
+---
+permalink: swift/supported-swift-api-endpoints.html 
+sidebar: sidebar 
+keywords: swift api endpoint support 
+summary: 'StorageGRID admite los siguientes extremos de la API de Swift: La URL de la información, la URL de autenticación y la URL de almacenamiento.' 
+---
+= Extremos de API de Swift compatibles
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID admite los siguientes extremos de la API de Swift: La URL de la información, la URL de autenticación y la URL de almacenamiento.
+
+
+
+== URL de información
+
+Puede determinar las capacidades y las limitaciones de la implementación de Swift de StorageGRID emitiendo una solicitud GET a la URL de la base de Swift con la ruta /info.
+
+`https://_FQDN_ | _Node IP:Swift Port_/info/`
+
+En la solicitud:
+
+* `_FQDN_` es el nombre de dominio completo.
+* `_Node IP_` Es la dirección IP del nodo de almacenamiento o del nodo de puerta de enlace en la red de StorageGRID.
+* `_Swift Port_` Es el número de puerto que se usa para las conexiones API de Swift en el nodo de almacenamiento o la puerta de enlace.
+
+
+Por ejemplo, la siguiente URL de información solicita información desde un nodo de almacenamiento con la dirección IP 10.99.106.103 y mediante el puerto 18083.
+
+`\https://10.99.106.103:18083/info/`
+
+La respuesta incluye las capacidades de la implementación Swift como diccionario JSON. Una herramienta cliente puede analizar la respuesta JSON para determinar las capacidades de la implementación y usarlas como restricciones para operaciones de almacenamiento subsiguientes.
+
+La implementación de StorageGRID de Swift permite un acceso sin autenticar a la URL de información.
+
+
+
+== URL de autenticación
+
+Un cliente puede utilizar la URL de autenticación de Swift para autenticarse como usuario de cuenta de inquilino.
+
+`https://_FQDN_ | _Node IP:Swift Port_/auth/v1.0/`
+
+Se deben proporcionar el ID de cuenta de inquilino, el nombre de usuario y la contraseña como parámetros en el `X-Auth-User` y.. `X-Auth-Key` solicite los encabezados de la siguiente manera:
+
+`X-Auth-User: _Tenant_Account_ID:Username_`
+
+`X-Auth-Key: _Password_`
+
+En los encabezados de la solicitud:
+
+* `_Tenant_Account_ID_` Es el ID de cuenta que asigna StorageGRID cuando se creó el inquilino de Swift. Este es el mismo ID de cuenta de arrendatario que se utiliza en la página de inicio de sesión de Gestor de inquilinos.
+* `_Username_` Es el nombre de un usuario arrendatario que se ha creado en el Administrador de arrendatarios. Este usuario debe pertenecer a un grupo con permiso de administrador de Swift. El usuario raíz del inquilino no puede configurarse para usar la API REST DE Swift.
++
+Si la Federación de identidades está habilitada para la cuenta de inquilino, proporcione el nombre de usuario y la contraseña del usuario federado desde el servidor LDAP. Como alternativa, proporcione el nombre de dominio del usuario LDAP. Por ejemplo:
+
++
+`X-Auth-User: _Tenant_Account_ID:Username@Domain_Name_`
+
+* `_Password_` es la contraseña del usuario inquilino. Las contraseñas de usuario se crean y administran en el Administrador de inquilinos.
+
+
+La respuesta a una solicitud de autenticación correcta devuelve una URL de almacenamiento y un token de autenticación, de la siguiente forma:
+
+`X-Storage-Url: https://_FQDN_ | _Node_IP:Swift_Port_/v1/_Tenant_Account_ID_`
+
+`X-Auth-Token: _token_`
+
+`X-Storage-Token: _token_`
+
+De forma predeterminada, el token es válido durante 24 horas desde el tiempo de generación.
+
+Se generan tokens para una cuenta de arrendatario específica. Un token válido para una cuenta no autoriza a un usuario a acceder a otra cuenta.
+
+
+
+== URL de almacenamiento
+
+Una aplicación cliente puede emitir llamadas a la API DE REST de Swift para realizar operaciones de cuenta, contenedor y objeto admitidas contra un nodo de puerta de enlace o un nodo de almacenamiento. Las solicitudes de almacenamiento se dirigen a la URL de almacenamiento que se devuelve en la respuesta de autenticación. La solicitud también debe incluir el encabezado X-Auth-Token y el valor devuelto por la solicitud auth.
+
+`\https://FQDN | _IP:Swift_Port_/v1/_Tenant_Account_ID_`
+
+`[_/container_][_/object_]`
+
+`X-Auth-Token: _token_`
+
+Es posible que algunos encabezados de respuesta del almacenamiento que contienen estadísticas de uso no reflejen números precisos de los objetos modificados recientemente. Puede que en estos encabezados se deban utilizar unos minutos para que aparezcan números precisos.
+
+Los siguientes encabezados de respuesta para las operaciones de cuentas y contenedores son ejemplos de los que contienen estadísticas de uso:
+
+* `X-Account-Bytes-Used`
+* `X-Account-Object-Count`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+
+
+.Información relacionada
+link:configuring-tenant-accounts-and-connections.html["Configure las conexiones y las cuentas de inquilino"]
+
+link:account-operations.html["Operaciones de cuentas"]
+
+link:container-operations.html["Operaciones de contenedor"]
+
+link:object-operations.html["Operaciones de objeto"]

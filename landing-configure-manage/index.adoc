@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-configure-manage/index.html 
+summary: Las tareas de configuración necesarias para un nuevo sistema StorageGRID dependen de cómo se utilizará el grid. Como mínimo, debe configurar el acceso al sistema, utilizar los asistentes de FabricPool y S3 y gestionar varias configuraciones de seguridad y almacenamiento. 
+---
+= Configure y gestione un sistema StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

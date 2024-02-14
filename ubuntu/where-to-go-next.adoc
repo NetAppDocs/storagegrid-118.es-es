@@ -1,0 +1,45 @@
+---
+permalink: ubuntu/where-to-go-next.html 
+sidebar: sidebar 
+keywords: what to do after ubuntu installation 
+summary: Después de completar una instalación, realice las tareas de integración y configuración necesarias. Puede realizar las tareas opcionales según sea necesario. 
+---
+= A continuación, ¿dónde ir
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de completar una instalación, realice las tareas de integración y configuración necesarias. Puede realizar las tareas opcionales según sea necesario.
+
+
+
+== Tareas requeridas
+
+* link:../admin/managing-tenants.html["Cree una cuenta de inquilino"] Para cada protocolo de cliente (Swift o S3) que se utilizará para almacenar objetos en el sistema StorageGRID.
+* link:../admin/controlling-storagegrid-access.html["Acceso al sistema de control"] mediante la configuración de grupos y cuentas de usuario. Opcionalmente, puede hacerlo link:../admin/using-identity-federation.html["configurar un origen de identidad federado"] (Como Active Directory u OpenLDAP), para que pueda importar grupos y usuarios de administración. O bien, puede hacerlo link:../admin/managing-users.html#create-a-local-user["crear usuarios y grupos locales"].
+* Integre y pruebe el link:../s3/configuring-tenant-accounts-and-connections.html["S3 API"] o. link:../swift/configuring-tenant-accounts-and-connections.html["API Swift"] Aplicaciones cliente que utilizará para cargar objetos en el sistema StorageGRID.
+* link:../ilm/index.html["Configure las reglas de gestión de la vida útil de la información (ILM) y la política de ILM"] se desea utilizar para proteger los datos de objetos.
+* Si la instalación incluye nodos de almacenamiento del dispositivo, utilice el sistema operativo SANtricity para realizar las siguientes tareas:
++
+** Conéctese a cada dispositivo StorageGRID.
+** Comprobar recepción de datos AutoSupport.
++
+Consulte https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["Configure el hardware"^].
+
+
+
+* Revise y siga el link:../harden/index.html["Directrices de fortalecimiento del sistema StorageGRID"] eliminar los riesgos de seguridad.
+* link:../monitor/email-alert-notifications.html["Configure las notificaciones por correo electrónico para las alertas del sistema"].
+* Si el sistema StorageGRID incluye algún nodo de archivado (obsoleto), configure la conexión del nodo de archivado al sistema de almacenamiento de archivado externo de destino.
+
+
+
+
+== Tareas opcionales
+
+* link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["Actualice las direcciones IP del nodo de grid"] Si han cambiado desde que planificó el despliegue y generó el paquete de recuperación.
+* link:../admin/changing-network-options-object-encryption.html["Configurar el cifrado del almacenamiento"], si es necesario.
+* link:../admin/configuring-stored-object-compression.html["Configurar la compresión del almacenamiento"] para reducir el tamaño de los objetos almacenados, si es necesario.
+

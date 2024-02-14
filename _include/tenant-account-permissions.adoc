@@ -1,0 +1,46 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,3a"]
+|===
+| Permiso | Si se ha seleccionado... 
+
+
+ a| 
+Permitir los servicios de plataforma
+ a| 
+El inquilino puede usar servicios de plataforma S3 como CloudMirror. Consulte link:../admin/manage-platform-services-for-tenants.html["Gestione servicios de plataformas para cuentas de inquilinos de S3"].
+
+
+
+ a| 
+Usar origen de identidad propio
+ a| 
+El inquilino puede configurar y gestionar su propio origen de identidad para usuarios y grupos federados. Esta opción está desactivada si tiene link:../admin/configuring-sso.html["SSO configurado"] Para su sistema StorageGRID.
+
+
+
+ a| 
+Permitir selección S3
+ a| 
+El inquilino puede emitir solicitudes de API S3 SelectObjectContent para filtrar y recuperar datos de objetos. Consulte link:../admin/manage-s3-select-for-tenant-accounts.html["Gestione S3 Select para cuentas de inquilinos"].
+
+*Importante*: Las solicitudes de SelectObjectContent pueden disminuir el rendimiento del equilibrador de carga para todos los clientes S3 y todos los inquilinos. Habilite esta función solo cuando sea necesario y solo para inquilinos de confianza.
+
+
+
+ a| 
+Utilizar conexión de federación de grid
+ a| 
+El inquilino puede utilizar una conexión de federación de grid.
+
+Seleccionando esta opción:
+
+* Hace que este arrendatario y todos los grupos de arrendatarios y usuarios agregados a la cuenta se clonen desde esta cuadrícula (la cuadrícula _source_) a la otra cuadrícula de la conexión seleccionada (la cuadrícula _destination_).
+* Permite a este inquilino configurar la replicación entre grid entre bloques correspondientes en cada grid.
+
+
+Consulte link:../admin/grid-federation-manage-tenants.html["Gestione los inquilinos permitidos para la federación de grid"].
+
+|===

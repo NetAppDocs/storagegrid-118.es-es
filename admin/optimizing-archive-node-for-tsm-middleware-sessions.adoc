@@ -1,0 +1,33 @@
+---
+permalink: admin/optimizing-archive-node-for-tsm-middleware-sessions.html 
+sidebar: sidebar 
+keywords: archive node optimization 
+summary: 'Puede optimizar el rendimiento de un nodo de archivado que se conecta a Tivoli Server Manager \(TSM\) configurando las sesiones del nodo de archivado.' 
+---
+= Optimice un nodo de archivado para sesiones de middleware de TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede optimizar el rendimiento de un nodo de archivado que se conecta a Tivoli Server Manager (TSM) configurando las sesiones del nodo de archivado.
+
+.Antes de empezar
+* Ha iniciado sesión en Grid Manager mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+* Ya tienes link:admin-group-permissions.html["permisos de acceso específicos"].
+
+
+.Acerca de esta tarea
+Normalmente, el número de sesiones simultáneas que el nodo de archivado ha abierto al servidor de middleware TSM se establece en el número de unidades de cinta que el servidor TSM ha dedicado al nodo de archivado. Se asigna una unidad de cinta para el almacenamiento mientras el resto se asigna para la recuperación. Sin embargo, en situaciones en las que un nodo de almacenamiento se está reconstruyendo desde copias de nodo de archivado o el nodo de archivado está funcionando en modo de sólo lectura, puede optimizar el rendimiento del servidor TSM estableciendo el número máximo de sesiones de recuperación para que sea el mismo que el número de sesiones simultáneas. El resultado es que todas las unidades pueden utilizarse al mismo tiempo para la recuperación; como máximo, una de estas unidades también puede utilizarse para el almacenamiento, si corresponde.
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *_Archive Node_* > *ARC* > *Target*.
+. Seleccione *Configuración* > *Principal*.
+. Cambiar *máximo de sesiones de recuperación* para que sea igual que *número de sesiones*.
++
+image::../media/optimizing_tivoli_storage_manager.gif[Página Configuration del nodo de archivado]
+
+. Seleccione *aplicar cambios*.
+

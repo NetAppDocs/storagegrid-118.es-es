@@ -1,0 +1,50 @@
+---
+permalink: admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html 
+sidebar: sidebar 
+keywords: cloud tiering 
+summary: Si actualmente está usando la función Cloud Tiering - Simple Storage Service para organizar los datos de objetos en un bucket de S3 en niveles, debe migrar sus objetos a un Cloud Storage Pool en su lugar. Los pools de almacenamiento en cloud proporcionan un método escalable que aprovecha todos los nodos de almacenamiento del sistema StorageGRID. 
+---
+= Migrar objetos desde organización en niveles en el cloud: S3 a un pool de almacenamiento en el cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si actualmente está utilizando la función *Cloud Tiering - Simple Storage Service (S3)* para organizar en niveles los datos de objetos en un bucket S3, debe migrar sus objetos a un Cloud Storage Pool en su lugar. Los pools de almacenamiento en cloud proporcionan un método escalable que aprovecha todos los nodos de almacenamiento del sistema StorageGRID.
+
+.Antes de empezar
+* Ha iniciado sesión en Grid Manager mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+* Ya tienes link:admin-group-permissions.html["permisos de acceso específicos"].
+* Ya ha almacenado objetos en el bloque de S3 configurado para la organización en niveles del cloud.
+
+
+
+NOTE: Antes de migrar datos de objetos, póngase en contacto con su representante de cuenta de NetApp para comprender y gestionar cualquier coste asociado.
+
+.Acerca de esta tarea
+Desde el punto de vista de la gestión del ciclo de vida de la información, un pool de almacenamiento en cloud es similar al de un pool de almacenamiento. Sin embargo, si bien los pools de almacenamiento constan de nodos de almacenamiento o nodos de archivado dentro del sistema StorageGRID, un pool de almacenamiento en cloud consta de un bloque S3 externo.
+
+Antes de migrar objetos desde Cloud Tiering: S3 a un pool de almacenamiento en cloud, primero debe crear un bucket de S3 y, a continuación, crear el Cloud Storage Pool en StorageGRID. A continuación, se puede crear una nueva política de ILM y reemplazar la regla de ILM utilizada para almacenar objetos en el bloque de niveles de cloud con una regla de ILM clonada que almacena los mismos objetos en el Cloud Storage Pool.
+
+
+NOTE: Cuando los objetos se almacenan en un pool de almacenamiento en cloud, las copias de esos objetos no se pueden almacenar también en StorageGRID. Si la regla de ILM que está usando actualmente para la organización en niveles del cloud está configurada para almacenar objetos en varias ubicaciones a la vez, considere si desea realizar esta migración opcional porque perderá esa funcionalidad. Si continúa con esta migración, debe crear nuevas reglas en lugar de clonar las existentes.
+
+.Pasos
+. Cree un pool de almacenamiento en el cloud.
++
+Utilice un nuevo bloque de S3 para el Cloud Storage Pool a fin de garantizar que solo contenga los datos gestionados por el Cloud Storage Pool.
+
+. Localiza todas las reglas de ILM en las políticas de ILM activas que provocan que los objetos se almacenen en el depósito de Cloud Tiering.
+. Clonar cada una de estas reglas.
+. En las reglas clonadas, cambie la ubicación de ubicación a la nueva agrupación de almacenamiento en cloud.
+. Guarde las reglas clonadas.
+. Cree una nueva directiva que utilice las nuevas reglas.
+. Simular y activar la nueva directiva.
++
+Cuando se activa la nueva política y se realiza la evaluación de ILM, los objetos se mueven desde el bloque de S3 configurado para Cloud Tiering al bloque de S3 configurado para Cloud Storage Pool. El espacio utilizable de la cuadrícula no se ve afectado. Una vez que los objetos se mueven al Cloud Storage Pool, se eliminan del bloque de almacenamiento en niveles del cloud.
+
+
+
+.Información relacionada
+link:../ilm/index.html["Gestión de objetos con ILM"]

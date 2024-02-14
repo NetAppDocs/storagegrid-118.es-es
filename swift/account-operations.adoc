@@ -1,0 +1,84 @@
+---
+permalink: swift/account-operations.html 
+sidebar: sidebar 
+keywords: swift account operations 
+summary: Las siguientes operaciones de la API de Swift se realizan en las cuentas. 
+---
+= Operaciones de cuentas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las siguientes operaciones de la API de Swift se realizan en las cuentas.
+
+
+
+== OBTENGA la cuenta
+
+Esta operación recupera la lista de contenedores asociada a las estadísticas de uso de la cuenta y la cuenta.
+
+Se requiere el siguiente parámetro request:
+
+* `Account`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Los siguientes parámetros de consulta de solicitud admitidos son opcionales:
+
+* `Delimiter`
+* `End_marker`
+* `Format`
+* `Limit`
+* `Marker`
+* `Prefix`
+
+
+Una ejecución correcta devuelve las siguientes cabeceras con una respuesta HTTP/1,1 204 sin contenido si la cuenta se encuentra y no tiene contenedores o la lista de contenedores está vacía; o una respuesta HTTP/1,1 200 correcta si se encuentra la cuenta y la lista de contenedores no está vacía:
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Account-Bytes-Used`
+* `X-Account-Container-Count`
+* `X-Account-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== CUENTA principal
+
+Esta operación recupera información de la cuenta y estadísticas de una cuenta de Swift.
+
+Se requiere el siguiente parámetro request:
+
+* `Account`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Una ejecución correcta devuelve los siguientes encabezados con una respuesta "HTTP/1.1 204 sin contenido":
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Date`
+* `X-Account-Bytes-Used`
+* `X-Account-Container-Count`
+* `X-Account-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+.Información relacionada
+link:swift-operations-tracked-in-audit-logs.html["Se realizó un seguimiento de las operaciones de Swift en los registros de auditoría"]

@@ -1,0 +1,211 @@
+---
+permalink: swift/object-operations.html 
+sidebar: sidebar 
+keywords: swift object operations 
+summary: Las siguientes operaciones de la API de Swift se realizan en objetos. 
+---
+= Operaciones de objeto
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las siguientes operaciones de la API de Swift se realizan en objetos. Se puede realizar un seguimiento de estas operaciones en la link:monitoring-and-auditing-operations.html["Registro de auditoría de StorageGRID"].
+
+
+
+== ELIMINAR objeto
+
+Esta operación elimina los metadatos y el contenido de un objeto del sistema StorageGRID.
+
+Se requieren los siguientes parámetros de solicitud:
+
+* `Account`
+* `Container`
+* `Object`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Una ejecución correcta devuelve los encabezados de respuesta siguientes con un `HTTP/1.1 204 No Content` respuesta:
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+Al procesar una solicitud DE ELIMINACIÓN de objeto, StorageGRID intenta eliminar inmediatamente todas las copias del objeto de todas las ubicaciones almacenadas. Si se realiza correctamente, StorageGRID devuelve una respuesta al cliente inmediatamente. Si no se pueden eliminar todas las copias en 30 segundos (por ejemplo, porque una ubicación no está disponible temporalmente), StorageGRID pone en cola las copias para su eliminación y, a continuación, indica que se ha realizado correctamente al cliente.
+
+Para obtener más información, consulte link:../ilm/how-objects-are-deleted.html["Cómo se eliminan los objetos"].
+
+
+
+== OBJETO GET
+
+Esta operación recupera el contenido de objetos y obtiene los metadatos de objetos de un sistema StorageGRID.
+
+Se requieren los siguientes parámetros de solicitud:
+
+* `Account`
+* `Container`
+* `Object`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Los siguientes encabezados de solicitud son opcionales:
+
+* `Accept-Encoding`
+* `If-Match`
+* `If-Modified-Since`
+* `If-None-Match`
+* `If-Unmodified-Since`
+* `Range`
+
+
+Una ejecución correcta devuelve los encabezados siguientes con un `HTTP/1.1 200 OK` respuesta:
+
+* `Accept-Ranges`
+*  `Content-Disposition`, devuelto sólo si `Content-Disposition` se establecieron los metadatos
+*  `Content-Encoding`, devuelto sólo si `Content-Encoding` se establecieron los metadatos
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== OBJETO HEAD
+
+Esta operación recupera los metadatos y las propiedades de un objeto ingerido desde un sistema StorageGRID.
+
+Se requieren los siguientes parámetros de solicitud:
+
+* `Account`
+* `Container`
+* `Object`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Una ejecución correcta devuelve los siguientes encabezados con una respuesta "HTTP/1.1 200 OK":
+
+* `Accept-Ranges`
+*  `Content-Disposition`, devuelto sólo si `Content-Disposition` se establecieron los metadatos
+*  `Content-Encoding`, devuelto sólo si `Content-Encoding` se establecieron los metadatos
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== PONER objeto
+
+Esta operación crea un objeto nuevo con datos y metadatos, o reemplaza un objeto existente con datos y metadatos en un sistema StorageGRID.
+
+La StorageGRID admite objetos de hasta 5 TIB (5,497,558,138,880 bytes) con un tamaño.
+
+
+NOTE: Las solicitudes de clientes en conflicto, como dos clientes que escriben en la misma clave, se resuelven en función de las "últimas victorias". El plazo para la evaluación de "logros más recientes" se basa en cuándo el sistema StorageGRID completa una solicitud determinada, y no en cuándo los clientes de Swift inician una operación.
+
+Se requieren los siguientes parámetros de solicitud:
+
+* `Account`
+* `Container`
+* `Object`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Los siguientes encabezados de solicitud son opcionales:
+
+* `Content-Disposition`
+* `Content-Encoding`
++
+No utilice fragmentos `Content-Encoding` Si la regla de ILM que se aplica a un objeto filtra objetos según el tamaño y utiliza la ubicación síncrona durante el procesamiento (las opciones equilibradas o estrictas del comportamiento de ingesta).
+
+* `Transfer-Encoding`
++
+No utilice comprimidos ni fragmentados `Transfer-Encoding` Si la regla de ILM que se aplica a un objeto filtra objetos según el tamaño y utiliza la ubicación síncrona durante el procesamiento (las opciones equilibradas o estrictas del comportamiento de ingesta).
+
+* `Content-Length`
++
+Si una regla de ILM filtra objetos por tamaño y utiliza la ubicación síncrona durante el procesamiento, debe especificar `Content-Length`.
+
++
+
+NOTE: Si no sigue estas directrices para `Content-Encoding`, `Transfer-Encoding`, y. `Content-Length`, StorageGRID debe guardar el objeto para poder determinar el tamaño del objeto y aplicar la regla ILM. En otras palabras, StorageGRID debe crear de forma predeterminada copias provisionales de un objeto durante el procesamiento. Es decir, StorageGRID debe utilizar la opción Dual COMMIT para el comportamiento de procesamiento.
+
++
+Para obtener más información sobre la ubicación síncrona y las reglas de ILM, consulte link:../ilm/data-protection-options-for-ingest.html["Opciones de protección de datos para consumo"].
+
+* `Content-Type`
+* `ETag`
+* `X-Object-Meta-<name\>` (metadatos relacionados con objetos)
++
+Si desea utilizar la opción *Tiempo de creación definido por el usuario* como tiempo de referencia para una regla de ILM, debe almacenar el valor en un encabezado definido por el usuario llamado `X-Object-Meta-Creation-Time`. Por ejemplo:
+
++
+[listing]
+----
+X-Object-Meta-Creation-Time: 1443399726
+----
++
+Este campo se evalúa como segundos desde el 1 de enero de 1970.
+
+* `X-Storage-Class: reduced_redundancy`
++
+Este encabezado afecta al número de copias de objeto que crea StorageGRID si la regla de ILM que coincide con un objeto ingerido especifica un comportamiento de procesamiento de Doble COMMIT o equilibrado.
+
++
+** *Commit doble*: Si la regla ILM especifica la opción COMMIT doble para el comportamiento de la ingesta, StorageGRID crea una única copia provisional mientras se ingiere el objeto (COMMIT único).
+** *Equilibrado*: Si la regla de ILM especifica la opción Equilibrada, StorageGRID hace una sola copia provisional solo si el sistema no puede hacer inmediatamente todas las copias especificadas en la regla. Si StorageGRID puede realizar una colocación síncrona, este encabezado no tiene ningún efecto.
++
+La `reduced_redundancy` El encabezado se utiliza mejor cuando la regla de ILM que coincide con el objeto crea una única copia replicada. En este caso, utilizar `reduced_redundancy` elimina la creación y eliminación innecesarias de una copia de objetos adicional en cada operación de procesamiento.
+
++
+Con el `reduced_redundancy` la cabecera no se recomienda en otras circunstancias porque aumenta el riesgo de pérdida de datos de objetos durante el procesamiento. Por ejemplo, puede perder datos si la única copia se almacena inicialmente en un nodo de almacenamiento que falla antes de que se pueda realizar la evaluación de ILM.
+
++
+
+CAUTION: Tener solo una copia replicada durante un periodo de tiempo pone los datos en riesgo de pérdida permanente. Si sólo existe una copia replicada de un objeto, éste se pierde si falla un nodo de almacenamiento o tiene un error importante. También perderá temporalmente el acceso al objeto durante procedimientos de mantenimiento, como las actualizaciones.
+
+
+
++
+Tenga en cuenta que especificar `reduced_redundancy` sólo afecta al número de copias que se crean cuando un objeto se ingiere por primera vez. No afecta a cuántas copias del objeto se realizan cuando se evalúan el objeto mediante las políticas de ILM activas y no dan como resultado el almacenamiento de los datos en niveles de redundancia más bajos del sistema StorageGRID.
+
+
+
+Una ejecución correcta devuelve los siguientes encabezados con una respuesta "HTTP/1.1 201 creado":
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Trans-Id`
+

@@ -1,0 +1,137 @@
+---
+permalink: swift/container-operations.html 
+sidebar: sidebar 
+keywords: swift container operations 
+summary: StorageGRID admite un máximo de 1,000 contenedores por cuenta de Swift. Las siguientes operaciones de la API de Swift se realizan en contenedores. 
+---
+= Operaciones de contenedor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID admite un máximo de 1,000 contenedores por cuenta de Swift. Las siguientes operaciones de la API de Swift se realizan en contenedores.
+
+
+
+== ELIMINAR contenedor
+
+Esta operación elimina un contenedor vacío de una cuenta de Swift en un sistema StorageGRID.
+
+Se requieren los siguientes parámetros de solicitud:
+
+* `Account`
+* `Container`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Una ejecución correcta devuelve los siguientes encabezados con una respuesta "HTTP/1.1 204 sin contenido":
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+
+
+== OBTENGA el contenedor
+
+Esta operación recupera la lista de objetos asociada con el contenedor junto con las estadísticas y los metadatos del contenedor en un sistema StorageGRID.
+
+Se requieren los siguientes parámetros de solicitud:
+
+* `Account`
+* `Container`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Los siguientes parámetros de consulta de solicitud admitidos son opcionales:
+
+* `Delimiter`
+* `End_marker`
+* `Format`
+* `Limit`
+* `Marker`
+* `Path`
+* `Prefix`
+
+
+Una ejecución correcta devuelve los siguientes encabezados con una respuesta "HTTP/1.1 200 Success" o "HTTP/1.1 204 sin contenido":
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== Contenedor DE LA CABEZA
+
+Esta operación recupera las estadísticas y los metadatos del contenedor de un sistema StorageGRID.
+
+Se requieren los siguientes parámetros de solicitud:
+
+* `Account`
+* `Container`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Una ejecución correcta devuelve los siguientes encabezados con una respuesta "HTTP/1.1 204 sin contenido":
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Date`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== COLOQUE el contenedor
+
+Esta operación crea un contenedor para una cuenta en un sistema StorageGRID.
+
+Se requieren los siguientes parámetros de solicitud:
+
+* `Account`
+* `Container`
+
+
+Se requiere el siguiente encabezado de solicitud:
+
+* `X-Auth-Token`
+
+
+Una ejecución correcta devuelve los siguientes encabezados con una respuesta "HTTP/1.1 201 creado" o "HTTP/1.1 202 aceptado" (si el contenedor ya existe bajo esta cuenta):
+
+* `Content-Length`
+* `Date`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+Un nombre de contenedor debe ser único en el espacio de nombres de StorageGRID. Si el contenedor existe en otra cuenta, se devuelve el siguiente encabezado: "Conflicto HTTP/1.1 409".
+
+.Información relacionada
+link:monitoring-and-auditing-operations.html["Supervisar y auditar operaciones"]

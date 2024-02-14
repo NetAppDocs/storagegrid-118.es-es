@@ -1,0 +1,76 @@
+---
+permalink: audit/asce-archive-object-store-end.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ASCE, Archive Object Store End 
+summary: Este mensaje indica que ha finalizado la escritura de un bloque de contenido en un sistema de almacenamiento de archivado externo. 
+---
+= ASCE: Fin del almacén de objetos de archivo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Este mensaje indica que ha finalizado la escritura de un bloque de contenido en un sistema de almacenamiento de archivado externo.
+
+[cols="1a,1a,4a"]
+|===
+| Codificación | Campo | Descripción 
+
+
+ a| 
+CBID
+ a| 
+Identificador de bloque de contenido
+ a| 
+Identificador del bloque de contenido almacenado en el sistema de almacenamiento de archivos externo.
+
+
+
+ a| 
+VLID
+ a| 
+Identificador del volumen
+ a| 
+El identificador único del volumen de archivado en el que se escriben los datos de objetos.
+
+
+
+ a| 
+REN
+ a| 
+Verificación habilitada
+ a| 
+Indica si se realiza la verificación para bloques de contenido. Los valores definidos actualmente son:
+
+* VENA: La verificación está activada
+* VDSA: La verificación está desactivada
+
+
+
+
+ a| 
+MCLS
+ a| 
+Clase de Gestión
+ a| 
+Cadena que identifica la clase de gestión de TSM a la que se asigna el bloque de contenido si procede.
+
+
+
+ a| 
+TRANSFORMACIÓN DIGITAL
+ a| 
+Resultado
+ a| 
+Indica el resultado del proceso de archivado. Los valores definidos actualmente son:
+
+* ÉXITO: Correcto (proceso de archivado realizado correctamente)
+* OFL: Error (el archivado está sin conexión)
+* VRFL: Error (fallo de verificación del objeto)
+* ARUN: Error (sistema de almacenamiento de archivado externo no disponible)
+* ERROR GENERAL (ERROR general)
+
+
+|===
+Este mensaje de auditoría significa que el bloque de contenido especificado se ha escrito en el sistema de almacenamiento de archivado externo. Si la escritura falla, el resultado ofrece información básica de solución de problemas sobre dónde se produjo el error. Puede encontrar información más detallada acerca de los errores de archivado examinando los atributos del nodo de archivado en el sistema StorageGRID.

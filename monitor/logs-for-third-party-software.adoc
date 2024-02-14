@@ -1,0 +1,69 @@
+---
+permalink: monitor/logs-for-third-party-software.html 
+sidebar: sidebar 
+keywords: troubleshooting, logs 
+summary: Puede utilizar los registros de software de terceros para solucionar problemas. 
+---
+= Registros del software de terceros
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede utilizar los registros de software de terceros para solucionar problemas.
+
+[cols="1a,2a,3a,1a"]
+|===
+| Categoría | Nombre de archivo | Notas | Encontrado en 
+
+
+ a| 
+Archivado
+| /var/local/log/dsierror.log  a| 
+Información de errores para las API de TSM Client.
+ a| 
+Nodos de archivado
+
+
+
+ a| 
+MySQL
+| /var/local/log/mysql.err
+
+/var/local/log/mysql-slow.log  a| 
+Archivos de registro generados por MySQL.
+
+`mysql.err` captura los errores y eventos de la base de datos, como startups y apagados.
+
+`mysql-slow.log` (El registro de consulta lento) captura las sentencias SQL que tardaron más de 10 segundos en ejecutarse.
+ a| 
+Nodos de administración
+
+
+
+ a| 
+De NetApp
+| /var/local/log/messages  a| 
+Este directorio contiene archivos de registro para el sistema operativo. Los errores contenidos en estos registros también se muestran en Grid Manager. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *Topología* > *_Site_* > *_Node_* > *SSM* > *Eventos*.
+ a| 
+Todos los nodos
+
+
+
+ a| 
+NTP
+| /var/local/log/ntp.log
+
+/var/lib/ntp/var/log/ntpstats/  a| 
+`/var/local/log/ntp.log` Contiene el archivo de registro de los mensajes de error de NTP.
+
+`/var/lib/ntp/var/log/ntpstats/` el directorio contiene estadísticas de sincronización NTP.
+
+`loopstats` registra información de estadísticas de filtro de bucle.
+
+`peerstats` registra la información de estadísticas del mismo nivel.
+ a| 
+Todos los nodos
+
+|===

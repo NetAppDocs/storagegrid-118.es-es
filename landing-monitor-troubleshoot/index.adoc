@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-monitor-troubleshoot/index.html 
+summary: Cuando el sistema está en funcionamiento, debe supervisar sus actividades de forma regular y solucionar cualquier alerta. Es posible que también desee configurar un servidor de syslog externo, usar la supervisión SNMP o recoger datos adicionales. 
+---
+= Supervisar y solucionar problemas de un sistema StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

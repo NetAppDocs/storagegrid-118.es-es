@@ -1,0 +1,269 @@
+---
+permalink: admin/storage-node-configuration-settings.html 
+sidebar: sidebar 
+keywords: storage node, configuration settings, counters 
+summary: 'Cada nodo de almacenamiento utiliza varias opciones de configuración y contadores. Es posible que necesite ver los ajustes actuales o restablecer contadores para borrar alarmas \(sistema heredado\).' 
+---
+= Opciones de configuración del nodo de almacenamiento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cada nodo de almacenamiento utiliza varias opciones de configuración y contadores. Puede que necesite ver los ajustes actuales o restablecer contadores para borrar alarmas (sistema heredado).
+
+
+CAUTION: Excepto cuando se le indique específicamente en la documentación, debe consultar con el soporte técnico antes de modificar los ajustes de configuración de nodos de almacenamiento. Según sea necesario, puede restablecer los contadores de eventos para borrar las alarmas heredadas.
+
+Siga estos pasos para acceder a la configuración y los contadores de un nodo de almacenamiento.
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *_site_* > *_Storage Node_*.
+. Expanda el nodo de almacenamiento y seleccione el servicio o el componente.
+. Seleccione la ficha *Configuración*.
+
+
+Las siguientes tablas resumen los ajustes de configuración de nodos de almacenamiento.
+
+
+
+== LDR
+
+[cols="2a,1a,3a"]
+|===
+| Nombre de atributo | Codificación | Descripción 
+
+
+ a| 
+Estado HTTP
+ a| 
+HSTE
+ a| 
+El estado actual de HTTP para S3, Swift y otro tráfico StorageGRID interno:
+
+* Sin conexión: No se permiten operaciones y cualquier aplicación cliente que intente abrir una sesión HTTP al servicio LDR recibe un mensaje de error. Las sesiones activas se cierran correctamente.
+* En línea: El funcionamiento continúa con normalidad
+
+
+
+
+ a| 
+HTTP de inicio automático
+ a| 
+HTA
+ a| 
+* Si se selecciona, el estado del sistema al reiniciar depende del estado del componente *LDR* > *almacenamiento*. Si el componente *LDR* > *almacenamiento* es de sólo lectura al reiniciar, la interfaz HTTP también es de sólo lectura. Si el componente *LDR* > *almacenamiento* está en línea, HTTP también está en línea. De lo contrario, la interfaz HTTP permanece en estado sin conexión.
+* Si no se selecciona, la interfaz HTTP permanece sin conexión hasta que se habilita explícitamente.
+
+
+|===
+
+
+== LDR > almacén de datos
+
+[cols="2a,1a,3a"]
+|===
+| Nombre de atributo | Codificación | Descripción 
+
+
+ a| 
+Restablecer recuento de objetos perdidos
+ a| 
+RCOR
+ a| 
+Restablezca el contador del número de objetos perdidos en este servicio.
+
+|===
+
+
+== LDR > almacenamiento
+
+[cols="2a,1a,3a"]
+|===
+| Nombre de atributo | Codificación | Descripción 
+
+
+ a| 
+Estado de almacenamiento -- deseado
+ a| 
+SSD
+ a| 
+Una configuración que puede configurar el usuario para el estado deseado del componente de almacenamiento. El servicio LDR lee este valor e intenta hacer coincidir el estado indicado por este atributo. El valor se mantiene de un reinicio a otro.
+
+Por ejemplo, puede usar esta configuración para forzar a que el almacenamiento pase a ser de solo lectura, incluso si hay un gran espacio de almacenamiento disponible. Esto puede ser útil para la solución de problemas.
+
+El atributo puede tomar uno de los siguientes valores:
+
+* Sin conexión: Cuando el estado deseado es sin conexión, el servicio LDR desconecta el componente *LDR* > *almacenamiento*.
+* Solo lectura: Cuando el estado deseado es de solo lectura, el servicio LDR mueve el estado de almacenamiento a Sólo lectura y deja de aceptar nuevo contenido. Sin embargo, el servicio LDR sigue aceptando solicitudes de depuración y eliminación basadas en S3 o ILM. Tenga en cuenta que el contenido puede seguir guardado en el nodo de almacenamiento durante un breve periodo hasta que se cierran las sesiones abiertas.
+* En línea: Deje el valor en línea durante el funcionamiento normal del sistema. Estado del almacenamiento: El servicio establecerá de forma dinámica la corriente del componente de almacenamiento en función del estado del servicio LDR, como la cantidad de espacio de almacenamiento de objetos disponible. Si el espacio es bajo, el componente se convierte en de solo lectura.
+
+
+
+
+ a| 
+Tiempo de espera de comprobación del estado
+ a| 
+HCT
+ a| 
+El límite de tiempo en segundos en el que debe completarse una prueba de comprobación del estado para que un volumen de almacenamiento se considere correcto. Cambie este valor solo cuando lo indique el equipo de soporte de.
+
+|===
+
+
+== LDR > verificación
+
+[cols="2a,1a,3a"]
+|===
+| Nombre de atributo | Codificación | Descripción 
+
+
+ a| 
+Restablecer recuento de objetos que faltan
+ a| 
+VCMI
+ a| 
+Restablece el recuento de objetos que faltan detectados (OMIS). Utilice sólo una vez completada la comprobación de la existencia del objeto. El sistema StorageGRID restaura automáticamente los datos de objetos replicados que faltan.
+
+
+
+ a| 
+Tasa de verificación
+ a| 
+VPRI
+ a| 
+Establecer la velocidad a la que se realiza la verificación en segundo plano. Consulte la información sobre la configuración de la tasa de verificación en segundo plano.
+
+
+
+ a| 
+Restablecer recuento de objetos dañados
+ a| 
+VCCR
+ a| 
+Restablece el contador para los datos de objetos replicados dañados que se han encontrado durante la verificación en segundo plano. Esta opción se puede utilizar para borrar la condición de alarma objetos dañados detectados (OCOR).
+
+
+
+ a| 
+Eliminar objetos en cuarentena
+ a| 
+OQRT
+ a| 
+Eliminar objetos dañados del directorio de cuarentena, restablecer el recuento de objetos en cuarentena a cero y borrar la alarma objetos en cuarentena detectados (OQRT). Esta opción se utiliza después de que el sistema StorageGRID restaura automáticamente los objetos dañados.
+
+Si se activa una alarma objetos perdidos, es posible que el soporte técnico desee acceder a los objetos en cuarentena. En algunos casos, los objetos en cuarentena podrían ser útiles para la recuperación de datos o para depurar los problemas subyacentes que causaron las copias de objetos dañadas.
+
+|===
+
+
+== LDR > codificación de borrado
+
+[cols="2a,1a,3a"]
+|===
+| Nombre de atributo | Codificación | Descripción 
+
+
+ a| 
+Restablecer el número de errores de escritura
+ a| 
+RSWF
+ a| 
+Restablezca el contador para obtener errores de escritura de los datos de objetos codificados con borrado al nodo de almacenamiento.
+
+
+
+ a| 
+Recuento de errores de restablecimiento de lecturas
+ a| 
+RSRF
+ a| 
+Restablezca el contador para ver los errores de lectura de los datos de objetos codificados con borrado desde el nodo de almacenamiento.
+
+
+
+ a| 
+Restablecer recuento de errores de eliminación
+ a| 
+RSDF
+ a| 
+Restablezca el contador para eliminar errores de datos de objetos codificados con borrado desde el nodo de almacenamiento.
+
+
+
+ a| 
+Restablecer el número de copias dañadas detectadas
+ a| 
+RSCC
+ a| 
+Restablezca el contador del número de copias dañadas de datos de objetos codificados con borrado en el nodo de almacenamiento.
+
+
+
+ a| 
+Restablecer recuento de fragmentos dañados detectados
+ a| 
+RSCD
+ a| 
+Restablezca el contador para fragmentos dañados de datos de objetos codificados con borrado en el nodo de almacenamiento.
+
+
+
+ a| 
+Restablecer recuento de fragmentos perdidos detectados
+ a| 
+RSMD
+ a| 
+Restablezca el contador para ver los fragmentos faltantes de datos de objetos codificados con borrado en el nodo de almacenamiento. Utilice sólo una vez completada la comprobación de la existencia del objeto.
+
+|===
+
+
+== LDR > replicación
+
+[cols="2a,1a,3a"]
+|===
+| Nombre de atributo | Codificación | Descripción 
+
+
+ a| 
+Restablecer recuento de fallos de replicación entrante
+ a| 
+RICR
+ a| 
+Restablezca el contador de fallos de replicación de entrada. Esto se puede utilizar para borrar la alarma RIRF (replicación entrante -- fallida).
+
+
+
+ a| 
+Restablecer recuento de fallos de replicación de salida
+ a| 
+RCR
+ a| 
+Restablezca el contador para fallos de replicación saliente. Esto se puede utilizar para borrar la alarma RORF (réplicas de salida -- fallida).
+
+
+
+ a| 
+Desactivar la replicación entrante
+ a| 
+DSIR
+ a| 
+Seleccione esta opción para desactivar la replicación entrante como parte de un procedimiento de mantenimiento o prueba. Deje sin marcar durante el funcionamiento normal.
+
+Cuando la replicación entrante está desactivada, los objetos se pueden recuperar del nodo de almacenamiento para copiarlos en otras ubicaciones del sistema StorageGRID, pero los objetos no se pueden copiar en este nodo de almacenamiento desde otras ubicaciones: El servicio LDR es de solo lectura.
+
+
+
+ a| 
+Desactive la replicación saliente
+ a| 
+DSOR
+ a| 
+Seleccione esta opción para deshabilitar la replicación saliente (incluidas las solicitudes de contenido para las recuperaciones HTTP) como parte de un procedimiento de mantenimiento o de prueba. Deje sin marcar durante el funcionamiento normal.
+
+Cuando la replicación saliente está desactivada, los objetos se pueden copiar en este nodo de almacenamiento, pero los objetos no se pueden recuperar del nodo de almacenamiento para copiarlos en otras ubicaciones del sistema StorageGRID. El servicio LDR es de sólo escritura.
+
+|===

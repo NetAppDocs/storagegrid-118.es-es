@@ -1,0 +1,229 @@
+---
+permalink: maintain/archive-node-maintenance-for-tsm-middleware.html 
+sidebar: sidebar 
+keywords: storagegrid, archive node, tsm, tsm middleware, middleware 
+summary: Los nodos de archivado pueden configurarse para dar como objetivo una cinta mediante un servidor de middleware de TSM o el cloud a través de la API S3. Una vez completada la configuración, no se puede cambiar el destino de un nodo de archivado. 
+---
+= Mantenimiento de nodos de archivado para middleware TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los nodos de archivado pueden configurarse para dar como objetivo una cinta mediante un servidor de middleware de TSM o el cloud a través de la API S3. Una vez completada la configuración, no se puede cambiar el destino de un nodo de archivado.
+
+Si el servidor que aloja el nodo de archivado falla, sustituya el servidor y siga el procedimiento de recuperación adecuado.
+
+
+
+== Fallo en dispositivos de almacenamiento de archivado
+
+Si determina que hay un error en el dispositivo de almacenamiento de archivado al que está accediendo el nodo de archivado a través de Tivoli Storage Manager (TSM), desconecte el nodo de archivado para limitar el número de alarmas mostradas en el sistema StorageGRID. Entonces, puede utilizar las herramientas administrativas del servidor de TSM o del dispositivo de almacenamiento, o ambas, para diagnosticar y resolver el problema.
+
+
+
+=== Desconecte el componente de destino
+
+Antes de llevar a cabo cualquier mantenimiento del servidor de middleware TSM que pudiera hacer que no esté disponible para el nodo de archivado, desconecte el componente de destino para limitar el número de alarmas que se activan si el servidor de middleware TSM deja de estar disponible.
+
+.Antes de empezar
+Ha iniciado sesión en Grid Manager mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *nodo de archivo* > *ARC* > *objetivo* > *Configuración* > *Principal*.
+. Cambie el valor de Estado de Tivoli Storage Manager a *sin conexión* y haga clic en *aplicar cambios*.
+. Una vez finalizado el mantenimiento, cambie el valor de estado de Tivoli Storage Manager a *Online* y haga clic en *aplicar cambios*.
+
+
+
+
+== Herramientas administrativas de Tivoli Storage Manager
+
+La herramienta dsmadmc es la consola administrativa del servidor de middleware TSM que está instalado en el nodo de archivado. Puede acceder a la herramienta escribiendo `dsmadmc` en la línea de comandos del servidor. Inicie sesión en la consola administrativa con el mismo nombre de usuario administrativo y contraseña configurados para el servicio ARC.
+
+La `tsmquery.rb` se creó una secuencia de comandos para generar información de estado de dsmadmc de forma más legible. Este script se puede ejecutar introduciendo el siguiente comando en la línea de comandos del nodo de archivado: `/usr/local/arc/tsmquery.rb status`
+
+Para obtener más información acerca del dsmadmc de la consola administrativa de TSM, consulte _Tivoli Storage Manager for Linux: Administratorʹs Reference_.
+
+
+
+== Objeto no disponible de forma permanente
+
+Cuando el nodo de archivado solicita un objeto desde el servidor de Tivoli Storage Manager (TSM) y la recuperación falla, el nodo de archivado vuelve a intentar la solicitud después de un intervalo de 10 segundos. Si el objeto no está disponible de forma permanente (por ejemplo, debido a que el objeto está dañado en cinta), la API de TSM no tiene forma de indicarlo en el nodo de archivado, por lo que el nodo de archivado continúa reintentando la solicitud.
+
+Cuando se produce esta situación, se activa una alarma y el valor continúa aumentando. Para ver la alarma, seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *nodo de archivo* > *ARC* > *recuperar* > *fallos de solicitud*.
+
+Si el objeto no está disponible permanentemente, debe identificar el objeto y, a continuación, cancelar manualmente la solicitud del nodo de archivado como se describe en el procedimiento, <<determining_objects_permanently_unavailable,Determinar si los objetos no están disponibles de forma permanente>>.
+
+Una recuperación también puede fallar si el objeto no está disponible temporalmente. En este caso, las posteriores solicitudes de recuperación deberían tener éxito en algún momento.
+
+Si el sistema StorageGRID está configurado para utilizar una regla de ILM que crea una única copia de objeto y esa copia no se puede recuperar, el objeto se pierde y no se puede recuperar. Sin embargo, debe seguir el procedimiento para determinar si el objeto no está disponible permanentemente para limpiar el sistema StorageGRID, cancelar la solicitud del nodo de archivado y depurar los metadatos del objeto perdido.
+
+
+
+=== Determinar si los objetos no están disponibles de forma permanente
+
+Puede determinar si los objetos no están disponibles de forma permanente realizando una solicitud mediante la consola administrativa de TSM.
+
+.Antes de empezar
+* Ya tienes link:../admin/admin-group-permissions.html["permisos de acceso específicos"].
+* Usted tiene la `Passwords.txt` archivo.
+* Tiene la dirección IP de un nodo de administración.
+
+
+.Acerca de esta tarea
+Este ejemplo se proporciona para su información. Este procedimiento no puede ayudarle a identificar todas las condiciones de fallo que podrían dar lugar a objetos o volúmenes de cinta no disponibles. Para obtener información acerca de la administración de TSM, consulte la documentación de TSM Server.
+
+.Pasos
+. Inicie sesión en un nodo de administrador:
++
+.. Introduzca el siguiente comando: `ssh admin@Admin_Node_IP`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+
+
+. Identifique el objeto o objetos que no ha podido recuperar el nodo de archivado:
++
+.. Vaya al directorio que contiene los archivos del registro de auditoría: `cd /var/local/log`
++
+El archivo de registro de auditoría activo se denomina audit.log. Una vez al día, el activo `audit.log` el archivo se guardará y se guardará un nuevo `audit.log` se ha iniciado el archivo. El nombre del archivo guardado indica cuándo se guardó, en el formato `yyyy-mm-dd.txt`. Después de un día, el archivo guardado se comprime y cambia su nombre, en el formato `yyyy-mm-dd.txt.gz`, que conserva la fecha original.
+
+.. Busque en el archivo de registro de auditoría correspondiente los mensajes que indican que no se puede recuperar un objeto archivado. Por ejemplo, introduzca: `grep ARCE audit.log | less -n`
++
+Cuando un objeto no se puede recuperar de un nodo de archivado, el mensaje de auditoría de ARCE (fin de recuperación de objeto de archivado) muestra ARUN (middleware de archivo no disponible) o GERR (error general) en el campo Resultado. La siguiente línea de ejemplo del registro de auditoría muestra que EL mensaje ARCE terminó con el resultado ARUN para CBID 498D8A1F681F05B3.
+
++
+[listing]
+----
+[AUDT:[CBID(UI64):0x498D8A1F681F05B3][VLID(UI64):20091127][RSLT(FC32):ARUN][AVER(UI32):7]
+[ATIM(UI64):1350613602969243][ATYP(FC32):ARCE][ANID(UI32):13959984][AMID(FC32):ARCI]
+[ATID(UI64):4560349751312520631]]
+----
++
+Para obtener más información, consulte las instrucciones para comprender los mensajes de auditoría.
+
+.. Registre el CBID de cada objeto que tenga un fallo en la solicitud.
++
+También es posible que desee registrar la siguiente información adicional utilizada por TSM para identificar los objetos guardados por el nodo de archivado:
+
++
+*** *Nombre del espacio de archivos*: Equivalente al ID del nodo de archivado. Para encontrar el ID de nodo de archivado, seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *nodo de archivo* > *ARC* > *objetivo* > *Descripción general*.
+*** *Nombre de alto nivel*: Equivalente al ID de volumen asignado al objeto por el nodo de archivado. El ID del volumen tiene el formato de una fecha (por ejemplo, `20091127`), y se registra como el VLID del objeto en el archivo de mensajes de auditoría.
+*** *Nombre de nivel bajo*: Equivalente al CBID asignado a un objeto por el sistema StorageGRID.
+
+
+.. Cierre la sesión del shell de comandos: `exit`
+
+
+. Compruebe el servidor TSM para ver si los objetos identificados en el paso 2 no están disponibles de forma permanente:
++
+.. Inicie sesión en la consola administrativa del servidor TSM: `dsmadmc`
++
+Utilice el nombre de usuario administrativo y la contraseña configurados para el servicio ARC. Introduzca el nombre de usuario y la contraseña en Grid Manager. (Para ver el nombre de usuario, seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *nodo de archivo* > *ARC* > *objetivo* > *Configuración*.)
+
+.. Determine si el objeto no está disponible de forma permanente.
++
+Por ejemplo, puede buscar en el registro de actividades de TSM un error de integridad de datos para ese objeto. En el ejemplo siguiente se muestra una búsqueda del registro de actividad del último día de un objeto con CBID `498D8A1F681F05B3`.
+
++
+[listing]
+----
+> query actlog begindate=-1 search=276C14E94082CC69
+12/21/2008 05:39:15 ANR0548W Retrieve or restore
+failed for session 9139359 for node DEV-ARC-20 (Bycast ARC)
+processing file space /19130020 4 for file /20081002/
+498D8A1F681F05B3 stored as Archive - data
+integrity error detected. (SESSION: 9139359)
+>
+----
++
+En función de la naturaleza del error, es posible que el CBID no se registre en el registro de actividades de TSM. Es posible que sea necesario buscar el registro para otros errores de TSM alrededor del momento en que se produce el fallo de la solicitud.
+
+.. Si una cinta completa no está disponible de forma permanente, identifique los CBID de todos los objetos almacenados en ese volumen: `query content TSM_Volume_Name`
++
+donde `TSM_Volume_Name` Es el nombre de TSM para la cinta no disponible. A continuación se muestra un ejemplo del resultado de este comando:
+
++
+[listing]
+----
+ > query content TSM-Volume-Name
+Node Name     Type Filespace  FSID Client's Name for File Name
+------------- ---- ---------- ---- ----------------------------
+DEV-ARC-20    Arch /19130020  216  /20081201/ C1D172940E6C7E12
+DEV-ARC-20    Arch /19130020  216  /20081201/ F1D7FBC2B4B0779E
+----
++
+La `Client’s Name for File Name` Es el mismo que el ID de volumen del nodo de archivado (o TSM «nombre de nivel superior») seguido del CBID del objeto (o «nombre de nivel inferior» de TSM). Es decir, la `Client’s Name for File Name` toma la forma `/Archive Node volume ID /CBID`. En la primera línea del resultado de ejemplo, la `Client’s Name for File Name` es `/20081201/ C1D172940E6C7E12`.
+
++
+Recuerde también que el `Filespace` Es el ID de nodo del nodo de archivado.
+
++
+Necesitará el CBID de cada objeto almacenado en el volumen y el ID de nodo del nodo de archivado para cancelar la solicitud de recuperación.
+
+
+
+. Para cada objeto que no esté disponible de forma permanente, cancele la solicitud de recuperación y emita un comando para informar al sistema StorageGRID de que la copia de objeto se ha perdido:
++
+
+CAUTION: Use la Consola de ADE con precaución. Si la consola se utiliza incorrectamente, es posible interrumpir las operaciones del sistema y dañar los datos. Introduzca los comandos detenidamente y utilice únicamente los comandos documentados en este procedimiento.
+
++
+.. Si aún no ha iniciado sesión en el nodo de archivado, inicie sesión de la siguiente manera:
++
+... Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+... Introduzca el siguiente comando para cambiar a la raíz: `su -`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+
+
+.. Acceder a la consola ADE del servicio ARC: `telnet localhost 1409`
+.. Cancelar la solicitud del objeto: `/proc/BRTR/cancel -c CBID`
++
+donde `CBID` Es el identificador del objeto que no se puede recuperar del TSM.
+
++
+Si las únicas copias del objeto están en cinta, la solicitud de recuperación masiva se cancela con un mensaje que indica que 1 solicitudes canceladas. Si existen copias del objeto en otro lugar del sistema, la recuperación del objeto se procesa mediante un módulo diferente, por lo que la respuesta al mensaje es “0 solicitudes canceladas”.
+
+.. Emita un comando para notificar al sistema StorageGRID que se ha perdido una copia de objeto y que se debe realizar una copia adicional: `/proc/CMSI/Object_Lost CBID node_ID`
++
+donde `CBID` Es el identificador del objeto que no se puede recuperar del servidor TSM, y. `node_ID` Es el ID de nodo del nodo de archivado en el que se produjo un error en la recuperación.
+
++
+Debe introducir un comando independiente para cada copia de objeto perdida: No se admite la introducción de un rango de CBID.
+
++
+En la mayoría de los casos, el sistema StorageGRID empieza inmediatamente a realizar copias adicionales de datos de objetos para garantizar que se sigue la política de ILM del sistema.
+
++
+Sin embargo, si la regla de ILM para el objeto especifica que se debe hacer una sola copia y que ahora se ha perdido esa copia, el objeto no se puede recuperar. En este caso, ejecute el `Object_Lost` El comando purga los metadatos del objeto perdido desde el sistema StorageGRID.
+
++
+Cuando la `Object_Lost` el comando se completa correctamente y se muestra el siguiente mensaje:
+
++
+[listing]
+----
+CLOC_LOST_ANS returned result ‘SUCS’
+----
++
+
+NOTE: La `/proc/CMSI/Object_Lost` El comando sólo es válido para los objetos perdidos que se almacenan en nodos de archivado.
+
+.. Salga de la Consola de ADE: `exit`
+.. Cierre la sesión del nodo de archivado: `exit`
+
+
+. Restablezca el valor de los fallos de solicitud en el sistema StorageGRID:
++
+.. Vaya a *nodo de archivo* > *ARC* > *recuperar* > *Configuración* y seleccione *Restablecer recuento de fallos de solicitud*.
+.. Haga clic en *aplicar cambios*.
+
+
+
+
+.Información relacionada
+link:../admin/index.html["Administre StorageGRID"]
+
+link:../audit/index.html["Revisar los registros de auditoría"]

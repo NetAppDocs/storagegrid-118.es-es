@@ -1,0 +1,18 @@
+---
+permalink: network/client-network-requirements.html 
+sidebar: sidebar 
+keywords: client network 
+summary: La red cliente es opcional. Si planea configurar una red de cliente, tenga en cuenta las siguientes consideraciones. 
+---
+= Requisitos de red de cliente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La red cliente es opcional. Si planea configurar una red de cliente, tenga en cuenta las siguientes consideraciones.
+
+La red de clientes está diseñada para admitir el tráfico de clientes S3 y Swift. Si se configura, la puerta de enlace de red de cliente se convierte en la puerta de enlace predeterminada del nodo.
+
+Si utiliza una red de cliente, puede ayudar a proteger StorageGRID de ataques hostiles aceptando tráfico de cliente entrante sólo en puntos finales de equilibrador de carga configurados explícitamente. Consulte link:../admin/manage-firewall-controls.html["Gestionar los controles del firewall"] y.. link:../admin/configuring-load-balancer-endpoints.html["Configurar puntos finales del equilibrador de carga"].

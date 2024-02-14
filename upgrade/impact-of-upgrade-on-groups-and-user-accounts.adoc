@@ -1,0 +1,35 @@
+---
+permalink: upgrade/impact-of-upgrade-on-groups-and-user-accounts.html 
+sidebar: sidebar 
+keywords: upgrade, permissions 
+summary: Es posible que tenga que actualizar los grupos y las cuentas de usuario de forma adecuada una vez finalizada la actualización. 
+---
+= Impacto de una actualización en grupos y cuentas de usuario
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que tenga que actualizar los grupos y las cuentas de usuario de forma adecuada una vez finalizada la actualización.
+
+
+
+== Cambios en los permisos y opciones de grupo
+
+Después de actualizar a StorageGRID 11,8, asigne opcionalmente los siguientes permisos nuevos a grupos de usuarios inquilinos.
+
+[cols="1a,2a,2a"]
+|===
+| Permiso | Descripción | Detalles 
+
+
+ a| 
+Ver todos los cubos
+ a| 
+Permite a los usuarios ver todas las configuraciones de bloques y bloques.
+ a| 
+El permiso Gestionar todos los cubos sustituye al permiso Ver todos los cubos.
+
+|===
+Consulte link:../tenant/tenant-management-permissions.html["Permisos de gestión de inquilinos"].

@@ -1,0 +1,27 @@
+---
+permalink: maintain/resetting-archive-node-connection-to-cloud.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, archive node connection, reset archive node connection, resetting archive node connection, reset cloud connection, resetting cloud connections 
+summary: 'Después de recuperar un nodo de archivado que se dirige al cloud a través de la API S3, debe modificar las opciones de configuración para restablecer las conexiones. Se activa una alarma Estado de replicación saliente \(ORSU\) si el nodo de archivado no puede recuperar los datos del objeto.' 
+---
+= Restablezca la conexión de nodo de archivado con el cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de recuperar un nodo de archivado que se dirige al cloud a través de la API S3, debe modificar las opciones de configuración para restablecer las conexiones. Se activa una alarma Estado de replicación saliente (ORSU) si el nodo de archivado no puede recuperar datos de objeto.
+
+
+NOTE: Si el nodo de archivado se conecta al almacenamiento externo a través del middleware TSM, el nodo se restablece automáticamente y no es necesario volver a configurarlo.
+
+.Antes de empezar
+Ha iniciado sesión en Grid Manager mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *nodo de archivo* > *ARC* > *objetivo*.
+. Edite el campo *clave de acceso* introduciendo un valor incorrecto y haga clic en *aplicar cambios*.
+. Edite el campo *clave de acceso* introduciendo el valor correcto y haga clic en *aplicar cambios*.
+

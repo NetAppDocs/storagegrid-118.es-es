@@ -1,0 +1,34 @@
+---
+permalink: admin/modifying-cloud-tiering-service-state.html 
+sidebar: sidebar 
+keywords: cloud tiering 
+summary: Puede controlar la capacidad de lectura y escritura del nodo de archivado en el sistema de almacenamiento de archivado externo de destino que se conecta a través de la API S3 cambiando el estado del servicio de organización en niveles de cloud. 
+---
+= Modifique el estado del servicio de organización en niveles del cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede controlar la capacidad de lectura y escritura del nodo de archivado en el sistema de almacenamiento de archivado externo objetivo que se conecta a través de la API de S3 cambiando el estado del servicio de organización en niveles de cloud.
+
+.Antes de empezar
+* Debe iniciar sesión en Grid Manager mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+* Ya tienes link:admin-group-permissions.html["permisos de acceso específicos"].
+* Debe configurarse el nodo de archivado.
+
+
+.Acerca de esta tarea
+Puede desconectar el nodo de archivado de forma efectiva cambiando el estado del servicio de organización en niveles en la nube a *Read-Write Disabled*.
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *_Archive Node_* > *ARC*.
+. Seleccione *Configuración* > *Principal*.
++
+image::../media/modifying_middleware_state.gif[Estado del servicio de organización en niveles del cloud]
+
+. Seleccione un *Estado del servicio de organización en niveles de la nube*.
+. Seleccione *aplicar cambios*.
+

@@ -1,0 +1,105 @@
+---
+permalink: swift/get-container-consistency-request.html 
+sidebar: sidebar 
+keywords: get container consistency request 
+summary: Los valores de consistencia proporcionan un equilibrio entre la disponibilidad de los objetos y la coherencia de dichos objetos en distintos nodos de almacenamiento y sitios. La solicitud OBTENER consistencia de contenedor le permite determinar la consistencia que se aplica a un contenedor en particular. 
+---
+= OBTENGA la solicitud de consistencia del contenedor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los valores de consistencia proporcionan un equilibrio entre la disponibilidad de los objetos y la coherencia de dichos objetos en distintos nodos de almacenamiento y sitios. La solicitud OBTENER consistencia de contenedor le permite determinar la consistencia que se aplica a un contenedor en particular.
+
+
+
+== Solicitud
+
+[cols="2a,4a"]
+|===
+| Solicitar encabezado HTTP | Descripción 
+
+
+| Token X-Auth  a| 
+Especifica el token de autenticación Swift de la cuenta que se va a utilizar para la solicitud.
+
+
+
+| x-ntap-sg-consistency  a| 
+Especifica el tipo de solicitud, donde `true` = OBTENER la consistencia del contenedor, y. `false` = OBTENER contenedor.
+
+
+
+| Host  a| 
+El nombre de host al que se dirige la solicitud.
+
+|===
+
+
+== Ejemplo de solicitud
+
+[listing]
+----
+GET /v1/28544923908243208806/Swift container
+X-Auth-Token: SGRD_3a877009a2d24cb1801587bfa9050f29
+x-ntap-sg-consistency: true
+Host: test.com
+----
+
+
+== Respuesta
+
+[cols="2a,4a"]
+|===
+| Encabezado HTTP de respuesta | Descripción 
+
+
+| Fecha  a| 
+La fecha y la hora de la respuesta.
+
+
+
+| Conexión  a| 
+Si la conexión con el servidor está abierta o cerrada.
+
+
+
+| X-Trans-ID  a| 
+Identificador de transacción único para la solicitud.
+
+
+
+| Longitud de contenido  a| 
+La longitud del cuerpo de respuesta.
+
+
+
+| x-ntap-sg-consistency  a| 
+La consistencia que se aplica al contenedor. Se admiten los siguientes valores:
+
+*Todos*: Todos los nodos reciben los datos inmediatamente o la solicitud fallará.
+
+*Strong-global*: Garantiza la consistencia de lectura tras escritura para todas las solicitudes de los clientes en todos los sitios.
+
+*Strong-site*: Garantiza la consistencia de lectura después de escritura para todas las solicitudes de los clientes dentro de un sitio.
+
+*Read-after-new-write*: (Por defecto) proporciona consistencia de lectura después de escritura para nuevos objetos y consistencia eventual para las actualizaciones de objetos. Ofrece garantías de alta disponibilidad y protección de datos. Recomendado para la mayoría de los casos.
+
+*Disponible*: Proporciona consistencia eventual tanto para nuevos objetos como para actualizaciones de objetos. Para los cubos S3, utilice solo según sea necesario (por ejemplo, para un depósito que contiene valores de registro que rara vez se leen, o para operaciones HEAD u GET en claves que no existen). No se admite para bloques de FabricPool S3.
+
+|===
+
+
+== Ejemplo de respuesta
+
+[listing]
+----
+HTTP/1.1 204 No Content
+Date: Sat, 29 Nov 2015 01:02:18 GMT
+Connection: CLOSE
+X-Trans-Id: 1936575373
+Content-Length: 0
+x-ntap-sg-consistency: strong-site
+----

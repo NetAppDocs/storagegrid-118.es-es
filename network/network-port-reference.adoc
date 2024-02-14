@@ -1,0 +1,16 @@
+---
+permalink: network/network-port-reference.html 
+sidebar: sidebar 
+keywords: network port reference 
+summary: Debe asegurarse de que la infraestructura de red pueda proporcionar comunicación interna y externa entre los nodos de la cuadrícula y a clientes y servicios externos. Es posible que necesite acceso a través de firewalls internos y externos, sistemas de conmutación y sistemas de enrutamiento. 
+---
+= Referencia de puerto de red
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe asegurarse de que la infraestructura de red pueda proporcionar comunicación interna y externa entre los nodos de la cuadrícula y a clientes y servicios externos. Es posible que necesite acceso a través de firewalls internos y externos, sistemas de conmutación y sistemas de enrutamiento.
+
+Utilice los detalles proporcionados para link:internal-grid-node-communications.html["Comunicaciones internas de los nodos de grid"] y.. link:external-communications.html["Comunicaciones externas"] para determinar cómo configurar cada puerto necesario.

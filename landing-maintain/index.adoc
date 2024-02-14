@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-maintain/index.html 
+summary: Puede añadir nodos o sitios para ampliar la capacidad o la funcionalidad del sistema. También puede realizar varios procedimientos de mantenimiento para recuperarse de fallos o mantener el sistema de StorageGRID actualizado y funcionando de forma eficiente. 
+---
+= Mantener un sistema StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

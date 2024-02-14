@@ -1,0 +1,42 @@
+---
+permalink: maintain/troubleshooting-node-decommissioning.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, decommission, troubleshoot 
+summary: Si el procedimiento de retirada del nodo se detiene debido a un error, puede realizar pasos específicos para solucionar el problema. 
+---
+= Solucione problemas de decomisionado de nodos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si el procedimiento de retirada del nodo se detiene debido a un error, puede realizar pasos específicos para solucionar el problema.
+
+.Antes de empezar
+Ha iniciado sesión en Grid Manager mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+
+.Acerca de esta tarea
+Si apaga el nodo de cuadrícula que se va a retirar del servicio, la tarea se detiene hasta que se reinicia el nodo de cuadrícula. El nodo de grid debe estar en línea.
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. En el árbol de topología de cuadrícula, expanda cada entrada de nodo de almacenamiento y compruebe que los servicios DDS y LDR están en línea.
++
+Para realizar el decomisionado del nodo de almacenamiento, todos los nodos y todos los servicios deben estar en buen estado al iniciar un decomisionado del nodo y el sitio en línea.
+
+. Para ver las tareas de la cuadrícula activa, seleccione *nodo de administración principal* > *CMN* > *tareas de cuadrícula* > *Descripción general*.
+. Compruebe el estado de la tarea de decomisionado de la cuadrícula.
++
+.. Si el estado de la tarea de eliminación de la cuadrícula indica un problema al guardar los paquetes de tareas de la cuadrícula, seleccione *nodo de administración principal* > *CMN* > *Eventos* > *Descripción general*.
+.. Compruebe el número de relés de auditoría disponibles.
++
+Si el atributo retransmisión de auditoría disponible es uno o superior, el servicio CMN está conectado al menos a un servicio ADC. Los servicios ADC actúan como relés de auditoría.
+
++
+El servicio CMN debe estar conectado a al menos un servicio ADC y la mayoría (el 50 por ciento más uno) de los servicios ADC del sistema StorageGRID debe estar disponible para que una tarea de cuadrícula pueda moverse de una fase de desmantelamiento a otra y terminar.
+
+.. Si el servicio CMN no está conectado a suficientes servicios ADC, asegúrese de que los nodos de almacenamiento están conectados y compruebe la conectividad de red entre los nodos de administración principal y de almacenamiento.
+
+
+

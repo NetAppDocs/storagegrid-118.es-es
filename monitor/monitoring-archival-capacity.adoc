@@ -1,0 +1,29 @@
+---
+permalink: monitor/monitoring-archival-capacity.html 
+sidebar: sidebar 
+keywords: archive, monitor, monitoring, monitoring archival capacity 
+summary: No es posible supervisar directamente la capacidad de un sistema de almacenamiento de archivado externo mediante el sistema StorageGRID. Sin embargo, puede supervisar si el nodo de archivado aún puede enviar datos de objeto al destino de archivado, lo que podría indicar que se necesita una ampliación del medio de archivado. 
+---
+= Supervise la capacidad de archivado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+No puede supervisar directamente la capacidad de un sistema de almacenamiento de archivado externo mediante el sistema StorageGRID. Sin embargo, puede supervisar si el nodo de archivado aún puede enviar datos de objeto al destino de archivado, lo que podría indicar que se necesita una ampliación del medio de archivado.
+
+.Acerca de esta tarea
+Puede supervisar el componente Store para comprobar si el nodo de archivado puede seguir enviando datos de objeto al sistema de almacenamiento de archivado de destino. La alarma de fallos de almacenamiento (ARVF) también puede indicar que el sistema de almacenamiento de archivado objetivo ha alcanzado la capacidad y que ya no puede aceptar datos de objetos.
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *_Archive Node_* > *ARC**> Descripción general**> Principal*.
+. Compruebe los atributos Estado del almacén y Estado del almacén para confirmar que el componente Tienda está en línea sin errores.
++
+image::../media/store_status_attribute.gif[Captura de pantalla mostrando ARC > Descripción general > Principal]
+
++
+Un componente de almacén sin conexión o uno con errores puede indicar que el sistema de almacenamiento de archivado dirigido ya no puede aceptar datos de objetos porque ha alcanzado su capacidad.
+
+

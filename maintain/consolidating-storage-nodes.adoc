@@ -1,0 +1,23 @@
+---
+permalink: maintain/consolidating-storage-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, storage node, consolidate storage node, consolidating storage node 
+summary: Es posible consolidar los nodos de almacenamiento para reducir el número de nodos de almacenamiento de un sitio o una puesta en marcha, y aumentar la capacidad de almacenamiento. 
+---
+= Consolide los nodos de almacenamiento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible consolidar los nodos de almacenamiento para reducir el número de nodos de almacenamiento de un sitio o una puesta en marcha, y aumentar la capacidad de almacenamiento.
+
+Cuando se consolidan los nodos de almacenamiento, se link:../expand/index.html["Expanda el sistema StorageGRID"] Al añadir nuevos nodos de almacenamiento de mayor capacidad y luego retirar los antiguos nodos de almacenamiento de menor capacidad. Durante el procedimiento de retirada del servicio, los objetos se migran de los nodos de almacenamiento antiguos a los nuevos nodos de almacenamiento.
+
+
+NOTE: Si va a consolidar dispositivos antiguos y pequeños con modelos nuevos o con dispositivos de mayor capacidad, considere la opción https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/how-appliance-node-cloning-works.html["clonar el nodo del dispositivo"^] (o utilice clonado de nodos del dispositivo y el procedimiento de retirada si no está realizando un reemplazo uno a uno).
+
+Por ejemplo, puede añadir dos nodos de almacenamiento nuevos con mayor capacidad para reemplazar tres nodos de almacenamiento anteriores. Primero, se debe usar el procedimiento de ampliación para añadir los dos nodos de almacenamiento nuevos y más grandes, y luego se debe usar el procedimiento de retirada para quitar los tres nodos de almacenamiento antiguos de menor capacidad.
+
+Al añadir capacidad nueva antes de eliminar los nodos de almacenamiento existentes, tendrá la seguridad de una distribución de datos más equilibrada en el sistema StorageGRID. También puede reducir la posibilidad de que un nodo de almacenamiento existente pueda superar el nivel de Marca de agua de almacenamiento.

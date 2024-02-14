@@ -1,0 +1,142 @@
+---
+permalink: swift/put-container-consistency-request.html 
+sidebar: sidebar 
+keywords: put container consistency request 
+summary: La solicitud de consistencia de contenedor PUT permite especificar la coherencia que se aplicará a las operaciones realizadas en un contenedor. De forma predeterminada, los nuevos contenedores se crean con la consistencia «lectura tras nueva escritura». 
+---
+= PONGA la solicitud de consistencia del contenedor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La solicitud de consistencia de contenedor PUT permite especificar la coherencia que se aplicará a las operaciones realizadas en un contenedor. De forma predeterminada, se crean nuevos contenedores con la consistencia de lectura tras nueva escritura.
+
+
+
+== Solicitud
+
+[cols="2a,4a"]
+|===
+| Solicitar encabezado HTTP | Descripción 
+
+
+| Token X-Auth  a| 
+El token de autenticación Swift de la cuenta que se va a utilizar para la solicitud.
+
+
+
+| x-ntap-sg-consistency  a| 
+La coherencia que se debe aplicar a las operaciones en el contenedor. Se admiten los siguientes valores:
+
+*Todos*: Todos los nodos reciben los datos inmediatamente o la solicitud fallará.
+
+*Strong-global*: Garantiza la consistencia de lectura tras escritura para todas las solicitudes de los clientes en todos los sitios.
+
+*Strong-site*: Garantiza la consistencia de lectura después de escritura para todas las solicitudes de los clientes dentro de un sitio.
+
+*Read-after-new-write*: (Por defecto) proporciona consistencia de lectura después de escritura para nuevos objetos y consistencia eventual para las actualizaciones de objetos. Ofrece garantías de alta disponibilidad y protección de datos. Recomendado para la mayoría de los casos.
+
+*Disponible*: Proporciona consistencia eventual tanto para nuevos objetos como para actualizaciones de objetos. Para los cubos S3, utilice solo según sea necesario (por ejemplo, para un depósito que contiene valores de registro que rara vez se leen, o para operaciones HEAD u GET en claves que no existen). No se admite para bloques de FabricPool S3.
+
+
+
+| Host  a| 
+El nombre de host al que se dirige la solicitud.
+
+|===
+
+
+== Cómo interactúan las reglas de coherencia e ILM para afectar a la protección de datos
+
+Tanto la elección de coherencia como la regla de ILM afectan al modo de protección de los objetos. Estos ajustes pueden interactuar.
+
+Por ejemplo, la consistencia utilizada cuando se almacena un objeto afecta la ubicación inicial de los metadatos del objeto, mientras que el comportamiento de procesamiento seleccionado para la regla de ILM afecta la ubicación inicial de las copias de objetos. Dado que StorageGRID requiere acceso a los metadatos de un objeto y a sus datos para satisfacer las solicitudes de los clientes, seleccionar niveles de protección correspondientes para la coherencia y el comportamiento de ingesta puede proporcionar una mejor protección de datos inicial y respuestas del sistema más predecibles.
+
+Para las reglas de ILM hay disponibles los siguientes comportamientos de consumo:
+
+* *Estricto*: Todas las copias especificadas en la regla ILM deben hacerse antes de que el éxito se devuelva al cliente.
+* *Balanceado*: StorageGRID intenta hacer todas las copias especificadas en la regla ILM en la ingesta; si esto no es posible, se hacen copias provisionales y se devuelve éxito al cliente. Las copias especificadas en la regla ILM se realizan cuando es posible.
+* *Commit doble*: StorageGRID realiza inmediatamente copias provisionales del objeto y devuelve éxito al cliente. Las copias especificadas en la regla ILM se realizan cuando es posible.
+
+
+
+NOTE: Antes de seleccionar el comportamiento de procesamiento de una regla de ILM, lea la descripción completa de estos ajustes en las instrucciones para gestionar objetos con gestión del ciclo de vida de la información.
+
+
+
+== Un ejemplo de cómo pueden interactuar las reglas de coherencia e ILM
+
+Suponga que tiene un grid de dos sitios con la siguiente regla de ILM y la siguiente consistencia:
+
+* *Norma ILM*: Cree dos copias de objetos, una en el sitio local y otra en un sitio remoto. Se ha seleccionado el comportamiento de procesamiento estricto.
+* **: “Strong-global” (los metadatos de objetos se distribuyen inmediatamente a todos los sitios.)
+
+
+Cuando un cliente almacena un objeto en el grid, StorageGRID realiza copias de objetos y distribuye los metadatos en ambos sitios antes de devolver el éxito al cliente.
+
+El objeto está completamente protegido contra la pérdida en el momento del mensaje de procesamiento correcto. Por ejemplo, si el sitio local se pierde poco después del procesamiento, seguirán existiendo copias de los datos del objeto y los metadatos del objeto en el sitio remoto. El objeto se puede recuperar completamente.
+
+Si, en cambio, ha usado la misma regla de ILM y la coherencia de «sitio seguro», es posible que el cliente reciba un mensaje de éxito después de que los datos de objetos se repliquen en el sitio remoto, pero antes de que los metadatos de objetos se distribuyan allí. En este caso, el nivel de protección de los metadatos de objetos no coincide con el nivel de protección de los datos de objetos. Si el sitio local se pierde poco después del procesamiento, se pierden los metadatos del objeto. No se puede recuperar el objeto.
+
+La interrelación entre las reglas de coherencia y de ILM puede ser compleja. Póngase en contacto con NetApp si necesita ayuda.
+
+
+
+== Ejemplo de solicitud
+
+[listing]
+----
+PUT /v1/28544923908243208806/_Swift container_
+X-Auth-Token: SGRD_3a877009a2d24cb1801587bfa9050f29
+x-ntap-sg-consistency: strong-site
+Host: test.com
+----
+
+
+== Respuesta
+
+|===
+| Encabezado HTTP de respuesta | Descripción 
+
+
+ a| 
+`Date`
+ a| 
+La fecha y la hora de la respuesta.
+
+
+
+ a| 
+`Connection`
+ a| 
+Si la conexión con el servidor está abierta o cerrada.
+
+
+
+ a| 
+`X-Trans-Id`
+ a| 
+Identificador de transacción único para la solicitud.
+
+
+
+ a| 
+`Content-Length`
+ a| 
+La longitud del cuerpo de respuesta.
+
+|===
+
+
+== Ejemplo de respuesta
+
+[listing]
+----
+HTTP/1.1 204 No Content
+Date: Sat, 29 Nov 2015 01:02:18 GMT
+Connection: CLOSE
+X-Trans-Id: 1936575373
+Content-Length: 0
+----

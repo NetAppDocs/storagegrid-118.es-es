@@ -1,0 +1,64 @@
+---
+permalink: audit/asct-archive-store-cloud-tier.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ASCT, Archive Store Cloud-Tier 
+summary: Este mensaje se genera cuando los datos de objetos archivados se almacenan en un sistema de almacenamiento de archivado externo, que se conecta a StorageGRID a través de la API S3. 
+---
+= ASCT: Archive Store Cloud-Tier
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Este mensaje se genera cuando los datos de objetos archivados se almacenan en un sistema de almacenamiento de archivado externo, que se conecta a StorageGRID a través de la API S3.
+
+[cols="1a,1a,4a"]
+|===
+| Codificación | Campo | Descripción 
+
+
+ a| 
+CBID
+ a| 
+ID del bloque de contenido
+ a| 
+Identificador único del bloque de contenido recuperado.
+
+
+
+ a| 
+CSIZ
+ a| 
+Tamaño de contenido
+ a| 
+El tamaño del objeto en bytes.
+
+
+
+ a| 
+TRANSFORMACIÓN DIGITAL
+ a| 
+Código de resultado
+ a| 
+Devuelve correcto (SUCS) o el error notificado por el backend.
+
+
+
+ a| 
+SUID
+ a| 
+Identificador único de almacenamiento
+ a| 
+Identificador único (UUID) del nivel de cloud al que se almacenó el contenido.
+
+
+
+ a| 
+TIEMPO
+ a| 
+Tiempo
+ a| 
+Tiempo de procesamiento total de la solicitud en microsegundos.
+
+|===

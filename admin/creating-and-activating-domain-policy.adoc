@@ -1,0 +1,64 @@
+---
+permalink: admin/creating-and-activating-domain-policy.html 
+sidebar: sidebar 
+keywords: domain policy for tsm, tivoli storage manager policy 
+summary: Debe crear una directiva de dominio y, a continuación, activarla para configurar el servidor TSM a fin de guardar los datos enviados desde el nodo de archivado. 
+---
+= Crear y activar la directiva de dominio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe crear una directiva de dominio y, a continuación, activarla para configurar el servidor TSM a fin de guardar los datos enviados desde el nodo de archivado.
+
+.Pasos
+. Crear una política de dominio.
++
+`copy domain standard tsm-domain`
+
+. Si no utiliza una clase de gestión existente, introduzca una de las siguientes opciones:
++
+`define policyset tsm-domain standard`
+
++
+`define mgmtclass tsm-domain standard _default_`
+
++
+`_default_` es la clase de administración predeterminada para la implementación.
+
+. Cree un copygroup en el pool de almacenamiento apropiado. Introducir (en una línea):
++
+`define copygroup tsm-domain standard _default_ type=archive destination=SGWSDiskPool retinit=event retmin=0 retver=0`
+
++
+`_default_` Es la clase de administración predeterminada para el nodo de archivado. Los valores de `retinit`, `retmin`, y. `retver` Se han elegido para reflejar el comportamiento de retención utilizado actualmente por el nodo de archivado
+
++
+
+NOTE: No configurar `retinit` para `retinit=create`. Ajuste `retinit=create` Bloquea el nodo de archivado para que no elimine contenido, ya que los eventos de retención se utilizan para eliminar contenido del servidor TSM.
+
+. Asigne la clase de administración para que sea la predeterminada.
++
+`assign defmgmtclass _tsm-domain_ standard _default_`
+
+. Establezca el nuevo conjunto de directivas como activo.
++
+`activate policyset tsm-domain standard`
+
++
+Ignore la advertencia que aparece cuando introduce el comando activate.
+
+. Registre un nodo para utilizar el nuevo conjunto de directivas en el servidor TSM. En el servidor TSM, introduzca (en una línea):
++
+`register node arc-user arc-password passexp=0 domain=tsm-domain MAXNUMMP=number-of-sessions`
+
++
+Arc-user y Arc-password son el mismo nombre de nodo de cliente y contraseña que se define en Archive Node, y el valor de MAXNUMMP se establece en el número de unidades de cinta reservadas para las sesiones de almacén de nodo de archivado.
+
++
+
+NOTE: De forma predeterminada, al registrar un nodo se crea un ID de usuario administrativo con la autoridad del propietario del cliente, con la contraseña definida para el nodo.
+
+

@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-recover/index.html 
+summary: Si falla un nodo de cuadrícula, puede recuperarlo reemplazando el servidor físico o virtual que ha fallado, reinstalando el software StorageGRID y restaurando los datos recuperables. 
+---
+= Recupere o sustituya nodos
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

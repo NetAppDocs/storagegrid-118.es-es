@@ -1,0 +1,75 @@
+---
+permalink: tenant/object-metadata-included-in-metadata-notifications.html 
+sidebar: sidebar 
+keywords: object metadata notification 
+summary: En la tabla se enumeran todos los campos que se incluyen en el documento JSON que se envían al extremo de destino cuando la integración de búsqueda está habilitada. 
+---
+= Metadatos de objetos incluidos en las notificaciones de metadatos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En la tabla se enumeran todos los campos que se incluyen en el documento JSON que se envían al extremo de destino cuando la integración de búsqueda está habilitada.
+
+El nombre del documento incluye el nombre del bloque, el nombre del objeto y el ID de versión, si existe.
+
+[cols="1a,2a"]
+|===
+| Tipo | Nombre y descripción del artículo 
+
+
+ a| 
+Información sobre bloques y objetos
+ a| 
+`bucket`: Nombre del cubo
+
+
+
+ a| 
+`key`: Nombre de clave de objeto
+
+
+
+ a| 
+`versionID`: Versión de objeto, para objetos en cubos con versiones
+
+
+
+ a| 
+`region`: Región de cucharón, por ejemplo `us-east-1`
+
+
+
+ a| 
+Metadatos del sistema
+ a| 
+`size`: Tamaño del objeto (en bytes) visible para un cliente HTTP
+
+
+
+ a| 
+`md5`: Hash de objeto
+
+
+
+ a| 
+Metadatos del usuario
+ a| 
+`metadata`: Todos los metadatos de usuario del objeto, como pares clave-valor
+
+`key:value`
+
+
+
+ a| 
+Etiquetas
+ a| 
+`tags`: Todas las etiquetas de objeto definidas para el objeto, como pares clave-valor
+
+`key:value`
+
+|===
+
+NOTE: Para las etiquetas y los metadatos de usuario, StorageGRID pasa las fechas y los números a Elasticsearch como cadenas o como notificaciones de eventos S3. Para configurar Elasticsearch para interpretar estas cadenas como fechas o números, siga las instrucciones de Elasticsearch para la asignación dinámica de campos y para asignar formatos de fecha. Debe habilitar las asignaciones de campos dinámicos en el índice antes de configurar el servicio de integración de búsqueda. Después de indexar un documento, no puede editar los tipos de campo del documento en el índice.

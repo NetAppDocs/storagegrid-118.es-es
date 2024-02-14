@@ -1,0 +1,23 @@
+---
+permalink: maintain/grid-node-recovery-procedures.html 
+sidebar: sidebar 
+keywords: storagegrid, recovery 
+summary: Si falla un nodo de cuadrícula, puede recuperarlo reemplazando el servidor físico o virtual que ha fallado, reinstalando el software StorageGRID y restaurando los datos recuperables. 
+---
+= Procedimientos de recuperación de nodos de grid: Descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si falla un nodo de cuadrícula, puede recuperarlo reemplazando el servidor físico o virtual que ha fallado, reinstalando el software StorageGRID y restaurando los datos recuperables.
+
+Los nodos de grid pueden fallar si un error de hardware, virtualización, sistema operativo o software hace que el nodo no se pueda utilizar o no sea fiable. Existen muchos tipos de errores que pueden desencadenar la necesidad de recuperar un nodo de grid.
+
+Los pasos para recuperar un nodo de cuadrícula varían dependiendo de la plataforma en la que se encuentre el nodo de cuadrícula y del tipo de nodo de cuadrícula. Cada tipo de nodo de cuadrícula tiene un procedimiento de recuperación específico, que se debe seguir exactamente.
+
+Generalmente, intenta conservar los datos del nodo de cuadrícula con errores siempre que sea posible, reparar o reemplazar el nodo con error, utilizar el administrador de grid para configurar el nodo de sustitución y restaurar los datos del nodo.
+
+
+NOTE: Si se produce un error en todo un sitio de StorageGRID, póngase en contacto con el soporte técnico. El soporte técnico trabajará con usted para desarrollar y ejecutar un plan de recuperación de sitios que maximice la cantidad de datos que se recuperan y, asimismo, cumpla sus objetivos empresariales. Consulte link:how-site-recovery-is-performed-by-technical-support.html["Cómo el soporte técnico recupera un sitio"].

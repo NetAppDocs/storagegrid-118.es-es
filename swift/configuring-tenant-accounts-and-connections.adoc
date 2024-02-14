@@ -1,0 +1,86 @@
+---
+permalink: swift/configuring-tenant-accounts-and-connections.html 
+sidebar: sidebar 
+keywords: swift test connection, cli, python-swiftclient 
+summary: Puede usar la CLI de Swift para probar la conexión con el sistema StorageGRID y verificar que pueda leer y escribir objetos. 
+---
+= Probar la configuración de la API de REST DE Swift
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede usar la CLI de Swift para probar la conexión con el sistema StorageGRID y verificar que pueda leer y escribir objetos.
+
+.Antes de empezar
+* Ha descargado e instalado el cliente de la línea de comandos de Swift: https://platform.swiftstack.com/docs/integration/python-swiftclient.html["SwiftStack: python-swiftclient"^]
+* Opcionalmente, tienes link:../admin/configuring-load-balancer-endpoints.html["se ha creado un punto final de equilibrio de carga"]. De lo contrario, conoce la dirección IP del nodo de almacenamiento al que desea conectarse y el número de puerto que se va a utilizar. Consulte link:../admin/summary-ip-addresses-and-ports-for-client-connections.html["Puertos y direcciones IP para las conexiones de cliente"].
+* Ya tienes link:../admin/creating-tenant-account.html["Se ha creado una cuenta de inquilino de Swift"].
+* Ha iniciado sesión en la cuenta de inquilino y ha creado al menos un grupo y un usuario. Consulte link:../tenant/creating-groups-for-swift-tenant.html["Cree grupos para un inquilino de Swift"].
++
+
+NOTE: Los usuarios de inquilino de Swift deben tener el permiso del grupo de administrador para autenticarse en la API DE REST DE Swift.
+
+
+
+.Acerca de esta tarea
+Si no ha configurado la seguridad, debe añadir el `--insecure` marque cada uno de estos comandos.
+
+.Pasos
+. Consulte la URL de información para la implementación de Swift de StorageGRID:
++
+[listing]
+----
+swift
+-U <Tenant_Account_ID:Account_User_Name>
+-K <User_Password>
+-A https://<FQDN | IP>:<Port>/info
+capabilities
+----
++
+Esto es suficiente para probar que la implementación de Swift es funcional. Para seguir probando la configuración de la cuenta almacenando un objeto, continúe con los pasos adicionales.
+
+. Coloque un objeto en el contenedor:
++
+[listing]
+----
+touch test_object
+swift
+-U <Tenant_Account_ID:Account_User_Name>
+-K <User_Password>
+-A https://<FQDN | IP>:<Port>/auth/v1.0
+upload test_container test_object
+--object-name test_object
+----
+. Obtenga el contenedor para verificar el objeto:
++
+[listing]
+----
+swift
+-U <Tenant_Account_ID:Account_User_Name>
+-K <User_Password>
+-A https://<FQDN | IP>:<Port>/auth/v1.0
+list test_container
+----
+. Elimine el objeto:
++
+[listing]
+----
+swift
+-U <Tenant_Account_ID:Account_User_Name>
+-K <User_Password>
+-A https://<FQDN | IP>:<Port>/auth/v1.0
+delete test_container test_object
+----
+. Elimine el contenedor:
++
+[listing]
+----
+swift
+-U `<_Tenant_Account_ID:Account_User_Name_>`
+-K `<_User_Password_>`
+-A `\https://<_FQDN_ | _IP_>:<_Port_>/auth/v1.0'
+delete test_container
+----
+

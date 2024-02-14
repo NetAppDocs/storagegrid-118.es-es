@@ -1,0 +1,37 @@
+---
+permalink: tenant/using-search-integration-service.html 
+sidebar: sidebar 
+keywords: how to use search integration service 
+summary: El servicio de integración de búsqueda es uno de los tres servicios de la plataforma StorageGRID. Este servicio puede habilitar el envío de metadatos de objetos a un índice de búsqueda de destino siempre que se cree, se elimine o actualice los metadatos o las etiquetas de un objeto. 
+---
+= Utilice el servicio de integración de búsqueda
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El servicio de integración de búsqueda es uno de los tres servicios de la plataforma StorageGRID. Este servicio puede habilitar el envío de metadatos de objetos a un índice de búsqueda de destino siempre que se cree, se elimine o actualice los metadatos o las etiquetas de un objeto.
+
+Puede configurar la integración de búsqueda mediante el Administrador de inquilinos para aplicar XML de configuración de StorageGRID personalizado a un bloque.
+
+
+NOTE: Debido a que el servicio de integración de búsqueda hace que los metadatos de objeto se envíen a un destino, su XML de configuración se denomina XML_ de configuración de notificación de metadatos. Este XML de configuración es diferente al _notification Configuration XML_ utilizado para habilitar las notificaciones de eventos.
+
+Consulte link:../s3/index.html["Instrucciones para implementar aplicaciones cliente de S3"] Para obtener detalles sobre las siguientes operaciones personalizadas de la API de REST de StorageGRID S3:
+
+* DELETE bucket metadata notification Configuration
+* OBTENGA la configuración de notificación de metadatos del bloque de datos
+* Configuración de notificaciones de metadatos de PUT Bucket
+
+
+.Información relacionada
+link:configuration-xml-for-search-configuration.html["XML de configuración para la integración de búsqueda"]
+
+link:object-metadata-included-in-metadata-notifications.html["Metadatos de objetos incluidos en las notificaciones de metadatos"]
+
+link:json-generated-by-search-integration-service.html["JSON generado por el servicio de integración de búsqueda"]
+
+link:configuring-search-integration-service.html["Configure el servicio de integración de búsqueda"]
+
+link:../s3/index.html["USE LA API DE REST DE S3"]

@@ -1,0 +1,46 @@
+---
+permalink: ilm/index.html 
+sidebar: sidebar 
+keywords: information lifecycle management overview, about information lifecycle management, ilm overview, about ilm 
+summary: 'Las reglas de gestión de la vida útil de la información \(ILM\) en una política de ILM indican a StorageGRID cómo crear y distribuir copias de datos de objetos y cómo gestionar dichas copias con el tiempo.' 
+---
+= Gestión de objetos con ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las reglas de gestión de la vida útil de la información (ILM) en una política de ILM indican a StorageGRID cómo crear y distribuir copias de datos de objetos y cómo gestionar esas copias con el tiempo.
+
+
+
+== Acerca de estas instrucciones
+
+Diseñar e implementar reglas y políticas de ILM requiere una planificación cuidadosa. Debe comprender los requisitos operativos, la topología del sistema StorageGRID, las necesidades de protección de objetos y los tipos de almacenamiento disponibles. A continuación, debe determinar cómo desea copiar, distribuir y almacenar diferentes tipos de objetos.
+
+Utilice estas instrucciones para:
+
+* Conozca más detalles sobre gestión de la vida útil de la información de StorageGRID link:how-ilm-operates-throughout-objects-life.html["Funcionamiento de ILM a lo largo de la vida de un objeto"].
+* Aprenda a configurar link:what-storage-pool-is.html["pools de almacenamiento"], link:what-cloud-storage-pool-is.html["Pools de almacenamiento en cloud"], y. link:what-ilm-rule-is.html["Reglas de ILM"].
+* Aprenda cómo link:creating-ilm-policy.html["Cree, simule y active una política de ILM"] que protegerá los datos de objetos en uno o más sitios.
+* Aprenda cómo link:managing-objects-with-s3-object-lock.html["Gestionar objetos con S3 Object Lock"], Que ayuda a garantizar que los objetos en cubos específicos de S3 no se borren o sobrescriban durante un período de tiempo específico.
+
+
+
+
+== Leer más
+
+Para obtener más información, consulte estos vídeos:
+
+* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cb6294c0-e9cf-4d04-9d73-b0b901025b2f["Vídeo: Reglas de gestión del ciclo de vida de la información en StorageGRID 11,8"^].
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cb6294c0-e9cf-4d04-9d73-b0b901025b2f]
+image::../media/video-screenshot-ilm-rules-118.png[Vídeo: Reglas de gestión del ciclo de vida de la información en StorageGRID 11,8]
+
+* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fb967139-e032-49ef-b529-b0ba00a7f0ad["Vídeo: Políticas de gestión del ciclo de vida de la información en StorageGRID 11,8"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fb967139-e032-49ef-b529-b0ba00a7f0ad]
+image::../media/video-screenshot-ilm-policies-118.png[Vídeo: Políticas de gestión del ciclo de vida de la información en StorageGRID 11,8]
+
+

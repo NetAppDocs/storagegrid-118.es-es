@@ -1,0 +1,128 @@
+---
+permalink: ilm/troubleshooting-cloud-storage-pools.html 
+sidebar: sidebar 
+keywords: cloud storage pool, troubleshoot 
+summary: Utilice estos pasos de solución de problemas para resolver los errores que puede encontrar al crear, editar o eliminar un pool de almacenamiento en la nube. 
+---
+= Solucione problemas de Cloud Storage Pools
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilice estos pasos de solución de problemas para resolver los errores que puede encontrar al crear, editar o eliminar un pool de almacenamiento en la nube.
+
+
+
+== Determine si se ha producido un error
+
+StorageGRID realiza una comprobación simple del estado de cada pool de almacenamiento en cloud una vez por minuto para garantizar que se pueda acceder al pool de almacenamiento en cloud y que funciona correctamente. Si la comprobación del estado detecta un problema, se muestra un mensaje en la última columna de error de la tabla Cloud Storage Pools de la página Storage Pools.
+
+En la tabla, se muestra el error más reciente detectado para cada pool de almacenamiento en cloud e indica cuánto tiempo se produjo el error.
+
+Además, se activa una alerta de error * de conectividad del grupo de almacenamiento en cloud* si la comprobación del estado detecta que se han producido uno o varios errores nuevos de Cloud Storage Pool en los últimos 5 minutos. Si recibe una notificación por correo electrónico para esta alerta, vaya a la página Grupos de almacenamiento (seleccione *ILM* > *Grupos de almacenamiento*), revise los mensajes de error en la última columna de error y consulte las directrices para la solución de problemas que aparecen a continuación.
+
+
+
+== Compruebe si se ha resuelto un error
+
+Después de resolver cualquier problema subyacente, puede determinar si se ha resuelto el error. En la página Cloud Storage Pool, seleccione el punto final y seleccione *Borrar error*. Un mensaje de confirmación indica que StorageGRID borró el error para el pool de almacenamiento en el cloud.
+
+Si se ha resuelto el problema subyacente, ya no se muestra el mensaje de error. Sin embargo, si el problema subyacente no se ha solucionado (o si se encuentra un error diferente), el mensaje de error se mostrará en la última columna de error en unos pocos minutos.
+
+
+
+== Error: Este pool de almacenamiento en cloud contiene contenido inesperado
+
+Es posible ver este mensaje de error cuando se intenta crear, editar o eliminar un pool de almacenamiento en cloud. Este error se produce si el cucharón o el contenedor incluye `x-ntap-sgws-cloud-pool-uuid` Archivo marcador, pero ese archivo no tiene el UUID esperado.
+
+Por lo general, solo verá este error si crea un nuevo pool de almacenamiento en el cloud y otra instancia de StorageGRID ya utiliza el mismo pool de almacenamiento en el cloud.
+
+Intente realizar estos pasos para corregir el problema:
+
+* Compruebe que nadie de su organización utiliza también este pool de almacenamiento en el cloud.
+* Elimine el `x-ntap-sgws-cloud-pool-uuid` Archivo e intente configurar de nuevo el Pool de almacenamiento en la nube.
+
+
+
+
+== Error: No se pudo crear o actualizar Cloud Storage Pool. Error desde el punto final
+
+Es posible ver este mensaje de error cuando se intenta crear o editar un pool de almacenamiento en el cloud. Este error indica que algún problema de conectividad o configuración impide que StorageGRID escriba en el pool de almacenamiento en el cloud.
+
+Para corregir el problema, revise el mensaje de error desde el punto final.
+
+* Si el mensaje de error contiene `Get _url_: EOF`, Compruebe que el punto final de servicio utilizado para el pool de almacenamiento en la nube no utiliza HTTP para un contenedor o depósito que requiere HTTPS.
+* Si el mensaje de error contiene `Get _url_: net/http: request canceled while waiting for connection`, Compruebe que la configuración de red permite a los nodos de almacenamiento acceder al extremo de servicio utilizado para el grupo de almacenamiento en la nube.
+* Para todos los demás mensajes de error de punto final, intente uno o más de los siguientes:
++
+** Cree un contenedor o bloque externo con el mismo nombre que introdujo para el Cloud Storage Pool e intente guardar de nuevo el nuevo Cloud Storage Pool.
+** Corrija el nombre de contenedor o bloque que especificó para Cloud Storage Pool e intente guardar de nuevo el nuevo pool de almacenamiento en cloud.
+
+
+
+
+
+
+== Error: No se pudo analizar el certificado de CA
+
+Es posible ver este mensaje de error cuando se intenta crear o editar un pool de almacenamiento en el cloud. El error se produce si StorageGRID no pudo analizar el certificado introducido al configurar el pool de almacenamiento en cloud.
+
+Para corregir el problema, compruebe el certificado de CA que proporcionó para los problemas.
+
+
+
+== Error: No se encontró un pool de almacenamiento en cloud con este ID
+
+Es posible ver este mensaje de error cuando se intenta editar o eliminar un pool de almacenamiento en el cloud. Este error se produce si el extremo devuelve una respuesta 404, que puede significar cualquiera de las siguientes:
+
+* Las credenciales utilizadas para Cloud Storage Pool no tienen permiso de lectura para el depósito.
+* El bloque utilizado para el pool de almacenamiento en cloud no incluye el `x-ntap-sgws-cloud-pool-uuid` archivo de marcador.
+
+
+Intente uno o más de estos pasos para corregir el problema:
+
+* Compruebe que el usuario asociado a la clave de acceso configurada tenga los permisos necesarios.
+* Edite el pool de almacenamiento cloud con credenciales que tengan los permisos necesarios.
+* Si los permisos son correctos, póngase en contacto con el servicio de soporte técnico.
+
+
+
+
+== Error: No se ha podido comprobar el contenido del pool de almacenamiento en cloud. Error desde el punto final
+
+Es posible ver este mensaje de error cuando se intenta eliminar un pool de almacenamiento en el cloud. Este error indica que algún problema de conectividad o configuración impide que StorageGRID lea el contenido del bucket de Cloud Storage Pool.
+
+Para corregir el problema, revise el mensaje de error desde el punto final.
+
+
+
+== Error: Los objetos ya se han colocado en este cucharón
+
+Es posible ver este mensaje de error cuando se intenta eliminar un pool de almacenamiento en el cloud. No puede eliminar un pool de almacenamiento en cloud si contiene datos que se movieron allí mediante ILM, datos que estaban en el depósito antes de configurar el pool de almacenamiento en cloud o datos que algún otro origen puso en el depósito después de crear el pool de almacenamiento en cloud.
+
+Intente uno o más de estos pasos para corregir el problema:
+
+* Siga las instrucciones para volver a mover objetos a StorageGRID en «Ciclo de vida de un objeto de pool de almacenamiento en cloud».
+* Si está seguro de que ILM no colocó los objetos restantes en el Cloud Storage Pool, elimine manualmente los objetos del bloque.
++
+
+NOTE: No elimine nunca manualmente objetos de un pool de almacenamiento en cloud que haya colocado allí ILM. Si más adelante intenta acceder a un objeto eliminado manualmente desde StorageGRID, no se encuentra el objeto eliminado.
+
+
+
+
+
+== Error: El proxy encontró un error externo al intentar acceder al pool de almacenamiento de cloud
+
+Es posible ver este mensaje de error si configuró un proxy de almacenamiento no transparente entre los nodos de almacenamiento y el extremo externo S3 utilizado para el pool de almacenamiento en nube. Este error se produce si el servidor proxy externo no puede alcanzar el punto final de Cloud Storage Pool. Por ejemplo, es posible que el servidor DNS no pueda resolver el nombre de host o que haya un problema de red externo.
+
+Intente uno o más de estos pasos para corregir el problema:
+
+* Compruebe la configuración de Cloud Storage Pool (*ILM* > *agrupaciones de almacenamiento*).
+* Compruebe la configuración de redes del servidor proxy de almacenamiento.
+
+
+.Información relacionada
+link:lifecycle-of-cloud-storage-pool-object.html["Ciclo de vida de un objeto de Cloud Storage Pool"]

@@ -1,0 +1,1511 @@
+---
+permalink: monitor/alarms-reference.html 
+sidebar: sidebar 
+keywords: alarms, alarms reference 
+summary: En la siguiente tabla se enumeran todas las alarmas predeterminadas heredadas. Si se activa una alarma, puede buscar el código de alarma en esta tabla para encontrar las acciones recomendadas. 
+---
+= Referencia de alarmas (sistema heredado)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En la siguiente tabla se enumeran todas las alarmas predeterminadas heredadas. Si se activa una alarma, puede buscar el código de alarma en esta tabla para encontrar las acciones recomendadas.
+
+
+NOTE: Aunque el sistema de alarma heredado sigue siendo compatible, el sistema de alerta ofrece importantes ventajas y es más fácil de usar.
+
+[cols="1a,1a,1a,3a"]
+|===
+| Codificación | Nombre | Servicio | Acción recomendada 
+
+
+ a| 
+ABRL
+ a| 
+Relés de atributos disponibles
+ a| 
+BDC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+Restaure la conectividad a un servicio (un servicio ADC) que ejecuta un atributo Lo antes posible. de servicio de retransmisión. Si no hay relés de atributos conectados, el nodo de cuadrícula no puede informar de los valores de atributos al servicio NMS. Por lo tanto, el servicio NMS ya no puede supervisar el estado del servicio ni actualizar los atributos del servicio.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+ACMS
+ a| 
+Servicios de metadatos disponibles
+ a| 
+BARC, BLDR, BCMN
+ a| 
+Se activa una alarma cuando un servicio LDR o ARC pierde la conexión con un servicio DDS. Si esto ocurre, las transacciones de procesamiento o recuperación no se pueden procesar. Si la falta de disponibilidad de los servicios de DDS es sólo un breve problema transitorio, las transacciones pueden retrasarse.
+
+Compruebe y restaure las conexiones a un servicio DDS para borrar esta alarma y devolver el servicio a su funcionalidad completa.
+
+
+
+ a| 
+HECHOS
+ a| 
+Estado del servicio de organización en niveles del cloud
+ a| 
+ARCO
+ a| 
+Solo disponible para nodos de archivado con un tipo objetivo de organización en niveles en cloud: Simple Storage Service (S3).
+
+Si el atributo ACTS del nodo de archivado está establecido en Read-only Enabled o Read-Write Disabled, debe establecer el atributo en Read-Write Enabled.
+
+Si se activa una alarma principal debido a un fallo de autenticación, compruebe las credenciales asociadas con el bloque de destino y los valores de actualización, si es necesario.
+
+Si se activa una alarma importante por cualquier otro motivo, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+ADCA
+ a| 
+Estado de ADC
+ a| 
+ADC
+ a| 
+Si se activa una alarma, seleccione *SOPORTE* > *Herramientas* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *ADC* > *Overview* > *Main* y *ADC* > *Alarms* > *Main* para determinar la causa de la alarma.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+ADCE
+ a| 
+Estado ADC
+ a| 
+ADC
+ a| 
+Si el valor del estado de ADC es en espera, continúe supervisando el servicio y si el problema persiste, póngase en contacto con el soporte técnico.
+
+Si el valor de Estado de ADC es sin conexión, reinicie el servicio. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+AITE
+ a| 
+Recuperar estado
+ a| 
+BARC
+ a| 
+Sólo disponible para nodos de archivado con un tipo de destino de Tivoli Storage Manager (TSM).
+
+Si el valor de Retrieve State está esperando a Target, compruebe el servidor de middleware TSM y asegúrese de que funciona correctamente. Si el nodo de archivado se acaba de agregar al sistema StorageGRID, asegúrese de que la conexión del nodo de archivado con el sistema de almacenamiento de archivado externo objetivo esté configurada correctamente.
+
+Si el valor del Estado de recuperación de archivo es sin conexión, intente actualizar el estado a en línea. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *ARC* > *Retrieve* > *Configuración* > *Principal*, seleccione *Archivo recuperar estado* > *Online* y haga clic en *aplicar cambios*.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+UIT
+ a| 
+Recuperar estado
+ a| 
+BARC
+ a| 
+Si el valor de Estado de recuperación es error de destino, compruebe si el sistema de almacenamiento de archivos externo objetivo presenta errores.
+
+Si se pierde el valor del estado de recuperación de archivo, compruebe el sistema de almacenamiento de archivo externo objetivo para asegurarse de que está en línea y funciona correctamente. Compruebe la conexión de red con el destino.
+
+Si el valor de Archive Retrieve Status es Unknown error, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+ALIS
+ a| 
+Sesiones de atributos entrantes
+ a| 
+ADC
+ a| 
+Si el número de sesiones de atributos entrantes en un relé de atributos aumenta demasiado, puede ser una indicación de que el sistema StorageGRID se ha desequilibrado. En condiciones normales, las sesiones de atributos deben distribuirse uniformemente entre los servicios ADC. Un desequilibrio puede producir problemas de rendimiento.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+ALOS
+ a| 
+Sesiones de atributos salientes
+ a| 
+ADC
+ a| 
+El servicio ADC tiene un gran número de sesiones de atributos y se está sobrecargando. Si se activa esta alarma, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+ALUR
+ a| 
+Repositorios de atributos inaccesibles
+ a| 
+ADC
+ a| 
+Compruebe la conectividad de red con el servicio NMS para asegurarse de que el servicio puede ponerse en contacto con el repositorio de atributos.
+
+Si se activa esta alarma y la conectividad de red es buena, póngase en contacto con el servicio técnico.
+
+
+
+ a| 
+AQS
+ a| 
+Mensajes de auditoría en cola
+ a| 
+BDC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BDDS
+ a| 
+Si los mensajes de auditoría no se pueden reenviar inmediatamente a un relé de auditoría o repositorio, los mensajes se almacenan en una cola de discos. Si la cola de discos se llena, pueden producirse interrupciones.
+
+Para permitirle responder en tiempo para evitar una interrupción, las alarmas AMQS se activan cuando el número de mensajes en la cola de discos alcanza los siguientes umbrales:
+
+* Aviso: Más de 100,000 mensajes
+* Menor: Al menos 500,000 mensajes
+* Importante: Al menos 2,000,000 mensajes
+* Crítico: Al menos 5,000,000 mensajes
+
+
+Si se activa una alarma AMQS, compruebe la carga en el sistema. Si ha habido un número significativo de transacciones, la alarma debe resolverse con el tiempo. En este caso, puede ignorar la alarma.
+
+Si la alarma persiste y aumenta su gravedad, vea un gráfico del tamaño de la cola. Si el número aumenta constantemente durante horas o días, es probable que la carga de auditoría haya superado la capacidad de auditoría del sistema. Reduzca la tasa de operaciones del cliente o disminuya el número de mensajes de auditoría registrados cambiando el nivel de auditoría a error o Desactivado. Consulte link:../monitor/configure-audit-messages.html["Configurar los mensajes de auditoría y los destinos de registro"].
+
+
+
+ a| 
+AOTE
+ a| 
+Estado de la tienda
+ a| 
+BARC
+ a| 
+Sólo disponible para nodos de archivado con un tipo de destino de Tivoli Storage Manager (TSM).
+
+Si el valor de Estado de tienda está esperando a Target, compruebe el sistema de almacenamiento de archivos externo y asegúrese de que funciona correctamente. Si el nodo de archivado se acaba de agregar al sistema StorageGRID, asegúrese de que la conexión del nodo de archivado con el sistema de almacenamiento de archivado externo objetivo esté configurada correctamente.
+
+Si el valor del estado del almacén es sin conexión, compruebe el valor del estado del almacén. Corrija cualquier problema antes de volver a poner el estado de la tienda en línea.
+
+
+
+ a| 
+UOT
+ a| 
+Estado de la tienda
+ a| 
+BARC
+ a| 
+Si el valor del estado del almacén es pérdida de sesión, compruebe que el sistema de almacenamiento de archivos externo está conectado y en línea.
+
+Si el valor de Target error (error de destino), compruebe si hay errores en el sistema de almacenamiento de archivos externo.
+
+Si el valor de estado de almacén es error desconocido, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+APM
+ a| 
+Conectividad de acceso múltiple de almacenamiento
+ a| 
+SSM
+ a| 
+Si la alarma de estado de acceso múltiple aparece como “Degradado” (seleccione *SUPPORT* > *Tools* > *Grid topology* y, a continuación, seleccione *_SITE_* > *_GRID node_* > *SSM* > *Events*), haga lo siguiente:
+
+. Conecte o sustituya el cable que no muestre ninguna luz indicadora.
+. Espere de uno a cinco minutos.
++
+No desenchufe el otro cable hasta al menos cinco minutos después de enchufar el primero. La desconexión demasiado temprana puede provocar que el volumen raíz pase a ser de solo lectura, lo que requiere reiniciar el hardware.
+
+. Vuelva a la página *SSM* > *Resources* y compruebe que el estado “Degradado” Multipath ha cambiado a “Nominal” en la sección Hardware de almacenamiento.
+
+
+
+
+ a| 
+ARCE
+ a| 
+Estado DEL ARCO
+ a| 
+ARCO
+ a| 
+El servicio ARC tiene un estado de espera hasta que se hayan iniciado todos los componentes ARC (replicación, almacenamiento, recuperación, destino). A continuación, pasa a Online.
+
+Si el valor del estado ARC no pasa del modo en espera a en línea, compruebe el estado de los componentes del ARC.
+
+Si el valor del estado de ARC es sin conexión, reinicie el servicio. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+ROQ
+ a| 
+Objetos en cola
+ a| 
+ARCO
+ a| 
+Esta alarma se puede activar si el dispositivo de almacenamiento extraíble se está ejecutando lentamente debido a problemas con el sistema de almacenamiento de archivos externo objetivo o si encuentra varios errores de lectura. Compruebe si hay errores en el sistema de almacenamiento de archivos externo y asegúrese de que funciona correctamente.
+
+En algunos casos, este error puede producirse como resultado de una alta tasa de solicitudes de datos. Supervise el número de objetos en cola a medida que disminuye la actividad del sistema.
+
+
+
+ a| 
+ARRF
+ a| 
+Fallos de solicitudes
+ a| 
+ARCO
+ a| 
+Si se produce un error en una recuperación del sistema de almacenamiento de archivado externo objetivo, el nodo de archivado vuelve a intentar la recuperación, ya que el fallo puede deberse a un problema transitorio. Sin embargo, si los datos del objeto están dañados o se han marcado como no disponibles permanentemente, la recuperación no falla. En su lugar, el nodo de archivado vuelve a intentar la recuperación de forma continua y el valor de los fallos de solicitud continúa aumentando.
+
+Esta alarma puede indicar que el soporte de almacenamiento que contiene los datos solicitados está dañado. Compruebe el sistema de almacenamiento de archivos externo para diagnosticar el problema.
+
+Si determina que los datos del objeto ya no están en el archivado, el objeto tendrá que eliminarse del sistema StorageGRID. Para obtener más información, póngase en contacto con el soporte técnico.
+
+Una vez resuelto el problema que activó esta alarma, restablezca el número de fallos. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *ARC* > *Retrieve* > *Configuration* > *Main*, seleccione *Reset Request Failure Count* y haga clic en *Apply Changes*.
+
+
+
+ a| 
+ARRV
+ a| 
+Errores de verificación
+ a| 
+ARCO
+ a| 
+Para diagnosticar y corregir este problema, póngase en contacto con el soporte técnico.
+
+Una vez solucionado el problema que desencadenó esta alarma, restablezca el recuento de fallos. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *ARC* > *Retrieve* > *Configuration* > *Main*, seleccione *Reset Verification Failure Count* y haga clic en *Apply Changes*.
+
+
+
+ a| 
+ARVF
+ a| 
+Errores de almacenamiento
+ a| 
+ARCO
+ a| 
+Esta alarma puede producirse como resultado de errores en el sistema de almacenamiento de archivos externo objetivo. Compruebe si hay errores en el sistema de almacenamiento de archivos externo y asegúrese de que funciona correctamente.
+
+Una vez resuelto el problema que activó esta alarma, restablezca el número de fallos. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *ARC* > *Retrieve* > *Configuration* > *Main*, seleccione *Reset Store Failure Count* y haga clic en *Apply Changes*.
+
+
+
+ a| 
+ASXP
+ a| 
+Acciones de auditoría
+ a| 
+AMS
+ a| 
+Se activa una alarma si el valor de los recursos compartidos de auditoría es Desconocido. Esta alarma puede indicar un problema con la instalación o configuración del nodo de administración.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+AUMA
+ a| 
+Estado AMS
+ a| 
+AMS
+ a| 
+Si el valor de Estado AMS es error de conectividad de BD, reinicie el nodo de cuadrícula.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+AUME
+ a| 
+Estado AMS
+ a| 
+AMS
+ a| 
+Si el valor del estado AMS es Standby, continúe monitorizando el sistema StorageGRID. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+Si el valor de Estado AMS es sin conexión, reinicie el servicio. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+AUXS
+ a| 
+Estado de exportación de auditoría
+ a| 
+AMS
+ a| 
+Si se activa una alarma, corrija el problema subyacente y, a continuación, reinicie el servicio AMS.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+BADD
+ a| 
+Número de unidades con errores del controlador de almacenamiento
+ a| 
+SSM
+ a| 
+Esta alarma se activa cuando una o varias unidades de un dispositivo StorageGRID presenta errores o no están en estado óptimo. Sustituya las unidades según sea necesario.
+
+
+
+ a| 
+BASF
+ a| 
+Identificadores de objetos disponibles
+ a| 
+CMN
+ a| 
+Cuando se aprovisiona un sistema StorageGRID, al servicio CMN se le asigna un número fijo de identificadores de objeto. Esta alarma se activa cuando el sistema StorageGRID comienza a agotar su suministro de identificadores de objetos.
+
+Para asignar más identificadores, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+GRAVES
+ a| 
+Estado de asignación de bloque de identificador
+ a| 
+CMN
+ a| 
+De forma predeterminada, se activa una alarma cuando no se pueden asignar identificadores de objeto porque no se puede alcanzar el quórum ADC.
+
+La asignación de bloques de identificador en el servicio CMN requiere que haya un quórum (50% + 1) de los servicios ADC conectado y conectado. Si el quórum no está disponible, el servicio CMN no puede asignar nuevos bloques de identificador hasta que se restablezca el quórum ADC. Si se pierde el quórum de ADC, por lo general no se produce un impacto inmediato en el sistema StorageGRID (los clientes todavía pueden procesar y recuperar contenido), ya que el suministro de identificadores de aproximadamente un mes se almacena en caché en otro lugar del grid; Sin embargo, si la condición continúa, el sistema StorageGRID perderá la capacidad para procesar contenido nuevo.
+
+Si se activa una alarma, investigue el motivo de la pérdida de quórum de ADC (por ejemplo, puede ser un fallo de red o nodo de almacenamiento) y tome medidas correctivas.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+BRDT
+ a| 
+Temperatura del chasis de la controladora de computación
+ a| 
+SSM
+ a| 
+Se activa una alarma si la temperatura de la controladora de computación en un dispositivo StorageGRID supera un umbral nominal.
+
+Compruebe los componentes de hardware y los problemas medioambientales si hay un sobrecalentamiento. Si es necesario, sustituir el componente.
+
+
+
+ a| 
+BTOF
+ a| 
+Desviación
+ a| 
+BDC, BLDR, BNMS, BAMS, BCLB, BCMN, BARC
+ a| 
+Se activa una alarma si el tiempo de servicio (segundos) difiere significativamente del tiempo del sistema operativo. En condiciones normales, el servicio deberá volver a resincronizarse. Si el tiempo de servicio se desvía demasiado lejos del tiempo del sistema operativo, el funcionamiento del sistema puede verse afectado. Confirme que el origen de la hora del sistema StorageGRID es correcto.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+BTSE
+ a| 
+Estado del reloj
+ a| 
+BDC, BLDR, BNMS, BAMS, BCLB, BCMN, BARC
+ a| 
+Se activa una alarma si el tiempo del servicio no está sincronizado con el tiempo de seguimiento del sistema operativo. En condiciones normales, el servicio deberá volver a resincronizarse. Si el tiempo se desvía demasiado lejos del tiempo del sistema operativo, el funcionamiento del sistema puede verse afectado. Confirme que el origen de la hora del sistema StorageGRID es correcto.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+CAHP
+ a| 
+Porcentaje de uso de Java Heap
+ a| 
+DDS
+ a| 
+Se activa una alarma si Java no puede realizar la recolección de basura a una velocidad que permita suficiente espacio de pila para que el sistema funcione correctamente. Una alarma podría indicar una carga de trabajo de usuario que supere los recursos disponibles en todo el sistema para el almacén de metadatos de DDS. Compruebe la actividad de ILM en el panel de control o seleccione *SUPPORT* > *Herramientas* > *Topología de cuadrícula* y, a continuación, seleccione *_SITE_* > *_GRID NODE_* > *DDS* > *Recursos* > *Descripción general* > *Principal*.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+CASA
+ a| 
+Estado del almacén de datos
+ a| 
+DDS
+ a| 
+Se genera una alarma si el almacén de metadatos de Cassandra deja de estar disponible.
+
+Compruebe el estado de Cassandra:
+
+. En el nodo de almacenamiento, inicie sesión como admin y. `su` A root utilizando la contraseña que aparece en el archivo Passwords.txtI.
+. Introduzca: `service cassandra status`
+. Si Cassandra no se está ejecutando, reinicie: `service cassandra restart`
+
+
+Esta alarma también puede indicar que el almacén de metadatos (base de datos Cassandra) para un nodo de almacenamiento debe recompilarse.
+
+Consulte la información sobre cómo solucionar problemas de los Servicios: Estado - alarma Cassandra (SVST) en link:../troubleshoot/troubleshooting-metadata-issues.html["Solucionar problemas de metadatos"].
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+CASO
+ a| 
+Estado del almacén de datos
+ a| 
+DDS
+ a| 
+Esta alarma se activa durante la instalación o expansión para indicar que un nuevo almacén de datos se está uniendo a la cuadrícula.
+
+
+
+ a| 
+CCNA
+ a| 
+Hardware de computación
+ a| 
+SSM
+ a| 
+Esta alarma se activa si el estado del hardware de la controladora de computación en un dispositivo StorageGRID requiere atención.
+
+
+
+ a| 
+CDLP
+ a| 
+Espacio usado de metadatos (porcentaje)
+ a| 
+DDS
+ a| 
+Esta alarma se activa cuando el espacio efectivo de metadatos (CEMS) alcanza un 70% de lleno (alarma secundaria), un 90% de lleno (alarma principal) y un 100% de lleno (alarma crítica).
+
+Si esta alarma alcanza el umbral del 90%, aparecerá una advertencia en el panel de control de Grid Manager. Debe realizar un procedimiento de ampliación para añadir un nuevo Lo antes posible. a los nodos de almacenamiento. Consulte link:../expand/index.html["Expanda una cuadrícula"].
+
+Si esta alarma alcanza el umbral del 100%, debe detener la incorporación de objetos y añadir nodos de almacenamiento inmediatamente. Cassandra requiere una cierta cantidad de espacio para realizar operaciones esenciales, como la compactación y la reparación. Estas operaciones se verán afectadas si los metadatos de los objetos utilizan más del 100 % del espacio permitido. Pueden producirse resultados no deseados.
+
+*Nota*: Póngase en contacto con el servicio de asistencia técnica si no puede agregar nodos de almacenamiento.
+
+Una vez que se añaden nodos de almacenamiento nuevos, el sistema reequilibra automáticamente los metadatos de los objetos en todos los nodos de almacenamiento y la alarma se borra.
+
+Consulte también información sobre la solución de problemas de la alerta de almacenamiento de metadatos bajos en link:../troubleshoot/troubleshooting-metadata-issues.html["Solucionar problemas de metadatos"].
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+CMNA
+ a| 
+Estado de CMN
+ a| 
+CMN
+ a| 
+Si el valor de CMN Status es error, seleccione *SUPPORT* > *Tools* > *Grid topolog* y seleccione *_site_* > *_grid node_* > *CMN* > *Overview* > *Main* y *CMN* > *Alarms* > *Main* para determinar la causa del error y solucionar el problema.
+
+Se activa una alarma y el valor de CMN Status es no Online CMN durante una actualización de hardware del nodo de administración principal cuando se cambian los CMN (el valor del estado antiguo de CMN es Standby y el nuevo es Online).
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+CPRC
+ a| 
+La capacidad restante
+ a| 
+NMS
+ a| 
+Se activa una alarma si la capacidad restante (número de conexiones disponibles que se pueden abrir a la base de datos NMS) cae por debajo de la gravedad de alarma configurada.
+
+Si se activa una alarma, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+CPSA
+ a| 
+Suministro de alimentación De la controladora de computación a
+ a| 
+SSM
+ a| 
+Se activa una alarma si hay un problema con el suministro De alimentación A en el controlador de computación de un dispositivo StorageGRID.
+
+Si es necesario, sustituir el componente.
+
+
+
+ a| 
+CPSB
+ a| 
+Suministro de alimentación B de la controladora de computación
+ a| 
+SSM
+ a| 
+Se activa una alarma si existe un problema con la alimentación B en el controlador de computación de un dispositivo StorageGRID.
+
+Si es necesario, sustituir el componente.
+
+
+
+ a| 
+CPUT
+ a| 
+Temperatura de CPU de la controladora de computación
+ a| 
+SSM
+ a| 
+Se activa una alarma si la temperatura de la CPU en la controladora de computación de un dispositivo StorageGRID supera un umbral nominal.
+
+Si el nodo de almacenamiento es un dispositivo StorageGRID, el sistema StorageGRID indica que la controladora requiere atención.
+
+Compruebe los componentes de hardware y los problemas de entorno si hay un sobrecalentamiento. Si es necesario, sustituir el componente.
+
+
+
+ a| 
+DNST
+ a| 
+Estado de DNS
+ a| 
+SSM
+ a| 
+Una vez finalizada la instalación, se activa una alarma DNST en el servicio SSM. Una vez configurado el DNS y la nueva información del servidor llega a todos los nodos de la cuadrícula, la alarma se cancela.
+
+
+
+ a| 
+ECCD
+ a| 
+Se han detectado fragmentos dañados
+ a| 
+LDR
+ a| 
+Se activa una alarma cuando el proceso de verificación en segundo plano detecta un fragmento con código de borrado dañado. Si se detecta un fragmento dañado, se intenta reconstruir el fragmento. Restablezca los fragmentos dañados detectados y copia los atributos perdidos a cero y monitoréelos para ver si los recuentos vuelven a subir. Si el número aumenta, es posible que haya un problema con el almacenamiento subyacente del nodo de almacenamiento. No se considera ausente una copia de los datos de objetos con código de borrado hasta que el número de fragmentos perdidos o dañados incumpla la tolerancia a fallos del código de borrado; por lo tanto, es posible tener fragmentos dañados y seguir pudiendo recuperar el objeto.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+ECST
+ a| 
+Estado de verificación
+ a| 
+LDR
+ a| 
+Esta alarma indica el estado actual del proceso de verificación en segundo plano para los datos de objetos codificados de borrado en este nodo de almacenamiento.
+
+Se activa una alarma importante si hay un error en el proceso de verificación en segundo plano.
+
+
+
+ a| 
+FONP
+ a| 
+Abra Descriptores de archivo
+ a| 
+BDC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+La FONP puede hacerse grande durante la actividad pico. Si no disminuye durante períodos de actividad lenta, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+HSTE
+ a| 
+Estado HTTP
+ a| 
+LDR
+ a| 
+Consulte acciones recomendadas para HSTU.
+
+
+
+ a| 
+HSTU
+ a| 
+Estado HTTP
+ a| 
+LDR
+ a| 
+HSTE y HSTU están relacionados con HTTP para todo el tráfico LDR, incluido S3, Swift y otro tráfico StorageGRID interno. Una alarma indica que se ha producido una de las siguientes situaciones:
+
+* HTTP se ha desconectado manualmente.
+* Se ha deshabilitado el atributo HTTP de inicio automático.
+* El servicio LDR se está cerrando.
+
+
+El atributo HTTP de inicio automático está habilitado de forma predeterminada. Si se cambia esta configuración, HTTP podría permanecer sin conexión después de un reinicio.
+
+Si es necesario, espere a que el servicio LDR se reinicie.
+
+Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_Storage Node_* > *LDR* > *Configuración*. Si HTTP está sin conexión, colóquelo en línea. Compruebe que el atributo HTTP de inicio automático está habilitado.
+
+Si HTTP sigue sin conexión, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+HTA
+ a| 
+HTTP de inicio automático
+ a| 
+LDR
+ a| 
+Especifica si se deben iniciar los servicios HTTP automáticamente al iniciar. Es una opción de configuración especificada por el usuario.
+
+
+
+ a| 
+IRSU
+ a| 
+Estado de replicación entrante
+ a| 
+BLDR, BARC
+ a| 
+Una alarma indica que se ha desactivado la replicación de entrada. Confirmar ajustes de configuración: Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *LDR* > *Replication* > *Configuración* > *Principal*.
+
+
+
+ a| 
+LATA
+ a| 
+Latencia media
+ a| 
+NMS
+ a| 
+Compruebe si hay problemas de conectividad.
+
+Compruebe la actividad del sistema para confirmar que hay un aumento en la actividad del sistema. Un aumento en la actividad del sistema provocará un aumento de la actividad de los datos de atributos. Este aumento de la actividad dará lugar a un retraso en el procesamiento de datos de atributos. Esto puede ser una actividad normal del sistema y se resta.
+
+Compruebe si hay varias alarmas. Un aumento en los tiempos de latencia medios se puede indicar mediante un número excesivo de alarmas activadas.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+LDRE
+ a| 
+Estado LDR
+ a| 
+LDR
+ a| 
+Si el valor de LDR State es Standby, continúe supervisando la situación y, si el problema persiste, póngase en contacto con el soporte técnico.
+
+Si el valor del estado LDR es sin conexión, reinicie el servicio. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+PERDIDO
+ a| 
+Objetos perdidos
+ a| 
+DDS, LDR
+ a| 
+Se activa cuando el sistema StorageGRID no logra recuperar una copia del objeto solicitado desde cualquier lugar del sistema. Antes de que se active una alarma PERDIDA (objetos perdidos), el sistema intenta recuperar y reemplazar un objeto que falta desde cualquier otro lugar del sistema.
+
+Los objetos perdidos representan una pérdida de datos. El atributo objetos perdidos se incrementa siempre que el número de ubicaciones de un objeto caiga a cero sin que el servicio DDS purice el contenido de forma intencionada para satisfacer la política ILM.
+
+Investigar inmediatamente las alarmas PERDIDAS (OBJETOS PERDIDOS). Si el problema persiste, póngase en contacto con el soporte técnico.
+
+link:../troubleshoot/troubleshooting-lost-and-missing-object-data.html["Solucionar problemas de datos de objetos perdidos o faltantes"]
+
+
+
+ a| 
+MCEP
+ a| 
+Caducidad del certificado de la interfaz de gestión
+ a| 
+CMN
+ a| 
+Se activa cuando el certificado utilizado para acceder a la interfaz de gestión está a punto de expirar.
+
+. En Grid Manager, seleccione *CONFIGURACIÓN* > *Seguridad* > *certificados*.
+. En la ficha *Global*, seleccione *Certificado de interfaz de administración*.
+. link:../admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#add-a-custom-management-interface-certificate["Cargue un nuevo certificado de interfaz de gestión."]
+
+
+
+
+ a| 
+MINQ
+ a| 
+Notificaciones de correo electrónico en cola
+ a| 
+NMS
+ a| 
+Compruebe las conexiones de red de los servidores que alojan el servicio NMS y el servidor de correo externo. Confirme también que la configuración del servidor de correo electrónico sea correcta.
+
+link:managing-alarms.html["Configurar los ajustes del servidor de correo electrónico para las alarmas (sistema heredado)"]
+
+
+
+ a| 
+MIN
+ a| 
+Estado de las notificaciones por correo electrónico
+ a| 
+BNMS
+ a| 
+Se activa una alarma menor si el servicio NMS no puede conectarse al servidor de correo. Compruebe las conexiones de red de los servidores que alojan el servicio NMS y el servidor de correo externo. Confirme también que la configuración del servidor de correo electrónico sea correcta.
+
+link:managing-alarms.html["Configurar los ajustes del servidor de correo electrónico para las alarmas (sistema heredado)"]
+
+
+
+ a| 
+SRA.
+ a| 
+Estado del motor de la interfaz NMS
+ a| 
+BNMS
+ a| 
+Se activa una alarma si el motor de interfaz NMS del nodo de administración que recopila y genera contenido de interfaz se desconecta del sistema. Compruebe el Administrador del servidor para determinar si la aplicación individual del servidor está inactiva.
+
+
+
+ a| 
+NANG
+ a| 
+Configuración de negociación automática de red
+ a| 
+SSM
+ a| 
+Compruebe la configuración del adaptador de red. La configuración debe coincidir con las preferencias de los routers y switches de red.
+
+Un ajuste incorrecto puede tener un impacto grave en el rendimiento del sistema.
+
+
+
+ a| 
+NDUP
+ a| 
+Configuración dúplex de red
+ a| 
+SSM
+ a| 
+Compruebe la configuración del adaptador de red. La configuración debe coincidir con las preferencias de los routers y switches de red.
+
+Un ajuste incorrecto puede tener un impacto grave en el rendimiento del sistema.
+
+
+
+ a| 
+NLNK
+ a| 
+Detección de enlace de red
+ a| 
+SSM
+ a| 
+Compruebe las conexiones de los cables de red en el puerto y en el conmutador.
+
+Compruebe las configuraciones del router de red, del switch y del adaptador.
+
+Reinicie el servidor.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+NRER
+ a| 
+Recibir errores
+ a| 
+SSM
+ a| 
+Las siguientes pueden ser las causas de las alarmas NRER:
+
+* La corrección de errores de avance (FEC) no coincide
+* Discrepancia entre el puerto del switch y la MTU de NIC
+* Índices altos de errores de enlace
+* Desbordamiento del búfer de anillo NIC
+
+
+Consulte la información sobre cómo solucionar problemas de la alarma error de recepción de red (NRER) en link:../troubleshoot/troubleshooting-network-hardware-and-platform-issues.html["Solucionar problemas de red, hardware y plataforma"].
+
+
+
+ a| 
+NRLY
+ a| 
+Relés de auditoría disponibles
+ a| 
+BDC, BARC, BCLB, BCMN, BLDR, BNMS, BDDS
+ a| 
+Si los relés de auditoría no están conectados a los servicios ADC, los eventos de auditoría no se pueden informar. Los usuarios se ponen en cola y no están disponibles hasta que se restaura la conexión.
+
+Restaure la conectividad a un Lo antes posible. de servicio de ADC.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SCA
+ a| 
+Estado de NMS
+ a| 
+NMS
+ a| 
+Si el valor de Estado de NMS es error de conectividad de BD, reinicie el servicio. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+NSCE
+ a| 
+Estado de NMS
+ a| 
+NMS
+ a| 
+Si el valor del estado de NMS es en espera, continúe la monitorización y si el problema persiste, póngase en contacto con el servicio técnico.
+
+Si el valor de NMS State es Offline, reinicie el servicio. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+NSPD
+ a| 
+Velocidad
+ a| 
+SSM
+ a| 
+Esto puede deberse a problemas de conectividad de red o de compatibilidad de controladores. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+NBR
+ a| 
+Tablespace gratis
+ a| 
+NMS
+ a| 
+Si se activa una alarma, compruebe la rapidez con la que ha cambiado el uso de la base de datos. Una caída repentina (a diferencia de un cambio gradual a lo largo del tiempo) indica una condición de error. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+El ajuste del umbral de alarma permite gestionar de manera proactiva cuándo se debe asignar más almacenamiento.
+
+Si el espacio disponible alcanza un umbral bajo (consulte umbral de alarma), póngase en contacto con el soporte técnico para cambiar la asignación de la base de datos.
+
+
+
+ a| 
+NTER
+ a| 
+Errores de transmisión
+ a| 
+SSM
+ a| 
+Estos errores se pueden borrar sin que se restablezcan manualmente. Si no se borran, compruebe el hardware de la red. Compruebe que el hardware y el controlador del adaptador están correctamente instalados y configurados para funcionar con los routers y switches de la red.
+
+Cuando se resuelva el problema subyacente, restablezca el contador. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *SSM* > *Recursos* > *Configuración* > *Principal*, seleccione *Restablecer recuento de errores de transmisión* y haga clic en *aplicar cambios*.
+
+
+
+ a| 
+NTFQ
+ a| 
+Compensación de frecuencia NTP
+ a| 
+SSM
+ a| 
+Si el desvío de frecuencia supera el umbral configurado, es probable que haya un problema de hardware con el reloj local. Si el problema persiste, póngase en contacto con el soporte técnico para arreglar un reemplazo.
+
+
+
+ a| 
+NTLK
+ a| 
+Bloqueo NTP
+ a| 
+SSM
+ a| 
+Si el daemon NTP no está bloqueado en una fuente de hora externa, compruebe la conectividad de red con los orígenes de tiempo externos designados, su disponibilidad y su estabilidad.
+
+
+
+ a| 
+NOTF
+ a| 
+Ajuste de tiempo NTP
+ a| 
+SSM
+ a| 
+Si el desfase de tiempo supera el umbral configurado, es probable que haya un problema de hardware con el oscilador del reloj local. Si el problema persiste, póngase en contacto con el soporte técnico para arreglar un reemplazo.
+
+
+
+ a| 
+NTSJ
+ a| 
+Variación de origen de tiempo seleccionada
+ a| 
+SSM
+ a| 
+Este valor indica la fiabilidad y estabilidad del origen de tiempo que NTP utiliza en el servidor local como referencia.
+
+Si se activa una alarma, puede ser una indicación de que el oscilador de la fuente de tiempo está defectuoso, o de que hay un problema con el enlace WAN al origen de tiempo.
+
+
+
+ a| 
+NTSU
+ a| 
+Estado de NTP
+ a| 
+SSM
+ a| 
+Si el valor del estado de NTP no está en ejecución, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+OPST
+ a| 
+Estado general de la alimentación
+ a| 
+SSM
+ a| 
+Se activa una alarma si la alimentación de un dispositivo StorageGRID se desvía del voltaje de funcionamiento recomendado.
+
+Compruebe el estado de la fuente de alimentación A o B para determinar qué fuente de alimentación funciona de forma anormal.
+
+Si es necesario, sustituya la fuente de alimentación.
+
+
+
+ a| 
+OQRT
+ a| 
+Objetos en cuarentena
+ a| 
+LDR
+ a| 
+Una vez que el sistema StorageGRID restaura automáticamente los objetos, los objetos en cuarentena se pueden quitar del directorio de cuarentena.
+
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *sitio* > *nodo de almacenamiento* > *LDR* > *verificación* > *Configuración* > *Principal*.
+. Seleccione *Eliminar objetos en cuarentena*.
+. Haga clic en *aplicar cambios*.
+
+
+Los objetos en cuarentena se eliminan y el recuento se restablece a cero.
+
+
+
+ a| 
+ORSU
+ a| 
+Estado de replicación saliente
+ a| 
+BLDR, BARC
+ a| 
+Una alarma indica que la replicación saliente no es posible: El almacenamiento está en un estado en el que los objetos no se pueden recuperar. Se activa una alarma si la replicación saliente se desactiva manualmente. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *LDR* > *Replication* > *Configuración*.
+
+Se activa una alarma si el servicio LDR no está disponible para la replicación. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *LDR* > *almacenamiento*.
+
+
+
+ a| 
+OSLF
+ a| 
+Estado de la bandeja
+ a| 
+SSM
+ a| 
+Se activa una alarma si el estado de uno de los componentes de la bandeja de almacenamiento de un dispositivo de almacenamiento está degradado. Los componentes de la bandeja de almacenamiento incluyen los IOM, los ventiladores, los suministros de alimentación y los cajones de unidades.Si esta alarma se activa, consulte las instrucciones de mantenimiento del dispositivo.
+
+
+
+ a| 
+PMEM
+ a| 
+Uso de memoria de servicio (porcentaje)
+ a| 
+BDC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+Puede tener un valor superior al y% de RAM, donde y representa el porcentaje de memoria que utiliza el servidor.
+
+Las cifras por debajo del 80% son normales. Más del 90% se considera un problema.
+
+Si el uso de la memoria es elevado para un único servicio, supervise la situación e investigue.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+PSA
+ a| 
+Estado del suministro de alimentación de
+ a| 
+SSM
+ a| 
+Se activa una alarma si la fuente De alimentación A de un dispositivo StorageGRID se desvía del voltaje de funcionamiento recomendado.
+
+Si es necesario, sustituya la fuente de alimentación A.
+
+
+
+ a| 
+PSBS
+ a| 
+Estado de la fuente de alimentación B
+ a| 
+SSM
+ a| 
+Se activa una alarma si la fuente de alimentación B de un dispositivo StorageGRID se desvía del voltaje de funcionamiento recomendado.
+
+Si es necesario, sustituya la fuente de alimentación B.
+
+
+
+ a| 
+RDTE
+ a| 
+Estado de Tivoli Storage Manager
+ a| 
+BARC
+ a| 
+Sólo disponible para nodos de archivado con un tipo de destino de Tivoli Storage Manager (TSM).
+
+Si el valor de Estado de Tivoli Storage Manager es sin conexión, compruebe el estado de Tivoli Storage Manager y resuelva cualquier problema.
+
+Vuelva a conectar el componente. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *ARC* > *Target* > *Configuration* > *Main*, seleccione *Tivoli Storage Manager State* > *Online* y haga clic en *Apply Changes*.
+
+
+
+ a| 
+RDTU
+ a| 
+Estado de Tivoli Storage Manager
+ a| 
+BARC
+ a| 
+Sólo disponible para nodos de archivado con un tipo de destino de Tivoli Storage Manager (TSM).
+
+Si el valor de Estado de Tivoli Storage Manager es error de configuración y el nodo de archivado se acaba de agregar al sistema StorageGRID, asegúrese de que el servidor de middleware TSM está configurado correctamente.
+
+Si el valor de Estado de Tivoli Storage Manager es error de conexión o error de conexión, Retraer, comprobar la configuración de red en el servidor de middleware TSM y la conexión de red entre el servidor de middleware TSM y el sistema StorageGRID.
+
+Si el valor de Estado de Tivoli Storage Manager es Fallo de autenticación o Fallo de autenticación, Reconexión, el sistema StorageGRID puede conectarse al servidor de middleware TSM, pero no puede autenticar la conexión. Compruebe que el servidor de middleware TSM está configurado con el usuario, la contraseña y los permisos correctos y reinicie el servicio.
+
+Si el valor de Estado de Tivoli Storage Manager es error de sesión, se ha perdido inesperadamente una sesión establecida. Compruebe la conexión de red entre el servidor de middleware TSM y el sistema StorageGRID. Compruebe si hay errores en el servidor de middleware.
+
+Si el valor de Estado de Tivoli Storage Manager es error desconocido, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+RIRF
+ a| 
+Replicaciones entrantes -- no se han podido realizar
+ a| 
+BLDR, BARC
+ a| 
+Se puede producir una alarma de réplicas entrantes -- fallo durante periodos de altas cargas o interrupciones temporales de la red. Una vez que la actividad del sistema se reduce, esta alarma debe eliminarse. Si el número de repeticiones fallidas continúa aumentando, busque problemas de red y compruebe que los servicios LDR y ARC de origen y destino están en línea y disponibles.
+
+Para restablecer el recuento, seleccione *SUPPORT* > *Tools* > *Grid topolog* y, a continuación, seleccione *_site_* > *_grid node_* > *LDR* > *Replication* > *Configuration* > *Main*. Seleccione *Restablecer recuento de fallos de replicación entrante* y haga clic en *aplicar cambios*.
+
+
+
+ a| 
+RIRQ
+ a| 
+Replicaciones entrantes -- en cola
+ a| 
+BLDR, BARC
+ a| 
+Las alarmas pueden producirse durante períodos de carga alta o interrupción temporal de la red. Una vez que la actividad del sistema se reduce, esta alarma debe eliminarse. Si el recuento de réplicas en cola continúa aumentando, busque problemas de red y compruebe que los servicios LDR y ARC de origen y destino están en línea y disponibles.
+
+
+
+ a| 
+RORQ
+ a| 
+Replicaciones salientes -- en cola
+ a| 
+BLDR, BARC
+ a| 
+La cola de replicación saliente contiene datos de objeto que se copian para cumplir las reglas de ILM y los objetos solicitados por los clientes.
+
+Una alarma puede ocurrir como resultado de una sobrecarga del sistema. Espere a ver si la alarma se borra cuando disminuye la actividad del sistema. Si la alarma vuelve a producirse, añada capacidad añadiendo nodos de almacenamiento.
+
+
+
+ a| 
+VICEPRESIDENTE
+ a| 
+Espacio útil total (porcentaje)
+ a| 
+LDR
+ a| 
+Si el espacio útil alcanza un umbral bajo, las opciones incluyen expandir el sistema StorageGRID o mover datos de objeto para archivar a través de un nodo de archivado.
+
+
+
+ a| 
+CA
+ a| 
+Estado
+ a| 
+CMN
+ a| 
+Si el valor de Estado de la tarea de cuadrícula activa es error, busque el mensaje de tarea de cuadrícula. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *CMN* > *Grid Tasks* > *Overview* > *Main*. El mensaje de tarea de cuadrícula muestra información sobre el error (por ejemplo, “check failed on node 12130011”).
+
+Después de investigar y corregir el problema, reinicie la tarea de cuadrícula. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *CMN* > *Grid Tasks* > *Configuration* > *Main* y seleccione *Actions* > *Run*.
+
+Si el valor de Estado de una tarea de cuadrícula que se está deteniendo es Error, vuelva a intentar finalizar la tarea de cuadrícula.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SCEP
+ a| 
+Storage API Service finaliza la caducidad del certificado
+ a| 
+CMN
+ a| 
+Se desencadena cuando el certificado utilizado para acceder a extremos de API de almacenamiento está a punto de expirar.
+
+. Seleccione *CONFIGURACIÓN* > *Seguridad* > *certificados*.
+. En la ficha *Global*, seleccione *S3 y Swift API Certificate*.
+. link:../admin/configuring-custom-server-certificate-for-storage-node.html#add-a-custom-s3-and-swift-api-certificate["Cargue un nuevo certificado API S3 y Swift."]
+
+
+
+
+ a| 
+SCHR
+ a| 
+Estado
+ a| 
+CMN
+ a| 
+Si se cancela el valor de Estado de la tarea de cuadrícula histórica, investigue el motivo y vuelva a ejecutar la tarea si es necesario.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SCSA
+ a| 
+Controladora de almacenamiento A
+ a| 
+SSM
+ a| 
+Se activa una alarma si hay un problema con la controladora A de almacenamiento en un dispositivo StorageGRID.
+
+Si es necesario, sustituir el componente.
+
+
+
+ a| 
+SCSB
+ a| 
+Controladora de almacenamiento B
+ a| 
+SSM
+ a| 
+Se activa una alarma si hay un problema con la controladora B de almacenamiento en un dispositivo StorageGRID.
+
+Si es necesario, sustituir el componente.
+
+Algunos modelos de dispositivos no tienen una controladora de almacenamiento B.
+
+
+
+ a| 
+SHLH
+ a| 
+Salud
+ a| 
+LDR
+ a| 
+Si el valor de Estado de un almacén de objetos es error, compruebe y corrija:
+
+* problemas con el volumen que se está montando
+* errores del sistema de archivos
+
+
+
+
+ a| 
+SLSA
+ a| 
+Promedio de carga de CPU
+ a| 
+SSM
+ a| 
+Cuanto mayor sea el valor, mayor será el número de bus del sistema.
+
+Si la media de carga de la CPU persiste en un valor alto, se debe investigar el número de transacciones del sistema para determinar si esto se debe a una carga pesada en ese momento. Vea un gráfico del promedio de carga de CPU: Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *SSM* > *Recursos* > *Informes* > *Cartas*.
+
+Si la carga del sistema no es pesada y el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SMST
+ a| 
+Estado del monitor de registro
+ a| 
+SSM
+ a| 
+Si el valor de Estado del Monitor de registro no está conectado durante un período de tiempo persistente, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SMTT
+ a| 
+Total de eventos
+ a| 
+SSM
+ a| 
+Si el valor total de eventos es mayor que cero, compruebe si hay eventos conocidos (como errores de red) que puedan ser la causa. A menos que se hayan borrado estos errores (es decir, el recuento se ha restablecido a 0), se pueden activar las alarmas de eventos totales.
+
+Cuando se resuelve un problema, restablezca el contador para borrar la alarma. Seleccione *NODES* > *_site_* > *_grid node_* > *Eventos* > *Restablecer recuentos de eventos*.
+
+
+NOTE: Para restablecer los recuentos de eventos, debe tener el permiso de configuración de la página de topología de cuadrícula.
+
+Si el valor total de eventos es cero o el número aumenta y el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SNST
+ a| 
+Estado
+ a| 
+CMN
+ a| 
+Una alarma indica que hay un problema al almacenar los paquetes de tareas de la cuadrícula. Si el valor de Estado es error de punto de comprobación o quórum no alcanzado, confirme que la mayoría de los servicios de ADC están conectados al sistema StorageGRID (50% más uno) y espere unos minutos.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SEDA
+ a| 
+Estado del sistema operativo de almacenamiento
+ a| 
+SSM
+ a| 
+Se activa una alarma si SANtricity OS indica que hay un problema que requiere atención con un componente de un dispositivo StorageGRID.
+
+Selecciona *NODOS*. A continuación, seleccione *Appliance Storage Node* > *hardware*. Desplácese hacia abajo para ver el estado de cada componente. En SANtricity OS, compruebe otros componentes del dispositivo para aislar el problema.
+
+
+
+ a| 
+SSMA
+ a| 
+Estado del SSM
+ a| 
+SSM
+ a| 
+Si el valor del estado del SSM es error, seleccione *SUPPORT* > *Tools* > *Grid topolog* y seleccione *_site_* > *_grid node_* > *SSM* > *Overview* > *Main* y *SSM* > *Overview* > *Alarms* para determinar la causa de la alarma.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SSME
+ a| 
+Estado de SSM
+ a| 
+SSM
+ a| 
+Si el valor del estado del SSM es en espera, continúe la monitorización y si el problema persiste, póngase en contacto con el servicio técnico.
+
+Si el valor de Estado de SSM es Fuera de línea, reinicie el servicio. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+SST
+ a| 
+Estado del almacenamiento
+ a| 
+LDR
+ a| 
+Si el valor del Estado de almacenamiento es espacio útil insuficiente, no hay más almacenamiento disponible en el nodo de almacenamiento y los ingestos datos se redirigen a otro nodo de almacenamiento disponible. Las solicitudes de recuperación pueden seguir suministrándose desde este nodo de grid.
+
+Debe añadirse almacenamiento adicional. No afecta al funcionamiento del usuario final, pero la alarma permanece hasta que se añade almacenamiento adicional.
+
+Si el valor del estado del almacenamiento es volúmenes no disponibles, una parte del almacenamiento no está disponible. No es posible almacenar ni recuperar datos de estos volúmenes. Compruebe el estado del volumen para obtener más información: Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *LDR* > *Storage* > *Overview* > *Main*. El estado del volumen se enumera en almacenes de objetos.
+
+Si el valor del estado del almacenamiento es error, póngase en contacto con el soporte técnico.
+
+link:../troubleshoot/troubleshooting-storage-status-alarm.html["Solucione los problemas de la alarma de estado de almacenamiento (SST)"]
+
+
+
+ a| 
+VST DE NETAPP
+ a| 
+Estado
+ a| 
+SSM
+ a| 
+Esta alarma se borra cuando se resuelven otras alarmas relacionadas con un servicio no en ejecución. Realice un seguimiento de las alarmas del servicio de origen para restaurar la operación.
+
+Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *SSM* > *Servicios* > *Descripción general* > *Principal*. Cuando el estado de un servicio se muestra como no se está ejecutando, su estado es administrativamente inactivo. El estado del servicio puede aparecer como no en ejecución por los siguientes motivos:
+
+* El servicio se ha detenido manualmente (`/etc/init.d/<service\> stop`).
+* Hay un problema con la base de datos de MySQL y Server Manager cierra EL servicio MI.
+* Se añadió un nodo de cuadrícula, pero no se inició.
+* Durante la instalación, un nodo de grid aún no se ha conectado al nodo de administrador.
+
+
+Si un servicio aparece como no en ejecución, reinicie el servicio (`/etc/init.d/<service\> restart`).
+
+Esta alarma también puede indicar que el almacén de metadatos (base de datos Cassandra) para un nodo de almacenamiento debe recompilarse.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+link:../troubleshoot/troubleshooting-metadata-issues.html["Solucione los problemas de la alarma Servicios: Estado - Cassandra (SVST)"]
+
+
+
+ a| 
+TMEM
+ a| 
+Memoria instalada
+ a| 
+SSM
+ a| 
+Los nodos que se ejecutan con menos de 24 GIB de memoria instalada pueden provocar problemas de rendimiento e inestabilidad del sistema. La cantidad de memoria instalada en el sistema debe aumentarse a al menos 24 GIB.
+
+
+
+ a| 
+TPOP
+ a| 
+Operaciones pendientes
+ a| 
+ADC
+ a| 
+Una cola de mensajes puede indicar que el servicio ADC está sobrecargado. Se pueden conectar muy pocos servicios ADC al sistema StorageGRID. En una puesta en marcha de gran tamaño, el servicio de ADC puede requerir la adición de recursos computacionales o el sistema puede requerir servicios de ADC adicionales.
+
+
+
+ a| 
+UMEM
+ a| 
+Memoria disponible
+ a| 
+SSM
+ a| 
+Si la RAM disponible es baja, determine si se trata de un problema de hardware o software. Si no se trata de un problema de hardware, o si la memoria disponible cae por debajo de los 50 MB (el umbral de alarma predeterminado), póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+VMFI
+ a| 
+Entradas disponibles
+ a| 
+SSM
+ a| 
+Esto indica que se requiere almacenamiento adicional. Póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+VMFR
+ a| 
+Espacio disponible
+ a| 
+SSM
+ a| 
+Si el valor de espacio disponible es demasiado bajo (consulte umbrales de alarma), debe investigarse si hay archivos de registro que crecen desproporcionalmente o si los objetos ocupan demasiado espacio en disco (consulte umbrales de alarma) que se deben reducir o eliminar.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+VMST
+ a| 
+Estado
+ a| 
+SSM
+ a| 
+Se activa una alarma si el valor de Estado del volumen montado es Desconocido. Un valor de Unknown o Sin conexión puede indicar que no se puede montar o acceder al volumen debido a un problema con el dispositivo de almacenamiento subyacente.
+
+
+
+ a| 
+VPRI
+ a| 
+Prioridad de verificación
+ a| 
+BLDR, BARC
+ a| 
+De forma predeterminada, el valor de prioridad de verificación es adaptable. Si la prioridad de verificación está establecida en Alta, se activa una alarma porque la verificación del almacenamiento puede ralentizar las operaciones normales del servicio.
+
+
+
+ a| 
+VSTU
+ a| 
+Estado de verificación de objetos
+ a| 
+LDR
+ a| 
+Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*. A continuación, seleccione *_site_* > *_grid node_* > *LDR* > *Storage* > *Overview* > *Main*.
+
+Compruebe si hay signos de errores en el sistema de archivos o en el dispositivo de bloqueo.
+
+Si el valor de Estado de verificación de objetos es error desconocido, normalmente indica un problema de hardware o del sistema de archivos de bajo nivel (error de E/S) que impide que la tarea verificación de almacenamiento acceda al contenido almacenado. Póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+XAMS
+ a| 
+Repositorios de auditoría inalcanzables
+ a| 
+BDC, BARC, BCLB, BCMN, BLDR, BNMS
+ a| 
+Compruebe la conectividad de red al servidor que aloja el nodo de administración.
+
+Si el problema persiste, póngase en contacto con el soporte técnico.
+
+|===

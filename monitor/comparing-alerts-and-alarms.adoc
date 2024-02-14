@@ -1,0 +1,241 @@
+---
+permalink: monitor/comparing-alerts-and-alarms.html 
+sidebar: sidebar 
+keywords: how to compare alerts and alarms 
+summary: Hay varias similitudes entre el sistema de alerta y el sistema de alarma heredado, pero el sistema de alerta ofrece ventajas significativas y es más fácil de usar. 
+---
+= Comparar alertas y alarmas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Hay varias similitudes entre el sistema de alerta y el sistema de alarma heredado, pero el sistema de alerta ofrece ventajas significativas y es más fácil de usar.
+
+Consulte la siguiente tabla para obtener información sobre cómo realizar operaciones similares.
+
+[cols="1a,1a,1a"]
+|===
+|  | Alertas | Alarmas (sistema heredado) 
+
+
+ a| 
+¿Cómo puedo ver qué alertas o alarmas están activas?
+ a| 
+* Seleccione el enlace *Alertas actuales* en el panel de control.
+* Seleccione la alerta en la página *NODES* > *Overview*.
+* Seleccione *ALERTS* > *Current*.
+
+
+link:monitoring-system-health.html#view-current-and-resolved-alerts["Ver las alertas actuales"]
+ a| 
+Seleccione *SUPPORT* > *Alarms (Legacy)* > *Current Alarms*.
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+
+
+ a| 
+¿Qué hace que se active una alerta o una alarma?
+ a| 
+Las alertas se activan cuando una expresión Prometheus de una regla de alerta se evalúa como TRUE para la condición y duración de desencadenador específicas.
+
+link:view-alert-rules.html["Ver reglas de alerta"]
+ a| 
+Las alarmas se activan cuando un atributo StorageGRID alcanza un valor de umbral.
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+
+
+ a| 
+Si se activa una alerta o alarma, ¿cómo puedo resolver el problema subyacente?
+ a| 
+Las acciones recomendadas para una alerta se incluyen en las notificaciones por correo electrónico y están disponibles en las páginas Alertas de Grid Manager.
+
+Según sea necesario, se proporciona información adicional en la documentación de StorageGRID.
+
+link:alerts-reference.html["Referencia de alertas"]
+ a| 
+Puede obtener más información sobre una alarma seleccionando el nombre del atributo o puede buscar un código de alarma en la documentación de StorageGRID.
+
+link:alarms-reference.html["Referencia de alarmas (sistema heredado)"]
+
+
+
+ a| 
+¿Dónde puedo ver una lista de alertas o alarmas que se han resuelto?
+ a| 
+Seleccione *ALERTS* > *Resolved*.
+
+link:monitoring-system-health.html#view-current-and-resolved-alerts["Ver las alertas actuales y resueltas"]
+ a| 
+Seleccione *SUPPORT* > *Alarms (Legacy)* > *Historical Alarms*.
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+
+
+ a| 
+¿Dónde puedo gestionar la configuración?
+ a| 
+Seleccione *ALERTS* > *Reglas*.
+
+link:managing-alerts.html["Gestionar alertas"]
+ a| 
+Seleccione *SOPORTE*. A continuación, utilice las opciones de la sección *Alarmas (heredadas)* del menú.
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+
+
+ a| 
+¿Qué permisos de grupo de usuarios necesito?
+ a| 
+* Cualquier persona que pueda iniciar sesión en Grid Manager puede ver las alertas actuales y resueltas.
+* Debe tener el permiso Gestionar alertas para gestionar silencios, notificaciones de alertas y reglas de alertas.
+
+
+link:../admin/index.html["Administre StorageGRID"]
+ a| 
+* Cualquier persona que pueda iniciar sesión en Grid Manager puede ver las alarmas heredadas.
+* Debe tener el permiso de acuse de recibo de alarmas para acusar recibo de alarmas.
+* Debe tener tanto la configuración de la página de topología de cuadrícula como otros permisos de configuración de cuadrícula para gestionar las alarmas globales y las notificaciones por correo electrónico.
+
+
+link:../admin/index.html["Administre StorageGRID"]
+
+
+
+ a| 
+¿Cómo puedo gestionar las notificaciones por correo electrónico?
+ a| 
+Seleccione *ALERTS* > *Configuración de correo electrónico*.
+
+*Nota:* debido a que las alarmas y alertas son sistemas independientes, la configuración de correo electrónico utilizada para las notificaciones de alarma y AutoSupport no se utiliza para las notificaciones de alerta. Sin embargo, puede utilizar el mismo servidor de correo para todas las notificaciones.
+
+link:email-alert-notifications.html["Configure notificaciones por correo electrónico para las alertas"]
+ a| 
+Seleccione *SUPPORT* > *Alarms (Legacy)* > *Configuración de correo electrónico heredado*.
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+
+
+ a| 
+¿Cómo se gestionan las notificaciones SNMP?
+ a| 
+Seleccione *CONFIGURACIÓN* > *Supervisión* > *Agente SNMP*.
+
+link:using-snmp-monitoring.html["Usar supervisión de SNMP"]
+ a| 
+_No soportado_
+
+
+
+ a| 
+¿Cómo puedo controlar quién recibe notificaciones?
+ a| 
+. Seleccione *ALERTS* > *Configuración de correo electrónico*.
+. En la sección *destinatarios*, introduzca una dirección de correo electrónico para cada lista de correo electrónico o persona que deba recibir un correo electrónico cuando se produzca una alerta.
+
+
+link:email-alert-notifications.html["Configure notificaciones por correo electrónico para las alertas"]
+ a| 
+. Seleccione *SUPPORT* > *Alarms (Legacy)* > *Configuración de correo electrónico heredado*.
+. Crear una lista de correo.
+. Seleccione *Notificaciones*.
+. Seleccione la lista de correo.
+
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+
+
+ a| 
+¿Qué nodos administrador envían notificaciones?
+ a| 
+Un nodo de administración único (el remitente preferido).
+
+link:../primer/what-admin-node-is.html["¿Qué es un nodo de administración?"]
+ a| 
+Un nodo de administración único (el remitente preferido).
+
+link:../primer/what-admin-node-is.html["¿Qué es un nodo de administración?"]
+
+
+
+ a| 
+¿Cómo puedo suprimir algunas notificaciones?
+ a| 
+. Seleccione *ALERTS* > *silencios*.
+. Seleccione la regla de alerta que desea silenciar.
+. Especifique una duración para el silencio.
+. Seleccione la gravedad de la alerta que desea silenciar.
+. Seleccione esta opción para aplicar el silencio a toda la cuadrícula, un solo sitio o un único nodo.
+
+
+*Nota*: Si ha habilitado el agente SNMP, las silencios también suprimen las capturas SNMP e informan.
+
+link:silencing-alert-notifications.html["Silenciar notificaciones de alerta"]
+ a| 
+. Seleccione *SUPPORT* > *Alarms (Legacy)* > *Configuración de correo electrónico heredado*.
+. Seleccione *Notificaciones*.
+. Seleccione una lista de correo y seleccione *Suprimir*.
+
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+
+
+ a| 
+¿Cómo puedo suprimir todas las notificaciones?
+ a| 
+Seleccione *ALERTS* > *silencios*.luego, seleccione *todas las reglas*.
+
+*Nota*: Si ha habilitado el agente SNMP, las silencios también suprimen las capturas SNMP e informan.
+
+link:silencing-alert-notifications.html["Silenciar notificaciones de alerta"]
+ a| 
+_No soportado_
+
+
+
+ a| 
+¿Cómo puedo personalizar las condiciones y los desencadenantes?
+ a| 
+. Seleccione *ALERTS* > *Reglas*.
+. Seleccione una regla predeterminada para editar o seleccione *Crear regla personalizada*.
+
+
+link:editing-alert-rules.html["Editar reglas de alerta"]
+
+link:creating-custom-alert-rules.html["Crear reglas de alerta personalizadas"]
+ a| 
+. Seleccione *SUPPORT* > *Alarms (Legacy)* > *Global Alarms*.
+. Cree una alarma Global Custom para anular una alarma predeterminada o para supervisar un atributo que no tenga una alarma predeterminada.
+
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+
+
+ a| 
+¿Cómo puedo desactivar una alerta o alarma individual?
+ a| 
+. Seleccione *ALERTS* > *Reglas*.
+. Seleccione la regla y seleccione *Editar regla*.
+. Desactive la casilla de verificación *enabled*.
+
+
+link:disabling-alert-rules.html["Deshabilitar reglas de alerta"]
+ a| 
+. Seleccione *SUPPORT* > *Alarms (Legacy)* > *Global Alarms*.
+. Seleccione la regla y seleccione el icono Editar.
+. Desactive la casilla de verificación *enabled*.
+
+
+link:managing-alarms.html["Gestionar alarmas (sistema heredado)"]
+
+|===

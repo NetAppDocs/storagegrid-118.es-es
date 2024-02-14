@@ -1,0 +1,25 @@
+---
+permalink: upgrade/changes-to-tenant-management-api.html 
+sidebar: sidebar 
+keywords: tenant management api, api, api version, swagger, rest api 
+summary: StorageGRID 11,8 utiliza la versión 4 de la API de gestión de inquilinos. La versión 4 deja de ser la versión 3; sin embargo, las versiones 1, 2 y 3 siguen siendo compatibles. 
+---
+= Cambios en la API de gestión de inquilinos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11,8 utiliza la versión 4 de la API de gestión de inquilinos. La versión 4 deja de ser la versión 3; sin embargo, las versiones 1, 2 y 3 siguen siendo compatibles.
+
+
+NOTE: Puede continuar utilizando versiones obsoletas de la API de administración de inquilinos con StorageGRID 11,8; sin embargo, el soporte para estas versiones de la API se eliminará en una futura versión de StorageGRID. Después de actualizar a StorageGRID 11,8, las API obsoletas se pueden desactivar mediante el `PUT /grid/config/management` API.
+
+Para obtener más información, visite link:../tenant/understanding-tenant-management-api.html["Conozca la API de gestión de inquilinos"].
+
+
+
+== Nuevos extremos para etiquetas de políticas de ILM
+
+Puede usar los extremos de la API */org/ilm-policy-tags* y */org/containers/{bucketName}/ilm-policy-tags* para realizar operaciones relacionadas con las etiquetas de política de ILM.

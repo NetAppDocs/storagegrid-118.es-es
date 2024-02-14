@@ -1,0 +1,64 @@
+---
+permalink: maintain/considerations-for-decommissioning-admin-or-gateway-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission admin node, gateway node, archive node 
+summary: Revise las consideraciones para retirar un nodo de administración, un nodo de gateway o un nodo de archivado. 
+---
+= Consideraciones sobre el desmantelamiento de los nodos de administración, puerta de enlace o archivo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Revise las consideraciones para retirar un nodo de administración, un nodo de gateway o un nodo de archivado.
+
+
+
+== Consideraciones para el nodo de administración
+
+* No puede retirar el nodo de administración principal.
+* No puede retirar un nodo de administración si una de sus interfaces de red forma parte de un grupo de alta disponibilidad. Primero es necesario quitar las interfaces de red del grupo de alta disponibilidad. Consulte las instrucciones para link:../admin/managing-high-availability-groups.html["Gestionar grupos de alta disponibilidad"].
+* Según sea necesario, puede cambiar de forma segura las políticas de ILM mientras decomisiona un nodo de administración.
+* Si retira de servicio un nodo de administración y está habilitado el inicio de sesión único (SSO) para su sistema StorageGRID, debe recordar que debe eliminar la confianza de la parte que confía del nodo desde los Servicios de Federación de Active Directory (AD FS).
+* Si utiliza link:../admin/grid-federation-overview.html["federación de grid"], Asegúrese de que la dirección IP del nodo que está decomisionado no se ha especificado para una conexión de federación de grid.
+* Cuando retire un nodo de administrador desconectado, perderá los registros de auditoría de ese nodo; sin embargo, estos registros también deben existir en el nodo de administración principal.
+
+
+
+
+== Consideraciones para el nodo de puerta de enlace
+
+* No puede retirar un nodo de puerta de enlace si una de sus interfaces de red forma parte de un grupo de alta disponibilidad (HA). Primero es necesario quitar las interfaces de red del grupo de alta disponibilidad. Consulte las instrucciones para link:../admin/managing-high-availability-groups.html["Gestionar grupos de alta disponibilidad"].
+* Según sea necesario, puede cambiar con seguridad las políticas de ILM mientras decomisiona un nodo de puerta de enlace.
+* Si utiliza link:../admin/grid-federation-overview.html["federación de grid"], Asegúrese de que la dirección IP del nodo que está decomisionado no se ha especificado para una conexión de federación de grid.
+* Puede retirar un nodo de puerta de enlace de forma segura mientras está desconectado.
+
+
+
+
+== [[considerations-for-archive-node]]Consideraciones para el nodo de archivado
+
+
+NOTE: Compatibilidad con nodos de archivado y la opción Cloud Tiering - Simple Storage Service (S3) anticuados. La compatibilidad con los nodos de archivado se eliminará por completo en una futura versión.
+
+* No puede retirar un nodo de archivado si aún está conectado a la cuadrícula. Para eliminar un nodo de archivado, confirme que el nodo ya no se está utilizando, que los datos se han migrado a una ubicación diferente y que el nodo está apagado. A continuación, utilice el procedimiento de decomiso para los nodos desconectados.
+* Si el nodo de archivado sigue en uso, asegúrese de que la programación incluye tiempo suficiente para mover cualquier dato existente a los nodos de almacenamiento o a un pool de almacenamiento en la nube. Mover los datos desde un Nodo de archivado puede llevar varios días o semanas.
+
+
+.Pasos
+. Si actualmente está utilizando un nodo de archivado con la opción Cloud Tiering - Simple Storage Service (S3), link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migre sus objetos a un pool de almacenamiento en la nube"].
+. Confirme que el nodo de archivado ya no está utilizando las reglas de ILM de las políticas de ILM activas.
++
+.. Vaya a la página *ILM* > *Pools de almacenamiento*.
+.. En la lista de pools de almacenamiento, seleccione los pools de almacenamiento que contengan sólo nodos de archivo.
+.. Seleccione la pestaña *ILM usage*.
+.. Si se muestra alguna regla de ILM, consulte la columna *Used in active policy* para determinar si el pool de almacenamiento del nodo de archivado se está utilizando en una política activa.
+.. Si se está utilizando el pool de almacenamiento, link:../ilm/creating-ilm-policy.html["Cree una nueva política de ILM"] Que ya no utiliza el nodo de archivado.
+.. Activar la nueva política.
+.. Espere a que se muevan todos los objetos del pool de almacenamiento del nodo de archivado. Esto puede llevar varios días o semanas.
+
+
+. Una vez que esté seguro de que todos los objetos se han movido del nodo de archivado, apague el nodo.
+. Ejecute el link:decommissioning-disconnected-grid-nodes.html["procedimiento de retirada para nodos desconectados"].
+

@@ -1,0 +1,41 @@
+---
+permalink: admin/configuring-archive-node-retrieve-settings.html 
+sidebar: sidebar 
+keywords: archive node, retrieve settings 
+summary: Puede configurar los ajustes de recuperación de un nodo de archivado para establecer el estado en línea o sin conexión, o restablecer los recuentos de fallos que se van a realizar el seguimiento de las alarmas asociadas. 
+---
+= Configure los ajustes de recuperación del nodo de archivado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede configurar los ajustes de recuperación de un nodo de archivado para establecer el estado en línea o sin conexión, o restablecer los recuentos de fallos que se van a realizar el seguimiento de las alarmas asociadas.
+
+.Antes de empezar
+* Ha iniciado sesión en Grid Manager mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+* Ya tienes link:admin-group-permissions.html["permisos de acceso específicos"].
+
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *nodo de archivo* > *ARC* > *recuperar*.
+. Seleccione *Configuración* > *Principal*.
++
+image::../media/archive_node_retreive.gif[Página de configuración de un nodo de archivado > recuperar la configuración]
+
+. Modifique los siguientes ajustes, según sea necesario:
++
+** *Estado de recuperación*: Establezca el estado del componente en:
++
+*** En línea: El nodo de cuadrícula está disponible para recuperar datos de objeto del dispositivo multimedia de archivado.
+*** Offline: El nodo de grid no está disponible para recuperar los datos del objeto.
+
+
+** Restablecer Recuento de Fallos de Solicitud: Seleccione la casilla de control para restablecer el contador de fallos de solicitud. Esto se puede utilizar para borrar la alarma ARRF (fallos de solicitud).
+** Restablecer recuento de fallos de verificación: Seleccione la casilla de verificación para restablecer el contador de fallos de verificación en los datos de objetos recuperados. Esto se puede utilizar para borrar la alarma ARRV (fallos de verificación).
+
+
+. Seleccione *aplicar cambios*.
+

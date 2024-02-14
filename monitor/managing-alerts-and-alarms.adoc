@@ -1,0 +1,44 @@
+---
+permalink: monitor/managing-alerts-and-alarms.html 
+sidebar: sidebar 
+keywords: how to manage alerts, what are alerts, what are alarms 
+summary: El sistema de alertas StorageGRID se ha diseñado para informarle de los problemas operativos que requieren su atención. El sistema de alarma heredado está obsoleto. 
+---
+= Gestionar alertas y alarmas: Descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El sistema de alertas StorageGRID se ha diseñado para informarle de los problemas operativos que requieren su atención. El sistema de alarma heredado está obsoleto.
+
+
+
+== Sistema de alertas
+
+El sistema de alertas está diseñado para ser su herramienta principal para supervisar cualquier problema que pueda producirse en el sistema StorageGRID. El sistema de alertas proporciona una interfaz fácil de usar para detectar, evaluar y resolver problemas.
+
+Las alertas se activan en niveles de gravedad específicos cuando las condiciones de regla de alerta se evalúan como verdaderas. Cuando se activa una alerta, se realizan las siguientes acciones:
+
+* Se muestra un icono de gravedad de alerta en el panel de control de Grid Manager y el recuento de alertas actuales se incrementa.
+* La alerta se muestra en la página de resumen *NODES* y en la ficha *NODES* > *_node_* > *Overview*.
+* Se envía una notificación por correo electrónico, suponiendo que se haya configurado un servidor SMTP y que se hayan proporcionado direcciones de correo electrónico para los destinatarios.
+* Se envía una notificación de Protocolo simple de administración de red (SNMP), suponiendo que haya configurado el agente SNMP de StorageGRID.
+
+
+
+
+== Sistema de alarma heredado
+
+Al igual que las alertas, las alarmas se activan en niveles de gravedad específicos cuando los atributos alcanzan valores de umbral definidos. Sin embargo, a diferencia de las alertas, se activan muchas alarmas para los eventos que se pueden ignorar de forma segura, lo que podría dar lugar a un número excesivo de mensajes de correo electrónico o notificaciones SNMP.
+
+
+NOTE: El sistema de alarma está obsoleto y se quitará en un lanzamiento futuro. Si todavía utiliza alarmas heredadas, debe realizar una transición completa al Lo antes posible. del sistema de alertas.
+
+Cuando se activa una alarma, se realizan las siguientes acciones:
+
+* La alarma aparece en la página *SUPPORT* > *Alarms (Legacy)* > *Current Alarms*.
+* Se envía una notificación por correo electrónico, suponiendo que ha configurado un servidor SMTP y una o más listas de correo.
+* Es posible que se envíe una notificación de SNMP, suponiendo que haya configurado el agente SNMP de StorageGRID. (Las notificaciones SNMP no se envían para todas las alarmas o gravedades de alarma).
+

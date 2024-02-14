@@ -1,0 +1,113 @@
+---
+permalink: tenant/viewing-s3-bucket-details.html 
+sidebar: sidebar 
+keywords: how to view bucket details 
+summary: Puede ver los depósitos en su cuenta de inquilino. 
+---
+= Ver detalles del período
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede ver los depósitos en su cuenta de inquilino.
+
+.Antes de empezar
+* Ha iniciado sesión en el administrador de inquilinos mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+* Pertenece a un grupo de usuarios que tiene el link:tenant-management-permissions.html["Acceso raíz, Gestionar todos los bloques o Ver todos los bloques"]. Estos permisos anulan la configuración de permisos en las políticas de grupo o bloque.
+
+
+.Pasos
+. Seleccione *Ver cubos* en el panel de control o seleccione *ALMACENAMIENTO (S3)* > *Buckets*.
++
+Aparecerá la página Buckets.
+
+. Revise la información de resumen de cada bloque.
++
+Según sea necesario, puede ordenar la información por cualquier columna o puede avanzar y retroceder por la lista.
+
++
+
+NOTE: Los valores de recuento de objetos y espacio utilizado que se muestran son estimaciones. Estas estimaciones se ven afectadas por el tiempo de los ingests, la conectividad de red y el estado del nodo. Si los bloques tienen habilitado el control de versiones, las versiones de objetos eliminados se incluyen en el recuento de objetos.
+
++
+[cols="1a,3a"]
+|===
+| Columna | Descripción 
+
+
+ a| 
+Nombre
+ a| 
+El nombre único del depósito, que no se puede cambiar.
+
+
+
+ a| 
+Funciones activadas
+ a| 
+Lista de funciones activadas para el depósito.
+
+
+
+ a| 
+Bloqueo de objetos de S3
+ a| 
+Si el bloqueo de objetos S3 está activado para el depósito.
+
+Esta columna sólo aparece si Bloqueo de objetos S3 está activado para la cuadrícula. Esta columna también muestra información para todos los segmentos compatibles anteriores.
+
+
+
+ a| 
+Región
+ a| 
+La región del cubo, que no se puede cambiar.
+
+
+
+ a| 
+Recuento de objetos
+ a| 
+Núm. De objetos en este depósito. Cuando se agregan o se eliminan objetos, es posible que este valor no se actualice de inmediato. Si los cubos tienen el control de versiones activado, se incluyen versiones de objetos no actuales en este valor.
+
+
+
+ a| 
+Espacio utilizado
+ a| 
+El tamaño lógico de todos los objetos del bloque. El tamaño lógico no incluye el espacio real necesario para las copias replicadas o con código de borrado o para los metadatos de objetos.
+
+
+
+ a| 
+Fecha de creación
+ a| 
+La fecha y la hora en la que se creó el bloque.
+
+|===
+. Para ver los detalles de un cubo específico, seleccione el nombre del cubo en la tabla.
++
+Aparece la página de detalles bucket. En esta página, puede realizar las siguientes tareas si tiene los permisos necesarios:
+
++
+** Configure y gestione las opciones de bloque:
++
+*** link:ilm-policy-tags.html["Etiquetas de políticas de ILM"]
+*** link:manage-bucket-consistency.html["Gestione la coherencia de los bloques"]
+*** link:enabling-or-disabling-last-access-time-updates.html["Últimas actualizaciones de hora de acceso"]
+*** link:changing-bucket-versioning.html["Control de versiones de objetos"]
+*** link:using-s3-object-lock.html["Bloqueo de objetos de S3"]
+*** link:update-default-retention-settings.html["Retención de cucharón por defecto"]
+
+
+** Configurar el acceso al bloque, por ejemplo link:configuring-cross-origin-resource-sharing-cors.html["Uso compartido de recursos de origen cruzado (CORS)"]
+** link:what-platform-services-are.html["Gestione los servicios de la plataforma"] (Si se permite para el inquilino), incluida la replicación de CloudMirror, las notificaciones de eventos y la integración de búsqueda
+** Habilite y. link:grid-federation-manage-cross-grid-replication.html["gestionar la replicación entre grid"] (Si se permite para el inquilino) replicar los objetos ingeridos en este bucket en otro sistema StorageGRID
+** Acceda a link:use-s3-console.html["S3 Consola"] para gestionar los objetos del depósito
+** link:deleting-s3-bucket-objects.html["Eliminar todos los objetos de un depósito"]
+** link:deleting-s3-bucket.html["Eliminar un cubo"] eso ya está vacío
+
+
+

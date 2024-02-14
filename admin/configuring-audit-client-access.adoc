@@ -1,0 +1,116 @@
+---
+permalink: admin/configuring-audit-client-access.html 
+sidebar: sidebar 
+keywords: audit client, ams, audit management service 
+summary: 'El nodo Admin, a través del servicio sistema de administración de auditorías (AMS), registra todos los eventos del sistema auditados en un archivo de registro disponible a través del recurso compartido de auditoría, que se agrega a cada nodo Admin en la instalación. El recurso compartido de auditoría se habilita automáticamente como recurso compartido de solo lectura.' 
+---
+= Configure el acceso del cliente de auditoría para NFS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El nodo Admin, a través del servicio sistema de administración de auditorías (AMS), registra todos los eventos del sistema auditados en un archivo de registro disponible a través del recurso compartido de auditoría, que se agrega a cada nodo Admin en la instalación. El recurso compartido de auditoría se habilita automáticamente como recurso compartido de solo lectura.
+
+
+NOTE: La compatibilidad con NFS ha quedado obsoleta y se eliminará en una futura versión.
+
+Para acceder a los registros de auditoría, puede configurar el acceso de clientes a recursos compartidos de auditoría para NFS. O bien, puede hacerlo link:../monitor/considerations-for-external-syslog-server.html["usar un servidor de syslog externo"].
+
+El sistema StorageGRID utiliza un reconocimiento positivo para evitar la pérdida de mensajes de auditoría antes de que se escriban en el archivo de registro. Un mensaje permanece en cola en un servicio hasta que el servicio AMS o un servicio intermedio de retransmisión de auditoría ha reconocido el control de él. Para obtener más información, consulte link:../audit/index.html["Revisar los registros de auditoría"].
+
+.Antes de empezar
+* Usted tiene la `Passwords.txt` archivo con la contraseña root/admin.
+* Usted tiene la `Configuration.txt` Archivo (disponible en el paquete de recuperación).
+* El cliente de auditoría utiliza NFS versión 3 (NFSv3).
+
+
+.Acerca de esta tarea
+Realice este procedimiento para cada nodo de administrador en una implementación de StorageGRID desde la que desea recuperar mensajes de auditoría.
+
+.Pasos
+. Inicie sesión en el nodo de administración principal:
++
+.. Introduzca el siguiente comando: `ssh admin@_primary_Admin_Node_IP_`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+.. Introduzca el siguiente comando para cambiar a la raíz: `su -`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
++
+Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.
+
+
+
+. Confirme que todos los servicios tienen el estado en ejecución o verificado. Introduzca: `storagegrid-status`
++
+Si alguno de los servicios no aparece como en ejecución o verificado, resuelva los problemas antes de continuar.
+
+. Vuelva a la línea de comandos. Pulse *Ctrl*+*C*.
+. Inicie la utilidad de configuración NFS. Introduzca: `config_nfs.rb`
++
+[listing]
+----
+
+-----------------------------------------------------------------
+| Shares               | Clients              | Config          |
+-----------------------------------------------------------------
+| add-audit-share      | add-ip-to-share      | validate-config |
+| enable-disable-share | remove-ip-from-share | refresh-config  |
+|                      |                      | help            |
+|                      |                      | exit            |
+-----------------------------------------------------------------
+----
+. Agregue el cliente de auditoría: `add-audit-share`
++
+.. Cuando se le solicite, introduzca la dirección IP o el rango de direcciones IP del cliente de auditoría para el recurso compartido de auditoría: `client_IP_address`
+.. Cuando se le solicite, pulse *Intro*.
+
+
+. Si se permite que más de un cliente de auditoría acceda al recurso compartido de auditoría, agregue la dirección IP del usuario adicional: `add-ip-to-share`
++
+.. Introduzca el número del recurso compartido de auditoría: `_audit_share_number_`
+.. Cuando se le solicite, introduzca la dirección IP o el rango de direcciones IP del cliente de auditoría para el recurso compartido de auditoría: `_client_IP_address_`
+.. Cuando se le solicite, pulse *Intro*.
++
+Aparece la utilidad de configuración de NFS.
+
+.. Repita estos mismos pasos para cada cliente de auditoría adicional que tenga acceso al recurso compartido de auditoría.
+
+
+. De manera opcional, compruebe su configuración.
++
+.. Introduzca lo siguiente: `validate-config`
++
+Los servicios se comprueban y visualizan.
+
+.. Cuando se le solicite, pulse *Intro*.
++
+Aparece la utilidad de configuración de NFS.
+
+.. Cierre la utilidad de configuración NFS: `exit`
+
+
+. Determine si debe habilitar los recursos compartidos de auditoría en otros sitios.
++
+** Si la implementación de StorageGRID es un solo sitio, vaya al paso siguiente.
+** Si la implementación de StorageGRID incluye nodos de administración en otros sitios, habilite estos recursos compartidos de auditoría según sea necesario:
++
+... Inicie sesión de forma remota en el nodo de administración del sitio:
++
+.... Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+.... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+.... Introduzca el siguiente comando para cambiar a la raíz: `su -`
+.... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+
+
+... Repita estos pasos para configurar los recursos compartidos de auditoría de cada nodo de administración adicional.
+... Cierre el inicio de sesión de la shell segura remota en el nodo de administración remota. Introduzca: `exit`
+
+
+
+
+. Cierre la sesión del shell de comandos: `exit`
++
+A los clientes de auditoría de NFS se les concede acceso a un recurso compartido de auditoría en función de su dirección IP. Conceda acceso al recurso compartido de auditoría a un nuevo cliente de auditoría de NFS añadiendo su dirección IP al recurso compartido o elimine un cliente de auditoría existente eliminando su dirección IP.
+
+

@@ -1,0 +1,40 @@
+---
+permalink: admin/modifying-connection-settings-for-s3-api.html 
+sidebar: sidebar 
+keywords: archive node, cloud tiering 
+summary: Una vez que se configura el nodo de archivado para conectarse a un sistema de almacenamiento de archivado externo a través de la API S3, puede modificar algunos ajustes si cambia la conexión. 
+---
+= Modifique la configuración de conexión para la API de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Una vez que se configura el nodo de archivado para conectarse a un sistema de almacenamiento de archivado externo a través de la API S3, puede modificar algunos ajustes si cambia la conexión.
+
+.Antes de empezar
+* Ha iniciado sesión en Grid Manager mediante un link:../admin/web-browser-requirements.html["navegador web compatible"].
+* Ya tienes link:admin-group-permissions.html["permisos de acceso específicos"].
+
+
+.Acerca de esta tarea
+Si cambia la cuenta de Cloud Tiering (S3), debe asegurarse de que las credenciales de acceso del usuario tengan acceso de lectura/escritura al bloque, incluidos todos los objetos que el nodo de archivado había ingerido previamente en el bloque.
+
+.Pasos
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *_Archive Node_* > *ARC* > *Target*.
+. Seleccione *Configuración* > *Principal*.
++
+image::../media/archive_node_s3_middleware.gif[Modifique la página Configuration de un nodo de archivado]
+
+. Modifique la información de la cuenta, según sea necesario.
++
+Si cambia la clase de almacenamiento, se almacenan datos de objeto nuevos con la nueva clase de almacenamiento. El objeto existente continúa almacenado en la clase de almacenamiento definida cuando se procesa.
+
++
+
+NOTE: Nombre de bloque, región y punto final, utilice valores de AWS y no se puede cambiar.
+
+. Seleccione *aplicar cambios*.
+

@@ -1,0 +1,31 @@
+---
+permalink: monitor/managing-alerts.html 
+sidebar: sidebar 
+keywords: alert rules, managing alerts, alerts, alert notifications. edit alert rules 
+summary: El sistema de alertas proporciona una interfaz fácil de usar para detectar, evaluar y resolver los problemas que pueden ocurrir durante el funcionamiento de StorageGRID. 
+---
+= Gestionar alertas: descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El sistema de alertas proporciona una interfaz fácil de usar para detectar, evaluar y resolver los problemas que pueden ocurrir durante el funcionamiento de StorageGRID.
+
+Es posible crear alertas personalizadas, editar o deshabilitar alertas, y gestionar notificaciones de alertas.
+
+Si quiere más información:
+
+* Vea el vídeo: https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4506fc61-c8e9-4b86-ba00-b0b901184b38["Vídeo: Información general de alertas de StorageGRID 11,8"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4506fc61-c8e9-4b86-ba00-b0b901184b38]
+image::../media/video-screenshot-alert-overview-118.png[Vídeo: Información general de alertas de StorageGRID 11,8]
+
+* Vea el vídeo: https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e3a75bc1-47a2-44b9-a84d-b0b9011dc2d1["Vídeo: Usar métricas para crear alertas personalizadas en StorageGRID 11,8"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e3a75bc1-47a2-44b9-a84d-b0b9011dc2d1]
+image::../media/video-screenshot-alert-create-custom-118.png[Vídeo: Usar métricas para crear alertas personalizadas en StorageGRID 11,8]
+
+* Consulte link:alerts-reference.html["Referencia de alertas"].
+

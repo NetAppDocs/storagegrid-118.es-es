@@ -1,0 +1,54 @@
+---
+permalink: audit/arce-archive-object-retrieve-end.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ARCE, Archive Object Retrieve End 
+summary: Este mensaje se genera cuando finaliza un intento del nodo de archivado de recuperar datos de objeto de un sistema de almacenamiento de archivado externo. Si se realiza correctamente, el mensaje indica que los datos del objeto solicitado se han leído completamente desde la ubicación de archivado y se han verificado correctamente. Una vez que se recuperan y verifican los datos del objeto, se envían al servicio que lo solicita. 
+---
+= ARCE: Fin de recuperación de objetos archivados
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Este mensaje se genera cuando finaliza un intento del nodo de archivado de recuperar datos de objeto de un sistema de almacenamiento de archivado externo. Si se realiza correctamente, el mensaje indica que los datos del objeto solicitado se han leído completamente desde la ubicación de archivado y se han verificado correctamente. Una vez que se recuperan y verifican los datos del objeto, se envían al servicio que lo solicita.
+
+[cols="1a,1a,4a"]
+|===
+| Codificación | Campo | Descripción 
+
+
+ a| 
+CBID
+ a| 
+ID del bloque de contenido
+ a| 
+Identificador único del bloque de contenido que se va a recuperar del sistema de almacenamiento de archivos externo.
+
+
+
+ a| 
+VLID
+ a| 
+Identificador del volumen
+ a| 
+El identificador del volumen en el cual se archivaron los datos. Si no se encuentra una ubicación de archivado para el contenido, se devuelve un ID de volumen 0.
+
+
+
+ a| 
+TRANSFORMACIÓN DIGITAL
+ a| 
+Resultado de la recuperación
+ a| 
+El estado de finalización del proceso de recuperación de archivos:
+
+* SUCS: Exitoso
+* VRFL: Error (fallo de verificación del objeto)
+* ARUN: Error (sistema de almacenamiento de archivado externo no disponible)
+* CANC: Fallo (operación de recuperación cancelada)
+* ERROR GENERAL (ERROR general)
+
+
+|===
+La coincidencia de este mensaje con el correspondiente mensaje ARCB puede indicar el tiempo que se tarda en realizar la recuperación del archivo. Este mensaje indica si la recuperación se ha realizado correctamente y, en caso de fallo, la causa del fallo al recuperar el bloque de contenido.

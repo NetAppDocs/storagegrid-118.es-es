@@ -1,0 +1,38 @@
+---
+permalink: audit/arcb-archive-object-retrieve-begin.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ARCB, Archive Object Retrieve Begin 
+summary: Este mensaje se genera cuando se realiza una solicitud para recuperar datos de objeto archivados y comienza el proceso de recuperación. Las solicitudes de recuperación se procesan de forma inmediata, pero se pueden reordenar para mejorar la eficacia de la recuperación de medios lineales como, por ejemplo, la cinta. 
+---
+= ARCB: Inicio de recuperación de objetos de archivo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Este mensaje se genera cuando se realiza una solicitud para recuperar datos de objeto archivados y comienza el proceso de recuperación. Las solicitudes de recuperación se procesan de forma inmediata, pero se pueden reordenar para mejorar la eficacia de la recuperación de medios lineales como, por ejemplo, la cinta.
+
+[cols="1a,1a,4a"]
+|===
+| Codificación | Campo | Descripción 
+
+
+ a| 
+CBID
+ a| 
+ID del bloque de contenido
+ a| 
+Identificador único del bloque de contenido que se va a recuperar del sistema de almacenamiento de archivos externo.
+
+
+
+ a| 
+TRANSFORMACIÓN DIGITAL
+ a| 
+Resultado
+ a| 
+Indica el resultado de iniciar el proceso de recuperación de archivos. El valor definido actualmente es:SUCS: Se recibió la solicitud de contenido y se puso en cola para su recuperación.
+
+|===
+Este mensaje de auditoría Marca el tiempo de una recuperación de archivo. Permite hacer coincidir el mensaje con un mensaje ARCE End correspondiente para determinar la duración de la recuperación del archivo y si la operación se ha realizado correctamente.

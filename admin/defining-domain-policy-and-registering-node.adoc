@@ -1,0 +1,26 @@
+---
+permalink: admin/defining-domain-policy-and-registering-node.html 
+sidebar: sidebar 
+keywords: domain policy, tsm, tivoli storage manager 
+summary: Debe definir una directiva de dominio que utilice la clase de administración TSM para los datos guardados desde el nodo de archivado y, a continuación, registrar un nodo para utilizar esta directiva de dominio. 
+---
+= Defina una directiva de dominio y registre un nodo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe definir una directiva de dominio que utilice la clase de administración TSM para los datos guardados desde el nodo de archivado y, a continuación, registrar un nodo para utilizar esta directiva de dominio.
+
+
+NOTE: Los procesos de nodo de archivado pueden perder memoria si caduca la contraseña de cliente para el nodo de archivado en Tivoli Storage Manager (TSM). Asegúrese de que el servidor TSM esté configurado para que el nombre de usuario/contraseña del cliente para el nodo de archivado no caduque nunca.
+
+Al registrar un nodo en el servidor TSM para el uso del nodo de archivado (o actualizar un nodo existente), debe especificar el número de puntos de montaje que el nodo puede utilizar para las operaciones de escritura especificando el parámetro MAXNUMMP en el comando REGISTER NODE. La cantidad de puntos de montaje suele ser equivalente al número de cabezales de unidad de cinta asignados al nodo de archivado. El número especificado para MAXNUMMP en el servidor TSM debe ser al menos tan grande como el valor establecido para *ARC* > *Target* > *Configuration* > *Main* > *Maximum Store Sessions* para el nodo de archivado, Que se define en un valor de 0 o 1, ya que las sesiones de almacén simultáneas no son compatibles con el nodo de archivado.
+
+El valor de MAXSESSIONS establecido para el servidor TSM controla el número máximo de sesiones que todas las aplicaciones cliente pueden abrir al servidor TSM. El valor de MAXSESSIONS especificado en el TSM debe ser al menos tan grande como el valor especificado para *ARC* > *Target* > *Configuration* > *Main* > *Number of Sessions* en el Grid Manager para el nodo de archivado. El nodo de archivado crea simultáneamente al menos una sesión por punto de montaje más un pequeño número (< 5) de sesiones adicionales.
+
+El nodo TSM asignado al nodo de archivado utiliza una directiva de dominio personalizada `tsm-domain`. La `tsm-domain` La política de dominio es una versión modificada de la política de dominio «estándar», configurada para escribir en cinta y con el destino de archivado establecido para ser el pool de almacenamiento del sistema StorageGRID (`_SGWSDiskPool_`).
+
+
+NOTE: Debe iniciar sesión en el servidor TSM con privilegios administrativos y utilizar la herramienta dsmadmc para crear y activar la directiva de dominio.

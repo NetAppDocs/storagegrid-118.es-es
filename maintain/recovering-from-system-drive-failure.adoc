@@ -1,0 +1,21 @@
+---
+permalink: maintain/recovering-from-system-drive-failure.html 
+sidebar: sidebar 
+keywords: recover, system drive failure, workflow 
+summary: Si falló la unidad del sistema en un nodo de almacenamiento basado en software, el nodo de almacenamiento no está disponible para el sistema StorageGRID. Debe completar un conjunto específico de tareas para recuperar el sistema de un fallo de unidad. 
+---
+= Recupere de un fallo de la unidad del sistema: Flujo de trabajo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si falló la unidad del sistema en un nodo de almacenamiento basado en software, el nodo de almacenamiento no está disponible para el sistema StorageGRID. Debe completar un conjunto específico de tareas para recuperar el sistema de un fallo de unidad.
+
+Utilice este procedimiento para recuperarse de un error de la unidad del sistema en un nodo de almacenamiento basado en software. Este procedimiento incluye los pasos que se deben seguir si alguno de los volúmenes de almacenamiento también falla o no puede volver a montarse.
+
+
+NOTE: Este procedimiento se aplica únicamente a nodos de almacenamiento basados en software. Debe seguir un procedimiento diferente a. link:recovering-storagegrid-appliance-storage-node.html["Recuperar un nodo de almacenamiento de dispositivo"].
+
+image::../media/storage_node_recovery_system_drive.gif[Pasos de recuperación de la unidad del sistema con fallos en el nodo de almacenamiento basado en software]

@@ -1,0 +1,95 @@
+---
+permalink: admin/adding-nfs-audit-client-to-audit-share.html 
+sidebar: sidebar 
+keywords: nfs, audit client, audit share 
+summary: A los clientes de auditoría de NFS se les concede acceso a un recurso compartido de auditoría en función de su dirección IP. Conceda acceso al recurso compartido de auditoría a un nuevo cliente de auditoría de NFS añadiendo su dirección IP al recurso compartido de auditoría. 
+---
+= Agregar un cliente de auditoría NFS a un recurso compartido de auditoría
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A los clientes de auditoría de NFS se les concede acceso a un recurso compartido de auditoría en función de su dirección IP. Conceda acceso al recurso compartido de auditoría a un nuevo cliente de auditoría de NFS añadiendo su dirección IP al recurso compartido de auditoría.
+
+
+NOTE: La compatibilidad con NFS ha quedado obsoleta y se eliminará en una futura versión.
+
+.Antes de empezar
+* Usted tiene la `Passwords.txt` archivo con la contraseña de la cuenta root/admin.
+* Tiene el `Configuration.txt` Archivo (disponible en el paquete de recuperación).
+* El cliente de auditoría utiliza NFS versión 3 (NFSv3).
+
+
+.Pasos
+. Inicie sesión en el nodo de administración principal:
++
+.. Introduzca el siguiente comando: `ssh admin@_primary_Admin_Node_IP_`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+.. Introduzca el siguiente comando para cambiar a la raíz: `su -`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
++
+Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.
+
+
+
+. Inicie la utilidad de configuración NFS: `config_nfs.rb`
++
+[listing]
+----
+
+-----------------------------------------------------------------
+| Shares               | Clients              | Config          |
+-----------------------------------------------------------------
+| add-audit-share      | add-ip-to-share      | validate-config |
+| enable-disable-share | remove-ip-from-share | refresh-config  |
+|                      |                      | help            |
+|                      |                      | exit            |
+-----------------------------------------------------------------
+----
+. Introduzca: `add-ip-to-share`
++
+Se muestra una lista de los recursos compartidos de auditoría de NFS habilitados en el nodo de administración. El recurso compartido de auditoría aparece como: `/var/local/log`
+
+. Introduzca el número del recurso compartido de auditoría: `_audit_share_number_`
+. Cuando se le solicite, introduzca la dirección IP o el rango de direcciones IP del cliente de auditoría para el recurso compartido de auditoría: `_client_IP_address_`
++
+El cliente de auditoría se agrega al recurso compartido de auditoría.
+
+. Cuando se le solicite, pulse *Intro*.
++
+Aparece la utilidad de configuración de NFS.
+
+. Repita los pasos para cada cliente de auditoría que se debe agregar al recurso compartido de auditoría.
+. Si lo desea, compruebe la configuración: `validate-config`
++
+Los servicios se comprueban y visualizan.
+
++
+.. Cuando se le solicite, pulse *Intro*.
++
+Aparece la utilidad de configuración de NFS.
+
+
+
+. Cierre la utilidad de configuración NFS: `exit`
+. Si la implementación de StorageGRID es un solo sitio, vaya al paso siguiente.
++
+De lo contrario, si la implementación de StorageGRID incluye nodos de administración en otros sitios, opcionalmente podrá habilitar estos recursos compartidos de auditoría según sea necesario:
+
++
+.. Inicie sesión de forma remota en el nodo de administración de un sitio:
++
+... Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+... Introduzca el siguiente comando para cambiar a la raíz: `su -`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+
+
+.. Repita estos pasos para configurar los recursos compartidos de auditoría de cada nodo de administración.
+.. Cierre el inicio de sesión de la shell segura remota en el nodo de administración remota: `exit`
+
+
+. Cierre la sesión del shell de comandos: `exit`
+

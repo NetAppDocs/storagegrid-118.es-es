@@ -1,0 +1,135 @@
+---
+permalink: admin/defining-tsm-tape-and-disk-storage-pools.html 
+sidebar: sidebar 
+keywords: archive node, tsm, tape storage pool, tivoli storage manager 
+summary: El nodo de archivado escribe en un pool de almacenamiento en disco. Para archivar el contenido en cinta, debe configurar el grupo de almacenamiento en disco para mover el contenido a un grupo de almacenamiento en cinta. 
+---
+= Definir los pools de almacenamiento en disco y cinta de TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El nodo de archivado escribe en un pool de almacenamiento en disco. Para archivar el contenido en cinta, debe configurar el grupo de almacenamiento en disco para mover el contenido a un grupo de almacenamiento en cinta.
+
+.Acerca de esta tarea
+Para un servidor TSM, debe definir un pool de almacenamiento en cinta y un pool de almacenamiento en disco en Tivoli Storage Manager. Después de definir el pool de discos, cree un volumen de discos y asígnelo al pool de discos. ‐pool de cintas no es necesario si el servidor TSM utiliza únicamente el almacenamiento en disco.
+
+Debe realizar varios pasos en el servidor TSM antes de poder crear un grupo de almacenamiento de cinta. (Cree una biblioteca de cintas y al menos una unidad en la biblioteca de cintas. Defina una ruta de acceso desde el servidor a la biblioteca y desde el servidor a las unidades y, a continuación, defina una clase de dispositivo para las unidades.) Los detalles de estos pasos pueden variar en función de la configuración de hardware y los requisitos de almacenamiento del sitio. Para obtener más información, consulte la documentación de TSM.
+
+El siguiente conjunto de instrucciones ilustra el proceso. Debe tener en cuenta que los requisitos de su sitio pueden variar en función de los requisitos de la implementación. Para obtener detalles de configuración e instrucciones, consulte la documentación de TSM.
+
+
+NOTE: Debe iniciar sesión en el servidor con privilegios administrativos y utilizar la herramienta dsmadmc para ejecutar los siguientes comandos.
+
+.Pasos
+. Cree una biblioteca de cintas.
++
+`define library _tapelibrary_ libtype=_scsi_`
+
++
+Donde `_tapelibrary_` es un nombre arbitrario elegido para la biblioteca de cintas y el valor de `libtype` pueden variar en función del tipo de biblioteca de cintas.
+
+. Defina una ruta de acceso desde el servidor a la biblioteca de cintas.
++
+`define path _servername tapelibrary_ srctype=server desttype=library device=_lib-devicename_`
+
++
+** `_servername_` Es el nombre del servidor TSM
+** `_tapelibrary_` es el nombre de la biblioteca de cintas que ha definido
+** `_lib-devicename_` es el nombre del dispositivo de la biblioteca de cintas
+
+
+. Defina una unidad para la biblioteca.
++
+`define drive _tapelibrary_ _drivename_`
+
++
+** `_drivename_` es el nombre que desea especificar para la unidad
+** `_tapelibrary_` es el nombre de la biblioteca de cintas que ha definido
++
+Se recomienda configurar una unidad o unidades adicionales, según la configuración de hardware. (Por ejemplo, si el servidor TSM está conectado a un switch Fibre Channel que tiene dos entradas de una biblioteca de cintas, quizás desee definir una unidad para cada entrada).
+
+
+
+. Defina una ruta desde el servidor hasta la unidad definida.
++
+`define path _servername_ drivename srctype=server desttype=drive library=_tapelibrary_ device=_drive-dname_`
+
++
+** `_drive-dname_` es el nombre del dispositivo de la unidad
+** `_tapelibrary_` es el nombre de la biblioteca de cintas que ha definido
++
+Repita el procedimiento para cada unidad que haya definido para la biblioteca de cintas, utilizando una unidad aparte `_drivename_` y.. `_drive-dname_` para cada unidad.
+
+
+
+. Defina una clase de dispositivo para las unidades.
++
+`define devclass _DeviceClassName_ devtype=_lto_ library=_tapelibrary_ format=_tapetype_`
+
++
+** `_DeviceClassName_` es el nombre de la clase de dispositivo
+** `_lto_` es el tipo de unidad conectada al servidor
+** `_tapelibrary_` es el nombre de la biblioteca de cintas que ha definido
+** `_tapetype_` es el tipo de cinta; por ejemplo, triunter3
+
+
+. Agregue volúmenes de cinta al inventario de la biblioteca.
++
+`checkin libvolume _tapelibrary_`
+
++
+`_tapelibrary_` es el nombre de la biblioteca de cintas que ha definido.
+
+. Cree la agrupación de almacenamiento de cinta principal.
++
+`define stgpool _SGWSTapePool_ _DeviceClassName_ description=_description_ _collocate=filespace_ maxscratch=_XX_`
+
++
+** `_SGWSTapePool_` Es el nombre del pool de almacenamiento de cinta del nodo de archivado. Puede seleccionar cualquier nombre para la agrupación de almacenamiento de cinta (siempre que el nombre utilice las convenciones de sintaxis esperadas por el servidor TSM).
+** `_DeviceClassName_` es el nombre de la clase de dispositivo para la biblioteca de cintas.
+** `_description_` Es una descripción del grupo de almacenamiento que se puede mostrar en el servidor TSM mediante `query stgpool` comando. Por ejemplo, «pool de almacenamiento en cinta para el nodo de archivado».
+** `_collocate=filespace_` Especifica que el servidor TSM debe escribir objetos del mismo espacio en una única cinta.
+** `XX` es uno de los siguientes:
++
+*** El número de cintas vacías de la biblioteca de cintas (en el caso de que el nodo de archivado sea la única aplicación que utiliza la biblioteca).
+*** El número de cintas asignadas para su uso por el sistema StorageGRID (en aquellos casos en los que se comparte la biblioteca de cintas).
+
+
+
+
+. En un servidor TSM, cree un pool de almacenamiento en disco. En la consola administrativa del servidor TSM, introduzca
++
+`define stgpool _SGWSDiskPool_ disk description=_description_ maxsize=_maximum_file_size nextstgpool=SGWSTapePool_ highmig=_percent_high_ lowmig=_percent_low_`
+
++
+** `_SGWSDiskPool_` Es el nombre del pool de discos del nodo de archivado. Es posible seleccionar cualquier nombre para el pool de almacenamiento de discos (siempre que el nombre utilice las convenciones de sintaxis que espera el TSM).
+** `_description_` Es una descripción del grupo de almacenamiento que se puede mostrar en el servidor TSM mediante `query stgpool` comando. Por ejemplo, «Pool de almacenamiento en disco para el nodo de archivado».
+**  `_maximum_file_size_` fuerza a que los objetos de mayor tamaño se escriban directamente en la cinta, en lugar de en la caché del pool de discos. Se recomienda establecer `_maximum_file_size_` A 10 GB.
+** `_nextstgpool=SGWSTapePool_` Hace referencia al pool de almacenamiento de disco al pool de almacenamiento de cinta definido para el nodo de archivado.
+**  `_percent_high_` establece el valor en el que el pool de discos comienza a migrar su contenido al grupo de cintas. Se recomienda establecer `_percent_high_` 0 para que la migración de datos comience inmediatamente
+**  `_percent_low_` establece el valor en el que se detiene la migración al pool de cintas. Se recomienda establecer `_percent_low_` 0 para borrar el pool de discos.
+
+
+. En un servidor TSM, cree un volumen de disco (o volúmenes) y asígnelo al pool de discos.
++
+`define volume _SGWSDiskPool_ _volume_name_ formatsize=_size_`
+
++
+** `_SGWSDiskPool_` es el nombre del pool de discos.
+** `_volume_name_` es la ruta completa a la ubicación del volumen (por ejemplo, `/var/local/arc/stage6.dsm`) En el servidor TSM en el que escribe el contenido del pool de discos como preparación para la transferencia a cinta.
+** `_size_` Es el tamaño, en MB, del volumen de disco.
++
+Por ejemplo, para crear un único volumen de disco de forma que el contenido de un pool de discos llene una única cinta, configure el valor del tamaño en 200000 cuando el volumen de cinta tenga una capacidad de 200 GB.
+
++
+Sin embargo, es posible que sea conveniente crear varios volúmenes de disco de un tamaño menor, ya que el servidor TSM puede escribir en cada volumen del pool de discos. Por ejemplo, si el tamaño de la cinta es 250 GB, cree 25 volúmenes de disco con un tamaño de 10 GB (10000) cada uno.
+
++
+El servidor TSM preasigna espacio en el directorio para el volumen de disco. Esto puede tardar algún tiempo en completarse (más de tres horas para un volumen de disco de 200 GB).
+
+
+
+

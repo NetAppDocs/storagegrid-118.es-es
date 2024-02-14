@@ -1,0 +1,35 @@
+---
+permalink: admin/verifying-nfs-audit-integration.html 
+sidebar: sidebar 
+keywords: nfs, audit share, audit client 
+summary: Después de configurar un recurso compartido de auditoría y agregar un cliente de auditoría NFS, puede montar el recurso compartido del cliente de auditoría y comprobar que los archivos estén disponibles en el recurso compartido de auditoría. 
+---
+= Comprobar la integración de auditoría de NFS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de configurar un recurso compartido de auditoría y agregar un cliente de auditoría NFS, puede montar el recurso compartido del cliente de auditoría y comprobar que los archivos estén disponibles en el recurso compartido de auditoría.
+
+
+NOTE: La compatibilidad con NFS ha quedado obsoleta y se eliminará en una futura versión.
+
+.Pasos
+. Verifique la conectividad (o variante para el sistema cliente) usando la dirección IP del cliente del nodo de administración que aloja el servicio AMS. Introduzca: `ping IP_address`
++
+Verifique que el servidor responde, indicando conectividad.
+
+. Monte el recurso compartido de sólo lectura de auditoría usando un comando apropiado para el sistema operativo cliente. Un ejemplo de comando de Linux es (introduzca en una línea):
++
+`mount -t nfs -o hard,intr _Admin_Node_IP_address_:/var/local/log _myAudit_`
+
++
+Utilice la dirección IP del nodo de administración que aloja el servicio AMS y el nombre de recurso compartido predefinido para el sistema de auditoría. El punto de montaje puede ser cualquier nombre seleccionado por el cliente (por ejemplo, `_myAudit_` en el comando anterior).
+
+. Verifique que los archivos estén disponibles en el recurso compartido de auditoría. Introduzca: `ls _myAudit_ /*`
++
+donde `_myAudit_` es el punto de montaje del recurso compartido de auditoría. Debe haber al menos un archivo de registro en la lista.
+
+

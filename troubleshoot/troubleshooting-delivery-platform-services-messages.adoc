@@ -1,0 +1,35 @@
+---
+permalink: troubleshoot/troubleshooting-delivery-platform-services-messages.html 
+sidebar: sidebar 
+keywords: how to troubleshoot delivery of platform services message, how to troubleshoot smtt alarm 
+summary: 'La alarma Total de eventos \(SMTT\) se activa en Grid Manager si se entrega un mensaje de servicio de plataforma a un destino que no puede aceptar los datos.' 
+---
+= Solucionar problemas de entrega de mensajes de servicios de plataforma (alarma SMTT)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La alarma de eventos totales (SMTT) se activa en Grid Manager si se entrega un mensaje de servicio de plataforma a un destino que no puede aceptar los datos.
+
+.Acerca de esta tarea
+Por ejemplo, una carga de varias partes de S3 puede realizarse correctamente aunque el mensaje de replicación o notificación asociado no se pueda entregar al punto final configurado. O bien, puede no producirse un error en el mensaje de la replicación de CloudMirror si los metadatos son demasiado largos.
+
+La alarma SMTT contiene un mensaje de último evento que dice: `Failed to publish notifications for _bucket-name object key_` para el último objeto cuya notificación falló.
+
+Los mensajes de eventos también aparecen en la `/var/local/log/bycast-err.log` archivo de registro. Consulte link:../monitor/logs-files-reference.html["Referencia de archivos de registro"].
+
+Para obtener más información, consulte link:../admin/troubleshooting-platform-services.html["Solucione problemas de servicios de plataforma"]. Puede que necesite hacerlo link:../tenant/signing-in-to-tenant-manager.html["Acceda al inquilino del Administrador de inquilinos"] para depurar un error de servicio de plataforma.
+
+.Pasos
+. Para ver la alarma, seleccione *NODES* > *_site_* > *_grid node_* > *Events*.
+. Ver último evento en la parte superior de la tabla.
++
+Los mensajes de eventos también se muestran en la `/var/local/log/bycast-err.log`.
+
+. Siga las instrucciones proporcionadas en el contenido de la alarma SMTT para corregir el problema.
+. Seleccione *Restablecer recuentos de eventos*.
+. Notifique al inquilino los objetos cuyos mensajes de servicios de plataforma no se han entregado.
+. Indique al inquilino que active la replicación o notificación fallida actualizando los metadatos o las etiquetas del objeto.
+

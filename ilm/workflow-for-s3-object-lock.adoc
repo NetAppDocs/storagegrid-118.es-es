@@ -1,0 +1,40 @@
+---
+permalink: ilm/workflow-for-s3-object-lock.html 
+sidebar: sidebar 
+keywords: object lock workflow 
+summary: Como administrador de grid, debe coordinar estrechamente con los usuarios inquilinos a fin de asegurarse de que los objetos estén protegidos de forma que cumplan sus requisitos de retención. 
+---
+= Flujo de trabajo para bloqueo de objetos de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como administrador de grid, debe coordinar estrechamente con los usuarios inquilinos a fin de asegurarse de que los objetos estén protegidos de forma que cumplan sus requisitos de retención.
+
+En el diagrama de flujo de trabajo, se muestran los pasos de alto nivel para usar el bloqueo de objetos de S3. Estos pasos los realiza el administrador de grid y los usuarios inquilinos.
+
+image::../media/s3_object_lock_workflow_gm.png[S3 Flujo de trabajo de bloqueo de objetos para Grid Manager]
+
+
+
+== Tareas del administrador de grid
+
+Tal y como se muestra en el diagrama de flujo de trabajo, un administrador de grid debe ejecutar dos tareas de alto nivel para que los usuarios de inquilinos S3 puedan usar el bloqueo de objetos S3:
+
+. Cree al menos una regla de ILM compatible y haga que rija la regla predeterminada en una política de ILM activa.
+. Habilite el valor global de Object Lock para todo el sistema StorageGRID.
+
+
+
+
+== Tareas del usuario inquilino
+
+Una vez habilitada la configuración global de bloqueo de objetos S3, los inquilinos pueden realizar estas tareas:
+
+. Cree bloques con el bloqueo de objetos de S3 habilitado.
+. Opcionalmente, especifique la configuración de retención predeterminada para el bloque. Cualquier configuración de bloque predeterminada se aplica solo a objetos nuevos que no tienen su propia configuración de retención.
+. Agregue objetos a esos bloques y, opcionalmente, especifique los períodos de retención a nivel de objeto y la configuración de retención legal.
+. Según sea necesario, actualice la retención predeterminada del depósito o actualice el período de retención o la configuración de retención legal para un objeto individual.
+

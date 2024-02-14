@@ -1,0 +1,229 @@
+---
+permalink: admin/configuring-custom-server-certificate-for-storage-node.html 
+sidebar: sidebar 
+keywords: global S3 and Swift API certificate 
+summary: Es posible reemplazar o restaurar el certificado de servidor que se utiliza para las conexiones de cliente S3 o Swift a los nodos de almacenamiento o a los extremos del balanceador de carga. El certificado de servidor personalizado de reemplazo es específico de su organización. 
+---
+= Configure los certificados API S3 y Swift
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible reemplazar o restaurar el certificado de servidor que se utiliza para las conexiones de cliente S3 o Swift a los nodos de almacenamiento o a los extremos del balanceador de carga. El certificado de servidor personalizado de reemplazo es específico de su organización.
+
+.Acerca de esta tarea
+De forma predeterminada, cada nodo de almacenamiento recibe un certificado de servidor X.509 firmado por la CA de grid. Estos certificados firmados por CA pueden sustituirse por un solo certificado de servidor personalizado común y una clave privada correspondiente.
+
+Un único certificado de servidor personalizado se usa para todos los nodos de almacenamiento, por lo que debe especificar el certificado como comodín o certificado de varios dominios si los clientes necesitan verificar el nombre de host al conectarse al extremo de almacenamiento. Defina el certificado personalizado de forma que coincida con todos los nodos de almacenamiento de la cuadrícula.
+
+Después de completar la configuración en el servidor, es posible que también necesite instalar el certificado de CA de grid en el cliente API S3 o Swift que usará para acceder al sistema, según la entidad de certificación (CA) raíz que use.
+
+
+NOTE: Para garantizar que las operaciones no se interrumpan por un certificado de servidor fallido, la alerta *Expiración del certificado de servidor global para S3 y Swift API* se activa cuando el certificado del servidor raíz está a punto de expirar. Según sea necesario, puede ver cuándo caduca el certificado actual seleccionando *CONFIGURACIÓN* > *Seguridad* > *certificados* y mirando la fecha de caducidad del certificado API S3 y Swift en la ficha Global.
+
+Puede cargar o generar un certificado API personalizado de S3 y Swift.
+
+
+
+== Añada un certificado API de S3 y Swift personalizado
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Seguridad* > *certificados*.
+. En la ficha *Global*, seleccione *S3 y Swift API Certificate*.
+. Seleccione *utilizar certificado personalizado*.
+. Cargue o genere el certificado.
++
+[role="tabbed-block"]
+====
+.Cargue el certificado
+--
+Cargue los archivos de certificado de servidor requeridos.
+
+.. Seleccione *cargar certificado*.
+.. Cargue los archivos de certificado de servidor requeridos:
++
+*** *Certificado de servidor*: El archivo de certificado de servidor personalizado (codificado con PEM).
+*** *Clave privada de certificado*: Archivo de clave privada de certificado de servidor personalizado (`.key`).
++
+
+NOTE: Las claves privadas EC deben ser de 224 bits o más. Las claves privadas RSA deben ser de 2048 bits o más.
+
+*** *Paquete CA*: Un único archivo opcional que contiene los certificados de cada autoridad de certificación de emisión intermedia. El archivo debe contener cada uno de los archivos de certificado de CA codificados con PEM, concatenados en el orden de la cadena de certificados.
+
+
+.. Seleccione los detalles del certificado para mostrar los metadatos y PEM de cada certificado API de S3 y Swift personalizado que se cargó. Si cargó un paquete de CA opcional, cada certificado aparece en su propia pestaña.
++
+*** Seleccione *Descargar certificado* para guardar el archivo de certificado o seleccione *Descargar paquete de CA* para guardar el paquete de certificados.
++
+Especifique el nombre del archivo de certificado y la ubicación de descarga. Guarde el archivo con la extensión `.pem`.
+
++
+Por ejemplo: `storagegrid_certificate.pem`
+
+*** Seleccione *Copiar certificado PEM* o *Copiar paquete de CA PEM* para copiar el contenido del certificado para pegarlo en otro lugar.
+
+
+.. Seleccione *Guardar*.
++
+El certificado de servidor personalizado se usa para conexiones posteriores de clientes S3 y Swift.
+
+
+
+--
+.Generar certificado
+--
+Genere los archivos de certificado de servidor.
+
+.. Seleccione *generar certificado*.
+.. Especifique la información del certificado:
++
+[cols="1a,3a"]
+|===
+| Campo | Descripción 
+
+
+ a| 
+Nombre de dominio
+ a| 
+Uno o varios nombres de dominio completos que se deben incluir en el certificado. Utilice un * como comodín para representar varios nombres de dominio.
+
+
+
+ a| 
+IP
+ a| 
+Una o más direcciones IP que se incluirán en el certificado.
+
+
+
+ a| 
+Asunto (opcional)
+ a| 
+X,509 Asunto o nombre distinguido (DN) del propietario del certificado.
+
+Si no se introduce ningún valor en este campo, el certificado generado utiliza el primer nombre de dominio o la dirección IP como nombre común del asunto (CN).
+
+
+
+ a| 
+Días válidos
+ a| 
+Núm. De días después de la creación que caduca el certificado.
+
+
+
+ a| 
+Agregue extensiones de uso de claves
+ a| 
+Si se selecciona (predeterminado y recomendado), las extensiones de uso de claves y uso de claves ampliado se agregan al certificado generado.
+
+Estas extensiones definen el propósito de la clave contenida en el certificado.
+
+*Nota*: Deje esta casilla de verificación seleccionada a menos que experimente problemas de conexión con clientes antiguos cuando los certificados incluyen estas extensiones.
+
+|===
+.. Seleccione *generar*.
+.. Seleccione *Detalles de certificado* para mostrar los metadatos y PEM del certificado API de S3 y Swift personalizado que se generó.
++
+*** Seleccione *Descargar certificado* para guardar el archivo de certificado.
++
+Especifique el nombre del archivo de certificado y la ubicación de descarga. Guarde el archivo con la extensión `.pem`.
+
++
+Por ejemplo: `storagegrid_certificate.pem`
+
+*** Seleccione *Copiar certificado PEM* para copiar el contenido del certificado para pegarlo en otro lugar.
+
+
+.. Seleccione *Guardar*.
++
+El certificado de servidor personalizado se usa para conexiones posteriores de clientes S3 y Swift.
+
+
+
+--
+====
+. Seleccione una pestaña para mostrar los metadatos del certificado de servidor StorageGRID predeterminado, un certificado firmado de una CA que se cargó o un certificado personalizado generado.
++
+
+NOTE: Tras cargar o generar un nuevo certificado, permita que se borren las alertas de caducidad de los certificados relacionados.
+
+. Actualice la página para garantizar que se actualice el explorador web.
+. Después de añadir un certificado de API personalizado de S3 y Swift, la página de certificados de la API de S3 y Swift muestra información detallada de los certificados API personalizados de S3 y Swift que está en uso. +
+Puede descargar o copiar el certificado PEM según sea necesario.
+
+
+
+
+== Restaure el certificado API S3 y Swift predeterminado
+
+Puede revertir a utilizar el certificado de API S3 y Swift predeterminado para las conexiones de clientes S3 y Swift a los nodos de almacenamiento. Sin embargo, no puede usar el certificado de API S3 y Swift predeterminado para un extremo de balanceador de carga.
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Seguridad* > *certificados*.
+. En la ficha *Global*, seleccione *S3 y Swift API Certificate*.
+. Seleccione *utilizar certificado predeterminado*.
++
+Cuando restaura la versión predeterminada del certificado de API global S3 y Swift, los archivos de certificado de servidor personalizados que configuró se eliminan y no se pueden recuperar del sistema. El certificado de API de S3 y Swift predeterminado se utilizará para las conexiones de cliente nuevas S3 y Swift posteriores a los nodos de almacenamiento.
+
+. Seleccione *Aceptar* para confirmar la advertencia y restaurar el certificado API S3 y Swift predeterminado.
++
+Si tiene permiso de acceso raíz y se utilizó el certificado de API Swift y S3 personalizado para conexiones de extremos de equilibrio de carga, se muestra una lista de extremos de equilibrio de carga que ya no se podrán acceder mediante el certificado API predeterminado S3 y Swift. Vaya a. link:../admin/configuring-load-balancer-endpoints.html["Configurar puntos finales del equilibrador de carga"] para editar o eliminar los puntos finales afectados.
+
+. Actualice la página para garantizar que se actualice el explorador web.
+
+
+
+
+== Descargue o copie el certificado de la API S3 y Swift
+
+Es posible guardar o copiar el contenido de los certificados API S3 y Swift para usarlos en otra parte.
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Seguridad* > *certificados*.
+. En la ficha *Global*, seleccione *S3 y Swift API Certificate*.
+. Seleccione la ficha *servidor* o *paquete CA* y, a continuación, descargue o copie el certificado.
++
+[role="tabbed-block"]
+====
+.Descargue el archivo de certificado o el paquete de CA
+--
+Descargue el certificado o el paquete de CA `.pem` archivo. Si utiliza un bundle de CA opcional, cada certificado del paquete se muestra en su propia subpestaña.
+
+.. Seleccione *Descargar certificado* o *Descargar paquete de CA*.
++
+Si está descargando un bundle de CA, todos los certificados de las pestañas secundarias del bundle de CA se descargan como un solo archivo.
+
+.. Especifique el nombre del archivo de certificado y la ubicación de descarga. Guarde el archivo con la extensión `.pem`.
++
+Por ejemplo: `storagegrid_certificate.pem`
+
+
+
+--
+.Copie el certificado o el paquete de CA PEM
+--
+Copie el texto del certificado que se va a pegar en otro lugar. Si utiliza un bundle de CA opcional, cada certificado del paquete se muestra en su propia subpestaña.
+
+.. Seleccione *Copiar certificado PEM* o *Copiar paquete de CA PEM*.
++
+Si va a copiar un bundle de CA, todos los certificados de las pestañas secundarias del bundle de CA se copian al mismo tiempo.
+
+.. Pegue el certificado copiado en un editor de texto.
+.. Guarde el archivo de texto con la extensión `.pem`.
++
+Por ejemplo: `storagegrid_certificate.pem`
+
+
+
+--
+====
+
+
+.Información relacionada
+* link:../s3/index.html["USE LA API DE REST DE S3"]
+* link:../swift/index.html["Use la API DE REST de Swift"]
+* link:configuring-s3-api-endpoint-domain-names.html["Configure los nombres de dominio de punto final S3"]
+

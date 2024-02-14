@@ -1,0 +1,48 @@
+---
+permalink: swift/swift-operations-tracked-in-audit-logs.html 
+sidebar: sidebar 
+keywords: swift options request 
+summary: Se realiza un seguimiento de todas las operaciones DE ELIMINACIÓN, GET, HEAD, POST y PUT de almacenamiento correctamente en el registro de auditoría de StorageGRID. Los fallos y las solicitudes de información, autenticación u OPCIONES no se registran. 
+---
+= Se realizó un seguimiento de las operaciones de Swift en los registros de auditoría
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se realiza un seguimiento de todas las operaciones DE ELIMINACIÓN, GET, HEAD, POST y PUT de almacenamiento correctamente en el registro de auditoría de StorageGRID. Los fallos y las solicitudes de información, autenticación u OPCIONES no se registran.
+
+
+
+== Operaciones de cuentas
+
+* link:account-operations.html["OBTENGA la cuenta"]
+* link:account-operations.html["CUENTA principal"]
+
+
+
+
+== Operaciones de contenedor
+
+* link:container-operations.html["ELIMINAR contenedor"]
+* link:container-operations.html["OBTENGA el contenedor"]
+* link:container-operations.html["Contenedor DE LA CABEZA"]
+* link:container-operations.html["COLOQUE el contenedor"]
+
+
+
+
+== Operaciones de objeto
+
+* link:object-operations.html["ELIMINAR objeto"]
+* link:object-operations.html["OBJETO GET"]
+* link:object-operations.html["OBJETO HEAD"]
+* link:object-operations.html["PONER objeto"]
+
+
+.Información relacionada
+* link:../audit/accessing-audit-log-file.html["Acceda al archivo de registro de auditoría"]
+* link:../audit/client-write-audit-messages.html["El cliente escribe mensajes de auditoría"]
+* link:../audit/client-read-audit-messages.html["El cliente lee los mensajes de auditoría"]
+

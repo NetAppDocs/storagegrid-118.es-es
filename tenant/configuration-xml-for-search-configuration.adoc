@@ -1,0 +1,193 @@
+---
+permalink: tenant/configuration-xml-for-search-configuration.html 
+sidebar: sidebar 
+keywords: search integration, configuration xml, metadata notification, container tag, urn 
+summary: El servicio de integración de búsqueda se configura usando un conjunto de reglas contenidas en etiquetas <MetadataNotificationConfiguration\> y </MetadataNotificationConfiguration\>. Cada regla especifica los objetos a los que se aplica la regla y el destino al que StorageGRID debe enviar los metadatos de esos objetos. 
+---
+= XML de configuración para la integración de búsqueda
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El servicio de integración de búsqueda se configura mediante un conjunto de reglas contenidas en `<MetadataNotificationConfiguration>` y.. `</MetadataNotificationConfiguration>` etiquetas. Cada regla especifica los objetos a los que se aplica la regla y el destino al que StorageGRID debe enviar los metadatos de esos objetos.
+
+Los objetos se pueden filtrar según el prefijo del nombre del objeto. Por ejemplo, puede enviar metadatos de los objetos con el prefijo `images` en un destino y los metadatos de los objetos con el prefijo `videos` a otro. Las configuraciones que tienen prefijos superpuestos no son válidas y se rechazan cuando se envían. Por ejemplo, una configuración que incluye una regla para objetos con el prefijo `test` y una segunda regla para los objetos con el prefijo `test2` no está permitido.
+
+Los destinos deben especificarse mediante el URN de un extremo de StorageGRID que se ha creado para el servicio de integración de búsqueda. Estos extremos se refieren a un índice y tipo definidos en un clúster de Elasticsearch.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>rule-status</Status>
+        <Prefix>key-prefix</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Rule-2</ID>
+         ...
+    </Rule>
+     ...
+</MetadataNotificationConfiguration>
+----
+En la tabla se describen los elementos del XML de configuración de notificaciones de metadatos.
+
+[cols="2a,3a,1a"]
+|===
+| Nombre | Descripción | Obligatorio 
+
+
+ a| 
+MetadataNotificationConfiguration
+ a| 
+Etiqueta de contenedor para las reglas que se usan para especificar los objetos y el destino de las notificaciones de metadatos.
+
+Contiene uno o más elementos Regla.
+ a| 
+Sí
+
+
+
+ a| 
+Regla
+ a| 
+Código de contenedor de una regla que identifica los objetos cuyos metadatos deben agregarse a un índice especificado.
+
+Se rechazan las reglas con prefijos superpuestos.
+
+Incluido en el elemento MetadataNotificationConfiguration.
+ a| 
+Sí
+
+
+
+ a| 
+ID
+ a| 
+Identificador único de la regla.
+
+Incluido en el elemento Regla.
+ a| 
+No
+
+
+
+ a| 
+Estado
+ a| 
+El estado puede ser "activado" o "desactivado". No se toman medidas para las reglas que están desactivadas.
+
+Incluido en el elemento Regla.
+ a| 
+Sí
+
+
+
+ a| 
+Prefijo
+ a| 
+Los objetos que coinciden con el prefijo se ven afectados por la regla y sus metadatos se envían al destino especificado.
+
+Para hacer coincidir todos los objetos, especifique un prefijo vacío.
+
+Incluido en el elemento Regla.
+ a| 
+Sí
+
+
+
+ a| 
+Destino
+ a| 
+Etiqueta de contenedor para el destino de una regla.
+
+Incluido en el elemento Regla.
+ a| 
+Sí
+
+
+
+ a| 
+No
+ a| 
+URN del destino donde se envían los metadatos del objeto. Debe ser URN de un extremo de StorageGRID con las siguientes propiedades:
+
+* `es` debe ser el tercer elemento.
+* El URN debe terminar con el índice y el tipo donde se almacenan los metadatos, en el formulario `domain-name/myindex/mytype`.
+
+
+Los extremos se configuran con el administrador de inquilinos o la API de gestión de inquilinos. Tienen el siguiente formato:
+
+* `arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype`
+* `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+El punto final debe estar configurado antes de enviar el XML de configuración o la configuración fallará con un error 404.
+
+EL VALOR DE URN se incluye en el elemento Destination.
+ a| 
+Sí
+
+|===
+Utilice el XML de configuración de notificación de metadatos de ejemplo para aprender a crear su propio XML.
+
+
+
+== La configuración de notificaciones de metadatos se aplica a todos los objetos
+
+En este ejemplo, los metadatos de objeto de todos los objetos se envían al mismo destino.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix></Prefix>
+        <Destination>
+           <Urn>urn:myes:es:::sgws-notifications/test1/all</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+
+
+== Configuración de notificaciones de metadatos con dos reglas
+
+En este ejemplo, metadatos de objeto para objetos que coinciden con el prefijo `/images` se envía a un destino, mientras que los metadatos de objetos de los objetos que coinciden con el prefijo `/videos` se envía a un segundo destino.
+
+[listing]
+----
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Images-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/images</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/es-domain/graphics/imagetype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Videos-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/videos</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-west-1:22222222:domain/es-domain/graphics/videotype</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+.Información relacionada
+link:../s3/index.html["USE LA API DE REST DE S3"]
+
+link:object-metadata-included-in-metadata-notifications.html["Metadatos de objetos incluidos en las notificaciones de metadatos"]
+
+link:json-generated-by-search-integration-service.html["JSON generado por el servicio de integración de búsqueda"]
+
+link:configuring-search-integration-service.html["Configure el servicio de integración de búsqueda"]

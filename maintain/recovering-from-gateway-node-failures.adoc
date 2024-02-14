@@ -1,0 +1,16 @@
+---
+permalink: maintain/recovering-from-gateway-node-failures.html 
+sidebar: sidebar 
+keywords: recover, gateway node failure, workflow 
+summary: Debe completar una secuencia de tareas para poder recuperarlas de un fallo en el nodo de puerta de enlace. 
+---
+= Recuperación de Fallos de Nodos de Gateway: Flujo de trabajo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe completar una secuencia de tareas para poder recuperarlas de un fallo en el nodo de puerta de enlace.
+
+image::../media/overview_api_gateway_node_recovery.png[Diagrama de flujo general de recuperación del nodo de puerta de enlace]

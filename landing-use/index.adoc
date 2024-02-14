@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-use/index.html 
+summary: Una vez completada la configuración inicial, las cuentas de inquilino de StorageGRID pueden crear buckets y usar aplicaciones cliente de S3 para procesar, recuperar y eliminar objetos. 
+---
+= Utilizar clientes y inquilinos de StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

@@ -1,0 +1,51 @@
+---
+permalink: audit/arem-archive-object-remove.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, AREM, Archive Object Remove 
+summary: El mensaje de auditoría Eliminar objeto de archivado indica que un bloque de contenido se eliminó correctamente o de forma incorrecta de un nodo de archivado. Si el resultado es correcto, el nodo de archivado ha informado correctamente al sistema de almacenamiento de archivado externo que StorageGRID ha lanzado una ubicación de objeto. Si el objeto se elimina del sistema de almacenamiento de archivos externo depende del tipo de sistema y de su configuración. 
+---
+= AREM: Eliminación de objeto de archivado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El mensaje de auditoría Eliminar objeto de archivado indica que un bloque de contenido se eliminó correctamente o de forma incorrecta de un nodo de archivado. Si el resultado es correcto, el nodo de archivado ha informado correctamente al sistema de almacenamiento de archivado externo que StorageGRID ha lanzado una ubicación de objeto. Si el objeto se elimina del sistema de almacenamiento de archivos externo depende del tipo de sistema y de su configuración.
+
+[cols="1a,1a,4a"]
+|===
+| Codificación | Campo | Descripción 
+
+
+ a| 
+CBID
+ a| 
+ID del bloque de contenido
+ a| 
+Identificador único del bloque de contenido que se va a recuperar del sistema de archivos multimedia externo.
+
+
+
+ a| 
+VLID
+ a| 
+Identificador del volumen
+ a| 
+El identificador del volumen en el que se han archivado los datos de objeto.
+
+
+
+ a| 
+TRANSFORMACIÓN DIGITAL
+ a| 
+Resultado
+ a| 
+El estado de finalización del proceso de eliminación de archivos:
+
+* SUCS: Exitoso
+* ARUN: Error (sistema de almacenamiento de archivado externo no disponible)
+* ERROR GENERAL (ERROR general)
+
+
+|===

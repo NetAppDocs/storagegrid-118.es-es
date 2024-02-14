@@ -1,0 +1,37 @@
+---
+permalink: upgrade/changes-to-grid-management-api.html 
+sidebar: sidebar 
+keywords: grid management api, api, api version, swagger, rest api 
+summary: StorageGRID 11,8 utiliza la versión 4 de la API de administración de grid. La versión 4 deja de ser la versión 3; sin embargo, las versiones 1, 2 y 3 siguen siendo compatibles. 
+---
+= Cambios en la API de gestión de grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11,8 utiliza la versión 4 de la API de administración de grid. La versión 4 deja de ser la versión 3; sin embargo, las versiones 1, 2 y 3 siguen siendo compatibles.
+
+
+NOTE: Puede continuar utilizando versiones obsoletas de la API de gestión con StorageGRID 11,8; no obstante, la compatibilidad con estas versiones de la API se quitará en una futura versión de StorageGRID. Después de actualizar a StorageGRID 11,8, las API obsoletas se pueden desactivar mediante el `PUT /grid/config/management` API.
+
+Para obtener más información, visite link:../admin/using-grid-management-api.html["Utilice la API de gestión de grid"].
+
+
+
+== Cambios para `ilm-policies` API v4
+
+Aplicación efectiva a partir de StorageGRID 11,8, versión 4 del `ilm-policies` API contiene las siguientes diferencias con respecto a la versión 3:
+
+* Las políticas históricas ya no se devuelven. Se ha agregado una nueva API independiente para obtener datos históricos de políticas y etiquetas en `/grid/ilm-history`.
+* Propiedades eliminadas: `proposed`, `historical`, `historicalRules`, `activationTime`.
+* Propiedades agregadas: `active` (booleano), `activatedBy` (Matriz de UUID de etiqueta a la que está asignada la política).
+* Parámetro de consulta de tipo opcional para `GET ilm-policies` ahora toma los valores `inactive` y.. `active.` Los valores anteriores eran `proposed`, `active`, y. `historical`.
+
+
+
+
+== Nuevos extremos para la gestión de unidades
+
+Puede utilizar los puntos finales de la API */grid/drive-details/{nodeId}* para realizar operaciones en las unidades en modelos específicos de nodos de almacenamiento del dispositivo.
