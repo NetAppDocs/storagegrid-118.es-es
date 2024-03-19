@@ -88,7 +88,7 @@ Las diferencias en la configuración de MTU podrían indicar que algunas redes e
 . Enumere la configuración de MTU para eth0 en todos los nodos.
 +
 ** Utilice la consulta proporcionada en Grid Manager.
-** Vaya a. `_primary Admin Node IP address_/metrics/graph` e introduzca la siguiente consulta: `node_network_mtu_bytes{interface='eth0'}`
+** Vaya a. `_primary Admin Node IP address_/metrics/graph` e introduzca la siguiente consulta: `node_network_mtu_bytes{device="eth0"}`
 
 
 . https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/changing-mtu-setting.html["Modifique la configuración de MTU"^] Según sea necesario para garantizar que son iguales para la interfaz de red de grid (eth0) en todos los nodos.
