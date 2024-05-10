@@ -23,7 +23,7 @@ Cada grupo de alta disponibilidad proporciona acceso a los servicios compartidos
 
 * Los grupos de ALTA DISPONIBILIDAD que incluyen nodos de puerta de enlace, nodos de administrador o ambos proporcionan conexiones de datos con alta disponibilidad para los clientes S3 y Swift.
 * Los grupos DE ALTA DISPONIBILIDAD que incluyen solo los nodos de administrador proporcionan conexiones de alta disponibilidad con el administrador de grid y el administrador de inquilinos.
-* Un grupo de alta disponibilidad que sólo incluye dispositivos SG100 o SG1000 y nodos de software basados en VMware puede proporcionar conexiones de alta disponibilidad link:../admin/manage-s3-select-for-tenant-accounts.html["Inquilinos de S3 que usan S3 Select"].
+* Un grupo de alta disponibilidad que solo incluye dispositivos de servicios y nodos de software basados en VMware puede proporcionar conexiones altamente disponibles para link:../admin/manage-s3-select-for-tenant-accounts.html["Inquilinos de S3 que usan S3 Select"].
 Se recomienda a los grupos de ALTA DISPONIBILIDAD cuando se usa S3 Select, pero no es obligatorio.
 
 

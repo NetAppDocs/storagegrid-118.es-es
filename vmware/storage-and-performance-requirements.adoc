@@ -25,7 +25,7 @@ Todos los nodos StorageGRID requieren que la unidad de sistema operativo y todos
 
 == Requisitos de las máquinas virtuales que usan almacenamiento de NetApp ONTAP
 
-Si desea implementar un nodo de StorageGRID como máquina virtual con almacenamiento asignado desde un sistema NetApp ONTAP, se ha confirmado que el volumen no tiene una política de organización en niveles de FabricPool habilitada. Por ejemplo, si un nodo StorageGRID se ejecuta como máquina virtual en un host VMware, asegúrese de que el volumen que realiza el backup del almacén de datos del nodo no tenga habilitada una política de organización en niveles de FabricPool. Al deshabilitar el almacenamiento en niveles de FabricPool para los volúmenes que se usan con los nodos StorageGRID, se simplifica la solución de problemas y las operaciones de almacenamiento.
+Si desea implementar un nodo de StorageGRID como máquina virtual con almacenamiento asignado desde un sistema NetApp ONTAP, se ha confirmado que el volumen no tiene una política de organización en niveles de FabricPool habilitada. Por ejemplo, si un nodo StorageGRID se ejecuta como una máquina virtual en un host VMware, asegúrese de que el volumen de respaldo del almacén de datos del nodo no tenga habilitada una política de organización en niveles de FabricPool. Al deshabilitar el almacenamiento en niveles de FabricPool para los volúmenes que se usan con los nodos StorageGRID, se simplifica la solución de problemas y las operaciones de almacenamiento.
 
 
 NOTE: No utilice nunca FabricPool para colocar en niveles datos relacionados con StorageGRID en el propio StorageGRID. La organización en niveles de los datos de StorageGRID en StorageGRID aumenta la solución de problemas y la complejidad operativa.
@@ -84,6 +84,8 @@ Tamaño máximo de LUN probado: 39 TB.
  a| 
 Nodo de almacenamiento (solo metadatos)
  a| 
+LUN DE 100 GB PARA SO
+
 1 LUN
 
 Tamaño mínimo por LUN: 4 TB

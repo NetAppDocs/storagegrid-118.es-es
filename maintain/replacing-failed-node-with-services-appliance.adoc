@@ -2,7 +2,7 @@
 permalink: maintain/replacing-failed-node-with-services-appliance.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, replace failed node, services appliance 
-summary: Puede utilizar un dispositivo de servicios SG100 o SG1000 para recuperar un nodo de puerta de enlace fallido, un nodo de administración no primario fallido o un nodo de administración principal fallido alojado en VMware, un host Linux o un dispositivo de servicios. Este procedimiento es un paso del procedimiento de recuperación de nodos de cuadrícula. 
+summary: Puede usar un dispositivo de servicios para recuperar un nodo de puerta de enlace con errores, un nodo de administración no primario con errores, o un nodo de administración primario con errores que se alojó en VMware, un host Linux o un dispositivo de servicios. Este procedimiento es un paso del procedimiento de recuperación de nodos de cuadrícula. 
 ---
 = Sustituya el nodo con fallos por el dispositivo de servicios: Información general
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Puede utilizar un dispositivo de servicios SG100 o SG1000 para recupera
 
 
 [role="lead"]
-Puede utilizar un dispositivo de servicios SG100 o SG1000 para recuperar un nodo de puerta de enlace fallido, un nodo de administración no primario fallido o un nodo de administración principal fallido alojado en VMware, un host Linux o un dispositivo de servicios. Este procedimiento es un paso del procedimiento de recuperación de nodos de cuadrícula.
+Puede usar un dispositivo de servicios para recuperar un nodo de puerta de enlace con errores, un nodo de administración no primario con errores, o un nodo de administración primario con errores que se alojó en VMware, un host Linux o un dispositivo de servicios. Este procedimiento es un paso del procedimiento de recuperación de nodos de cuadrícula.
 
 .Antes de empezar
 * Ha determinado que una de las siguientes situaciones es verdadera:
@@ -25,10 +25,10 @@ Puede utilizar un dispositivo de servicios SG100 o SG1000 para recuperar un nodo
 
 
 
-NOTE: No ponga en marcha un dispositivo de servicio SG100 y SG1000 en el mismo sitio. El rendimiento puede ser impredecible.
+NOTE: No ponga en marcha un dispositivo de servicios SG110 y SG1100 o un dispositivo de servicios SG100 y SG1000 en el mismo sitio. El rendimiento puede ser impredecible.
 
 .Acerca de esta tarea
-Puede utilizar un dispositivo de servicios SG100 o SG1000 para recuperar un nodo de red fallido en los casos siguientes:
+Puede usar un dispositivo de servicios para recuperar un nodo de grid fallido en los siguientes casos:
 
 * El nodo fallido se hospedó en VMware o Linux (link:installing-services-appliance-platform-change-only.html["cambio de plataforma"])
 * El nodo con errores se hospedó en un dispositivo de servicios (link:preparing-appliance-for-reinstallation-platform-replacement-only.html["sustitución de plataformas"])

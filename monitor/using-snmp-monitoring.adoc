@@ -70,6 +70,8 @@ La tabla proporciona un resumen a grandes rasgos de lo que se admite para cada v
 
  a| 
 Consultas
+
+(OBTENER y GETNEXT)
  a| 
 Consultas MIB de solo lectura
  a| 
@@ -92,6 +94,8 @@ Usuario del modelo de seguridad basado en el usuario (USM)
 
  a| 
 Notificaciones
+
+(ATRAPAR e INFORMAR)
  a| 
 Sólo capturas
  a| 

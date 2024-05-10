@@ -60,7 +60,7 @@ Acceso al cliente de S3 o Swift: Servicio Load Balancer
  a| 
 Acceso de clientes S3 para link:../admin/manage-s3-select-for-tenant-accounts.html["S3 Select"]
  a| 
-* Aparatos SG100 o SG1000
+* Dispositivos de servicios
 * Nodos de software basados en VMware
 
 

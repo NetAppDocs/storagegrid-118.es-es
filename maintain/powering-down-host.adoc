@@ -79,6 +79,13 @@ Este LED está encendido cuando es necesario escribir en las unidades los datos 
 
 
 --
+.SG110 o SG1100
+--
+.. Apague el aparato.
+.. Espere a que se apague el LED de alimentación azul.
+
+
+--
 .SG100 o SG1000
 --
 .. Apague el aparato.
@@ -96,5 +103,7 @@ https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Disposit
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositivos de almacenamiento SG6000"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["Dispositivos de almacenamiento SG5700"^]
+
+https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Dispositivos de servicios SG110 y SG1100"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Servicios de aplicaciones SG100 y SG1000"^]

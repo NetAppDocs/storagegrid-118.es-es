@@ -28,7 +28,7 @@ Ejecute comprobaciones previas y actualice el nodo de administración principal
  a| 
 Se ejecutan las comprobaciones previas a la actualización y el nodo de administración principal se detiene, actualiza y reinicia.
  a| 
-De 30 minutos a 1 hora, con los nodos de las aplicaciones SG100 y SG1000 que requieren más tiempo.
+de 30 minutos a 1 hora, con nodos de dispositivos de servicios que requieren más tiempo.
 
 Los errores de comprobación previa no resueltos aumentarán esta vez.
  a| 

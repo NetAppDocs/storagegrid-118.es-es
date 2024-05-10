@@ -22,7 +22,7 @@ NOTE: Se eliminó la compatibilidad con aplicaciones cliente de Swift y se quita
 * Ha revisado el link:managing-load-balancing.html["consideraciones que tener en cuenta al equilibrio de carga"].
 * Si anteriormente ha reasignado un puerto que tiene intención de utilizar para el extremo de equilibrio de carga, tiene link:../maintain/removing-port-remaps.html["se ha eliminado el mapa de puertos"].
 * Ha creado cualquier grupo de alta disponibilidad que desee utilizar. Se recomiendan los grupos de ALTA DISPONIBILIDAD, pero no es obligatorio. Consulte link:managing-high-availability-groups.html["Gestión de grupos de alta disponibilidad"].
-* Si el punto final del equilibrador de carga será utilizado por link:../admin/manage-s3-select-for-tenant-accounts.html["Inquilinos de S3 para S3 Select"], No debe utilizar las direcciones IP ni las FQDN de ningún nodo de configuración básica. Sólo se permiten los dispositivos SG100 o SG1000 y los nodos de software basados en VMware para los extremos de equilibrador de carga utilizados para S3 Select.
+* Si el punto final del equilibrador de carga será utilizado por link:../admin/manage-s3-select-for-tenant-accounts.html["Inquilinos de S3 para S3 Select"], No debe utilizar las direcciones IP ni las FQDN de ningún nodo de configuración básica. Solo se permiten dispositivos de servicios y nodos de software basados en VMware para los extremos del equilibrador de carga utilizados para S3 Select.
 * Ha configurado las interfaces VLAN que desea utilizar. Consulte link:configure-vlan-interfaces.html["Configure las interfaces VLAN"].
 * Si crea un extremo de HTTPS (recomendado), tiene la información del certificado de servidor.
 +

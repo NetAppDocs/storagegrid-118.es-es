@@ -57,7 +57,7 @@ La solicitud SelectObjectContent debe enviarse a un link:configuring-load-balanc
 
 Los nodos de administración y puerta de enlace utilizados por el punto final deben ser uno de los siguientes:
 
-* Nodo de dispositivo SG100 o SG1000
+* Un nodo de dispositivo de servicios
 * Nodo de software basado en VMware
 * Nodo bare metal que ejecuta un kernel con cgroup v2 habilitado
 

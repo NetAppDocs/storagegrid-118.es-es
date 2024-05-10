@@ -2,7 +2,7 @@
 permalink: maintain/starting-software-installation-on-services-appliance-recovery.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, services appliance, start software installation 
-summary: Para instalar un nodo de puerta de enlace o un nodo de administración en un dispositivo de servicios SG100 o SG1000, utilice el instalador de dispositivos StorageGRID, que se incluye en el dispositivo. 
+summary: Para instalar un nodo de pasarela o un nodo de administración en un dispositivo de servicios, se utiliza el instalador del dispositivo StorageGRID, que se incluye en el dispositivo. 
 ---
 = Inicie la instalación del software en el dispositivo de servicios
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Para instalar un nodo de puerta de enlace o un nodo de administración 
 
 
 [role="lead"]
-Para instalar un nodo de puerta de enlace o un nodo de administración en un dispositivo de servicios SG100 o SG1000, utilice el instalador de dispositivos StorageGRID, que se incluye en el dispositivo.
+Para instalar un nodo de pasarela o un nodo de administración en un dispositivo de servicios, se utiliza el instalador del dispositivo StorageGRID, que se incluye en el dispositivo.
 
 .Antes de empezar
 * El dispositivo se instala en un bastidor, se conecta a las redes y se enciende.
@@ -31,7 +31,7 @@ NOTE: Una versión reciente del software StorageGRID está precargada en el disp
 
 
 .Acerca de esta tarea
-Para instalar el software StorageGRID en un dispositivo de servicios SG100 o SG1000:
+Para instalar el software StorageGRID en un dispositivo de servicios:
 
 * Para un nodo de administración principal, debe especificar el nombre del nodo y luego cargar los paquetes de software adecuados (si es necesario).
 * En el caso de un nodo de administrador que no sea primario o un nodo de puerta de enlace, debe especificar o confirmar la dirección IP del nodo de administración principal y el nombre del nodo.
@@ -41,7 +41,7 @@ Para instalar el software StorageGRID en un dispositivo de servicios SG100 o SG1
 
 
 .Pasos
-. Abra un explorador e introduzca una de las direcciones IP del dispositivo de servicios SG100 o SG1000.
+. Abra un navegador e introduzca una de las direcciones IP del dispositivo de servicios.
 +
 `https://_Controller_IP_:8443`
 

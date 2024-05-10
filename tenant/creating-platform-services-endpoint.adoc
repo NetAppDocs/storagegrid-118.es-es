@@ -39,22 +39,29 @@ link:specifying-urn-for-platform-services-endpoint.html["Especifique URN para el
 +
 [role="tabbed-block"]
 ====
-.Extremos de integración de búsquedas de AWS
+.Buscar puntos finales de integración
 --
-Para los extremos de integración de búsqueda de AWS, puede usar las siguientes credenciales:
+Para los puntos finales de integración de búsqueda, puede utilizar las siguientes credenciales:
 
 *** Clave de acceso: ID de clave de acceso y clave de acceso secreta
 *** Basic HTTP: Nombre de usuario y contraseña
-*** CAP (C2S Access Portal): URL de credenciales temporales, certificados de servidor y de cliente, claves de cliente y una contraseña de clave privada de cliente opcional.
 
 
 --
-.Replicación de CloudMirror y extremos de Amazon SNS
+.Extremos de replicación de CloudMirror
 --
-Para la replicación de CloudMirror y los extremos de Amazon SNS, puede usar las siguientes credenciales:
+Para la replicación de CloudMirror, puede usar las siguientes credenciales:
 
 *** Clave de acceso: ID de clave de acceso y clave de acceso secreta
 *** CAP (C2S Access Portal): URL de credenciales temporales, certificados de servidor y de cliente, claves de cliente y una contraseña de clave privada de cliente opcional.
+
+
+--
+.Extremos de Amazon SNS
+--
+Para los extremos de Amazon SNS, puede usar las siguientes credenciales:
+
+*** Clave de acceso: ID de clave de acceso y clave de acceso secreta
 
 
 --
@@ -136,9 +143,9 @@ NOTE: No puede cambiar el URN de un punto final después de crear el punto final
 +
 [role="tabbed-block"]
 ====
-.Extremos de integración de búsquedas de AWS
+.Buscar puntos finales de integración
 --
-Introduzca o cargue las credenciales para un extremo de integración de búsqueda de AWS.
+Introduzca o cargue las credenciales para un punto final de integración de búsqueda.
 
 Las credenciales que proporcione deben tener permisos de escritura para el recurso de destino.
 
@@ -176,25 +183,11 @@ Utiliza un nombre de usuario y una contraseña para autenticar las conexiones al
 ** Contraseña
 
 
-
-
- a| 
-CAP (Portal de acceso C2S)
- a| 
-Usa certificados y claves para autenticar las conexiones al destino.
- a| 
-** URL de credenciales temporales
-** Certificado de CA de servidor (carga de archivo PEM)
-** Certificado de cliente (carga de archivo PEM)
-** Clave privada de cliente (carga de archivo PEM, formato cifrado OpenSSL o formato de clave privada no cifrado)
-** Contraseña de clave privada de cliente (opcional)
-
-
 |===
 --
-.Replicación de CloudMirror o extremos de Amazon SNS
+.Extremos de replicación de CloudMirror
 --
-Introduzca o cargue las credenciales para una replicación de CloudMirror o un extremo de Amazon SNS.
+Introduzca o cargue las credenciales para un extremo de replicación de CloudMirror.
 
 Las credenciales que proporcione deben tener permisos de escritura para el recurso de destino.
 
@@ -233,6 +226,37 @@ Usa certificados y claves para autenticar las conexiones al destino.
 ** Certificado de cliente (carga de archivo PEM)
 ** Clave privada de cliente (carga de archivo PEM, formato cifrado OpenSSL o formato de clave privada no cifrado)
 ** Contraseña de clave privada de cliente (opcional)
+
+
+|===
+--
+.Extremos de Amazon SNS
+--
+Introduzca o cargue las credenciales para un extremo de Amazon SNS.
+
+Las credenciales que proporcione deben tener permisos de escritura para el recurso de destino.
+
+[cols="1a,2a,2a"]
+|===
+| Tipo de autenticación | Descripción | Credenciales 
+
+
+ a| 
+Anónimo
+ a| 
+Proporciona acceso anónimo al destino. Solo funciona para extremos con seguridad deshabilitada.
+ a| 
+Sin autenticación.
+
+
+
+ a| 
+Clave de acceso
+ a| 
+Usa credenciales de estilo AWS para autenticar conexiones con el destino.
+ a| 
+** ID de clave de acceso
+** Clave de acceso secreta
 
 
 |===
