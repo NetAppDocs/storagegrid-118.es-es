@@ -24,10 +24,3 @@ El contenedor y los segmentos no se almacenan necesariamente en el mismo nodo de
 El sistema StorageGRID trata cada segmento de forma independiente y contribuye al recuento de atributos como objetos gestionados y objetos almacenados. Por ejemplo, si un objeto almacenado en el sistema StorageGRID se divide en dos segmentos, el valor de objetos gestionados aumenta en tres una vez completada la ingesta, de la siguiente manera:
 
 `segment container + segment 1 + segment 2 = three stored objects`
-
-Puede mejorar el rendimiento al manejar objetos grandes asegurándose de que:
-
-* Cada puerta de enlace y cada nodo de almacenamiento tiene suficiente ancho de banda de red para el rendimiento requerido. Por ejemplo, configure redes de cliente y de cuadrícula independientes en interfaces Ethernet de 10 Gbps.
-* Se ponen en marcha suficientes nodos de pasarela y almacenamiento para el rendimiento requerido.
-* Cada nodo de almacenamiento tiene suficiente rendimiento de I/O de disco para el rendimiento requerido.
-
