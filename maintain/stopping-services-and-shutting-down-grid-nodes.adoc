@@ -74,6 +74,12 @@ Para el dispositivo, este comando apaga la controladora de computación, pero el
 ... Espere a que se apague el LED de alimentación azul.
 
 
+** Para el dispositivo SG6160
++
+... Apague la alimentación de la controladora de almacenamiento SG6100-CN.
+... Espere a que se apague el LED de alimentación azul de la controladora de almacenamiento SG6100-CN.
+
+
 ** Para el dispositivo SG6000
 +
 ... Espere a que se apague el LED verde de caché activa en la parte posterior de las controladoras de almacenamiento.
@@ -101,7 +107,7 @@ El grid de StorageGRID se ha apagado.
 
 
 .Información relacionada
-https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Dispositivos de almacenamiento SGF6112"^]
+https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Dispositivos de almacenamiento SGF6112 y SG6160"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositivos de almacenamiento SG6000"^]
 

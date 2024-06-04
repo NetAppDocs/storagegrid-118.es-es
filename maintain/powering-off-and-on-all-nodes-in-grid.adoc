@@ -90,6 +90,13 @@ Para el dispositivo, este comando apaga la controladora de computación, pero el
 
 
 --
+.SG6160
+--
+.. Apague la alimentación de la controladora de almacenamiento SG6100-CN.
+.. Espere a que se apague el LED de alimentación azul de la controladora de almacenamiento SG6100-CN.
+
+
+--
 .SGF6112
 --
 .. Apague el aparato.
@@ -156,7 +163,7 @@ Puede encender estos nodos en cualquier orden.
 
 
 .Información relacionada
-* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Dispositivos de almacenamiento SGF6112"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Dispositivos de almacenamiento SGF6112 y SG6160"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Dispositivos de servicios SG110 y SG1100"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Servicios de aplicaciones SG100 y SG1000"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositivos de almacenamiento SG6000"^]

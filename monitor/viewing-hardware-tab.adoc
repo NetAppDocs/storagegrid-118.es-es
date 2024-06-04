@@ -266,7 +266,7 @@ El identificador numérico de la bandeja de almacenamiento.
 *** 1: Segunda bandeja de expansión
 
 
-*Nota:* las estanterías de expansión se aplican sólo al SG6060.
+*Nota:* Los estantes de expansión solo se aplican a los modelos SG6060 y SG6160.
 
 
 

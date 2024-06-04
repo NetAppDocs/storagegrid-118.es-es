@@ -19,6 +19,7 @@ Los puertos de red administrador de 1 GbE se pueden configurar en modo independi
 
 Consulte la información sobre los modos de enlace de puertos para su dispositivo:
 
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6100.html#port-bond-modes["Modos de enlace de puertos (SG6160)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6100.html#port-bond-modes["Modos de enlace de puertos (SGF6112)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6000.html#port-bond-modes["Modos de enlace de puertos (controladora SG6000-CN)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg5700.html#port-bond-modes["Modos de enlace de puertos (controladora E5700SG)"^]

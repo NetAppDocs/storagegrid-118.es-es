@@ -100,6 +100,7 @@ Para obtener detalles sobre la asignación de puertos virtuales o físicos a int
 
 
 .Nodos del dispositivo
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["Dispositivo de almacenamiento SG6160"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["Dispositivo de almacenamiento SGF6112"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6000.html["Dispositivo de almacenamiento SG6000"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg5700.html["Dispositivo de almacenamiento SG5700"^]

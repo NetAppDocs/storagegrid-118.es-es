@@ -23,6 +23,7 @@ Antes de añadir volúmenes de almacenamiento a los nodos de almacenamiento exis
 * No se puede aumentar la capacidad de metadatos del sistema añadiendo volúmenes de almacenamiento, ya que los metadatos de objetos se almacenan solo en el volumen 0.
 * Cada nodo de almacenamiento basado en software puede admitir un máximo de 16 volúmenes de almacenamiento. Si necesita añadir capacidad más allá de eso, debe añadir nuevos nodos de almacenamiento.
 * Se pueden añadir una o dos bandejas de expansión a cada dispositivo SG6060. Cada bandeja de expansión añade 16 volúmenes de almacenamiento. Con las dos bandejas de expansión instaladas, el SG6060 puede admitir un total de 48 volúmenes de almacenamiento.
+* Puede añadir una o dos bandejas de expansión a cada dispositivo SG6160. Cada bandeja de expansión añade 60 volúmenes de almacenamiento. Con las dos bandejas de ampliación instaladas, SG6160 admite un total de 180 volúmenes de almacenamiento.
 * No es posible añadir volúmenes de almacenamiento a ningún otro dispositivo de almacenamiento.
 * No es posible aumentar el tamaño de un volumen de almacenamiento existente.
 * No es posible añadir volúmenes de almacenamiento a un nodo de almacenamiento al mismo tiempo que realiza una actualización del sistema, una operación de recuperación u otra expansión.
@@ -31,6 +32,7 @@ Antes de añadir volúmenes de almacenamiento a los nodos de almacenamiento exis
 Después de haber decidido añadir volúmenes de almacenamiento y de determinar qué nodos de almacenamiento debe expandir para cumplir con la política de ILM, siga las instrucciones para su tipo de nodo de almacenamiento:
 
 * Para añadir una o dos bandejas de expansión a un dispositivo de almacenamiento SG6060, vaya a. https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Añada la bandeja de expansión al SG6060 implementado"^].
+* Para añadir una o dos bandejas de expansión a un dispositivo de almacenamiento SG6160, vaya a. https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Añada una bandeja de expansión a SG6160 puesto en marcha"^]
 * Para un nodo basado en software, siga las instrucciones de
 link:adding-storage-volumes-to-storage-nodes.html["Añadir volúmenes de almacenamiento a los nodos de almacenamiento"].
 

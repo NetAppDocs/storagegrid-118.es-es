@@ -180,6 +180,7 @@ NOTE: Estos pasos sólo se aplican a los errores NRER causados por la discrepanc
 .. Compruebe la integridad física de los cables del aparato al interruptor.
 .. Si desea cambiar la configuración de FEC para intentar resolver la alarma de NRER, asegúrese primero de que el aparato esté configurado para el modo *AUTO* en la página Configuración de enlace del instalador de dispositivos StorageGRID (consulte las instrucciones de su aparato:
 +
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/changing-link-configuration-of-sgf6112-appliance.html["SG6160"^]
 *** https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/changing-link-configuration-of-sgf6112-appliance.html["SGF6112"^]
 *** https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/changing-link-configuration-of-sg6000-cn-controller.html["SG6000"^]
 *** https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/changing-link-configuration-of-e5700sg-controller.html["SG5700"^]
