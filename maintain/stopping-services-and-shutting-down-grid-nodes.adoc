@@ -89,6 +89,17 @@ Este LED está encendido cuando es necesario escribir en las unidades los datos 
 ... Apague el aparato y espere a que se apague el LED de alimentación azul.
 
 
+** Para el dispositivo SG5800
++
+... Espere a que se apague el LED verde de caché activa en la parte posterior de la controladora de almacenamiento.
++
+Este LED está encendido cuando es necesario escribir en las unidades los datos en caché. Debe esperar a que este LED se apague antes de apagarse.
+
+... En la página de inicio del Administrador del sistema de SANtricity, seleccione *Ver operaciones en curso*.
+... Confirme que todas las operaciones se han completado antes de continuar con el siguiente paso.
+... Apague los dos switches de alimentación de la bandeja de controladoras y espere a que se apagen todos los LED de la bandeja de controladoras.
+
+
 ** Para el dispositivo SG5700
 +
 ... Espere a que se apague el LED verde de caché activa en la parte posterior de la controladora de almacenamiento.
@@ -110,6 +121,8 @@ El grid de StorageGRID se ha apagado.
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Dispositivos de almacenamiento SGF6112 y SG6160"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositivos de almacenamiento SG6000"^]
+
+https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/index.html["Dispositivos de almacenamiento SG5800"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["Dispositivos de almacenamiento SG5700"^]
 
