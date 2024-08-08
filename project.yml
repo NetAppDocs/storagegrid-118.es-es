@@ -411,6 +411,8 @@ sidebar:
       url: "/maintain/how-site-recovery-is-performed-by-technical-support.html"
   - title: Habilite StorageGRID
     url: "/storagegrid-enable.html"
+  - title: StorageGRID y BlueXP 
+    url: "/storagegrid-bluexp.html"
   - title: Otras versiones
     url: "/earlier-versions.html"
   - title: Avisos legales
