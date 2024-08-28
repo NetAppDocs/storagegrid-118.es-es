@@ -601,7 +601,7 @@ TIP: *Solo nodos locales* y *Servidor syslog externo* típicamente proporcionan 
 
 
  a| 
-Solo nodos locales
+Sólo Nodos Locales (valor por defecto)
  a| 
 Los mensajes de auditoría, los registros de eventos de seguridad y los registros de aplicaciones no se envían a los nodos de administración. En su lugar, solo se guardan en los nodos que los han generado («el nodo local»). La información de auditoría generada en cada nodo local se almacena en `/var/local/log/localaudit.log`
 

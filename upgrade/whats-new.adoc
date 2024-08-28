@@ -42,6 +42,12 @@ Mejoras de SGF6112:: Compatibilidad con StorageGRID 11,8 y la versión 3.8.0 del
 == Configurar y gestionar
 
 Por defecto en toda la cuadrícula de consistencia:: Puede cambiar el link:../s3/consistency-controls.html["consistencia predeterminada en toda la cuadrícula"] Mediante Grid Manager o el punto final grid-config del link:../admin/using-grid-management-api.html["API privada de gestión de grid"]. El nuevo valor predeterminado se aplicará a los depósitos creados después del cambio.
+Destinos de auditoría predeterminados:: Las nuevas instalaciones de StorageGRID 11,8 se establecen por defecto en destinos de auditoría de nodos locales. Anteriormente, los mensajes de auditoría se enviaban al registro de auditoría (`/var/local/log/audit.log`) solo en los nodos de administración.
++
+--
+Para obtener más información sobre cómo cambiar los destinos del log de auditoría, consulte link:../monitor/configure-audit-messages.html#Select-audit-information-destinations["Seleccione destinos de información de auditoría"].
+
+--
 Etiquetas de políticas de ILM:: Permite controlar políticas de ILM por bloque mediante etiquetas de bloques. Se pueden crear varias políticas de ILM activas e inactivas al mismo tiempo. Consulte link:../ilm/ilm-policy-overview.html["Políticas de ILM:información general"].
 Puntos finales de Kafka:: Compatibilidad con puntos finales de Kafka para link:../tenant/understanding-notifications-for-buckets.html["notificaciones de eventos de bloques"].
 Equilibrador de carga para el tráfico de interfaz de gestión:: Cree extremos de equilibrio de carga para gestionar la carga de trabajo de la interfaz de gestión en los nodos de administración. Consulte link:../admin/managing-load-balancing.html["consideraciones que tener en cuenta al equilibrio de carga"]. Como parte de este cambio, ahora puede usar los puertos 443, 8443 y 9443 de Grid Manager y Tenant Manager al crear extremos de balanceador de carga HTTPS para el acceso de clientes S3 o Swift.
