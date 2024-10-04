@@ -64,7 +64,7 @@ AutoSupport Tamaño comprimido +
 AutoSupport descomprimido Tamaño +
 Tiempo Total de Recopilación (ms)
  a| 
-Archivo de historial de AutoSupport
+Archivo de historial de AutoSupport.
 
 
 
@@ -158,6 +158,29 @@ Archivo de estado de tareas de cuadrícula (procedimientos de mantenimiento). Pr
 
 
  a| 
+GRID.JSON
+ a| 
+Grid + Revisión + Versión de software + Descripción + Licencia + Contraseñas + DNS + NTP + Sitios + Nodos
+ a| 
+Información de cuadrícula.
+
+
+
+ a| 
+ILM-CONFIGURATION.XML
+ a| 
+ID de atributo +
+Nombre de atributo +
+Valor +
+Índice +
+ID de tabla +
+Nombre de la tabla
+ a| 
+Lista de atributos para configuraciones de ILM.
+
+
+
+ a| 
 ILM-STATUS.XML
  a| 
 Nodo +
@@ -178,7 +201,7 @@ ILM.XML
  a| 
 XML sin procesar de ILM
  a| 
-Archivo de política activa de ILM. Contiene detalles sobre las políticas de ILM activas, como el ID de pool de almacenamiento, el comportamiento de ingesta, los filtros, las reglas y la descripción.
+Archivo de política activa de ILM. Contiene detalles sobre las políticas de ILM activas, como el ID de pool de almacenamiento, el comportamiento de ingesta, los filtros, las reglas y la descripción. Además contiene el XML para la política de ILM predeterminada.
 
 
 

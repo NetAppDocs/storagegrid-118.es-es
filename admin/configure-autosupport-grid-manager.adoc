@@ -80,7 +80,7 @@ Es posible deshabilitar el envío automático de paquetes de AutoSupport semanal
 
 == Deshabilite el AutoSupport activado por eventos
 
-De manera predeterminada, el sistema StorageGRID se configura para enviar un paquete AutoSupport al soporte técnico cada hora, cuando se produce una alerta importante u otro evento importante del sistema.
+De manera predeterminada, el sistema StorageGRID está configurado para enviar un paquete de AutoSupport al soporte técnico cada hora.
 
 Puede deshabilitar la AutoSupport activada por eventos en cualquier momento.
 

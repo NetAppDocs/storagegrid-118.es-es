@@ -131,5 +131,5 @@ Puede detener el procedimiento de reinicio gradual desde el nodo de administraci
 
 .Pasos
 . Selecciona *MANTENIMIENTO* > *Tareas* > *Reiniciar rodando*.
-. En el paso *Monitor reboot*, selecciona *Stop reboot*.
+. En el paso *Monitor reboot*, selecciona *Stop reboot procedure*.
 
