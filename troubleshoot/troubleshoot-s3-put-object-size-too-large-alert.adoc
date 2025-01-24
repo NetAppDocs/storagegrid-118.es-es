@@ -34,7 +34,7 @@ Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para
 .. Introduzca `cd /var/local/log`
 .. Identifique qué inquilinos están usando objetos mayores de 5 GiB.
 +
-... Introduzca `zgrep SPUT * | egrep "CSIZ\(UI64\):[0-9]*[5-9][0-9]{9}"`
+... Introduzca `zgrep SPUT * | egrep "CSIZ\(UI64\):([5-9]|[1-9][0-9]+)[0-9]{9}"`
 ... Para cada mensaje de auditoría de los resultados, consulte `S3AI` Para determinar el ID de cuenta de inquilino. Utilice los otros campos del mensaje para determinar la dirección IP utilizada por el cliente, el depósito y el objeto:
 +
 [cols="1a,2a"]
