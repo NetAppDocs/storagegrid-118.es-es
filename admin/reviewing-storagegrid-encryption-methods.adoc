@@ -45,7 +45,7 @@ El cifrado de unidades no se aplica a las unidades gestionadas por SANtricity. S
  a| 
 Drive Security en SANtricity System Manager
  a| 
-Si la función Drive Security está habilitada para un dispositivo de almacenamiento SG5700 o SG6000, es posible usar https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["System Manager de SANtricity"^] para crear y gestionar la clave de seguridad. Se requiere la clave para acceder a los datos en las unidades seguras.
+Si la función Drive Security está habilitada para el dispositivo StorageGRID, se puede usar https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["System Manager de SANtricity"^] para crear y gestionar la clave de seguridad. Se requiere la clave para acceder a los datos en las unidades seguras.
  a| 
 Los dispositivos de almacenamiento que tienen unidades de cifrado de disco completo (FDE) o unidades de autocifrado. Todos los datos de las unidades seguras están protegidos frente a la pérdida física o eliminación del centro de datos. No se puede usar con algunos dispositivos de almacenamiento ni con ningún dispositivo de servicios.
 
