@@ -60,7 +60,7 @@ Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para
 
 . Utilice la `ObjectByUUID` Comando para encontrar el objeto mediante su identificador (UUID) y, a continuación, determinar si los datos están en riesgo.
 +
-.. Telnet a localhost 1402 para acceder a la consola LDR.
+.. Use SSH para iniciar sesión en cualquier nodo de almacenamiento. A continuación, acceda a la consola LDR introduciendo telnet 0 1402.
 .. Introduzca: `/proc/OBRP/ObjectByUUID UUID_value`
 +
 En este primer ejemplo, el objeto con `UUID 926026C4-00A4-449B-AC72-BCCA72DD1311` tiene dos ubicaciones en la lista.

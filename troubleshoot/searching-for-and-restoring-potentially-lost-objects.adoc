@@ -120,7 +120,7 @@ NOTE: Escriba siempre la ruta de acceso del archivo de objetos entre comillas si
 . Si se encontró la ruta del objeto, intente restaurar el objeto a StorageGRID:
 +
 .. Desde el mismo nodo de almacenamiento, cambie la propiedad del archivo de objetos para que StorageGRID lo pueda gestionar. Introduzca: `chown ldr-user:bycast 'file_path_of_object'`
-.. Telnet a localhost 1402 para acceder a la consola LDR. Introduzca: `telnet 0 1402`
+.. Use SSH para iniciar sesión en cualquier nodo de almacenamiento. A continuación, acceda a la consola LDR introduciendo telnet 0 1402.
 .. Introduzca: `cd /proc/STOR`
 .. Introduzca: `Object_Found 'file_path_of_object'`
 +
