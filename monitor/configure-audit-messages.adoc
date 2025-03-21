@@ -184,7 +184,7 @@ Un banner verde indica que la configuración se ha guardado.
 De manera opcional, es posible configurar un servidor de syslog externo para guardar registros de auditoría, registros de aplicaciones y registros de eventos de seguridad en una ubicación fuera del grid.
 
 
-NOTE: Si no desea usar un servidor de syslog externo, omita este paso y vaya a. <<Select-audit-information-destinations,Seleccione destinos de información de auditoría>>.
+NOTE: Si no desea utilizar un servidor syslog externo, omita este paso y vaya a <<select-audit-information-destinations,Seleccione destinos de información de auditoría>>.
 
 
 TIP: Si las opciones de configuración disponibles en este procedimiento no son lo suficientemente flexibles para satisfacer sus requisitos, se pueden aplicar opciones de configuración adicionales mediante el `audit-destinations` Endpoints, que se encuentran en la sección API privada de link:../admin/using-grid-management-api.html["API de gestión de grid"]. Por ejemplo, puede usar la API si desea usar diferentes servidores de syslog para diferentes grupos de nodos.
@@ -585,9 +585,15 @@ NOTE: La información de auditoría de StorageGRID no se envía al servidor de s
 
 Es posible especificar dónde registros de auditoría, registros de eventos de seguridad y link:../monitor/storagegrid-software-logs.html["Registros del software StorageGRID"] se envían.
 
+[NOTE]
+====
+StorageGRID toma por defecto los destinos de auditoría de nodo local y almacena la información de auditoría en `/var/local/log/localaudit.log`.
 
-NOTE: Algunos destinos solo están disponibles si se configuró un servidor de syslog externo.
+Al utilizar `/var/local/log/localaudit.log`, las entradas del registro de auditoría de Grid Manager y Tenant Manager se pueden enviar a un nodo de almacenamiento. Puede encontrar el nodo que tiene las entradas más recientes mediante `run-each-node --parallel "zgrep MGAU /var/local/log/localaudit.log | tail"` el comando.
 
+Algunos destinos solo están disponibles si se configuró un servidor de syslog externo.
+
+====
 .Pasos
 . En la página Audit and syslog server, seleccione el destino para obtener información de auditoría.
 +
@@ -603,7 +609,7 @@ TIP: *Solo nodos locales* y *Servidor syslog externo* típicamente proporcionan 
  a| 
 Sólo Nodos Locales (valor por defecto)
  a| 
-Los mensajes de auditoría, los registros de eventos de seguridad y los registros de aplicaciones no se envían a los nodos de administración. En su lugar, solo se guardan en los nodos que los han generado («el nodo local»). La información de auditoría generada en cada nodo local se almacena en `/var/local/log/localaudit.log`
+Los mensajes de auditoría, los registros de eventos de seguridad y los registros de aplicaciones no se envían a los nodos de administración. En su lugar, solo se guardan en los nodos que los han generado («el nodo local»). La información de auditoría generada en cada nodo local se almacena en `/var/local/log/localaudit.log`.
 
 *Nota*: StorageGRID elimina periódicamente los registros locales en una rotación para liberar espacio. Cuando el archivo de registro de un nodo alcanza 1 GB, se guarda el archivo existente y se inicia un nuevo archivo de registro. El límite de rotación para el registro es de 21 archivos. Cuando se crea la versión 22ª del archivo de registro, se elimina el archivo de registro más antiguo. De media, se almacenan unos 20 GB de datos de registro en cada nodo.
 
@@ -612,21 +618,25 @@ Los mensajes de auditoría, los registros de eventos de seguridad y los registro
  a| 
 Nodos de administración/nodos locales
  a| 
-Se envían mensajes de auditoría al registro de auditoría (`/var/local/log/audit.log`) En los nodos de administración, los registros de eventos de seguridad y los registros de aplicaciones se almacenan en los nodos que los han generado.
+Los mensajes de auditoría se envían al registro de auditoría en los nodos de administración, y los registros de eventos de seguridad y los registros de aplicaciones se almacenan en los nodos que los generaron. La información de auditoría se almacena en los siguientes archivos:
+
+** Nodos de administración (primarios y no primarios): `/var/local/audit/export/audit.log`
+** Todos los nodos: El `/var/local/log/localaudit.log` archivo suele estar vacío o faltar. Puede contener información secundaria, como una copia adicional de algunos mensajes.
+
 
 
 
  a| 
 Servidor de syslog externo
  a| 
-La información de auditoría se envía a un servidor de syslog externo y se guarda en los nodos locales. El tipo de información enviada depende de la forma en que se configure el servidor de syslog externo. Esta opción solo se habilita después de configurar un servidor de syslog externo.
+La información de auditoría se envía a un servidor de syslog externo y se guarda en los nodos locales (`/var/local/log/localaudit.log`). El tipo de información enviada depende de la forma en que se configure el servidor de syslog externo. Esta opción solo se habilita después de configurar un servidor de syslog externo.
 
 
 
  a| 
 Nodo de administrador y servidor de syslog externo
  a| 
-Se envían mensajes de auditoría al registro de auditoría (`/var/local/log/audit.log`) En los nodos de administración, y la información de auditoría se envía al servidor de syslog externo y se guarda en el nodo local. El tipo de información enviada depende de la forma en que se configure el servidor de syslog externo. Esta opción solo se habilita después de configurar un servidor de syslog externo.
+Los mensajes de auditoría se envían al registro de auditoría (`/var/local/audit/export/audit.log`) en los nodos de administración, y la información de auditoría se envía al servidor de syslog externo y se guarda en el nodo local (`/var/local/log/localaudit.log`). El tipo de información enviada depende de la forma en que se configure el servidor de syslog externo. Esta opción solo se habilita después de configurar un servidor de syslog externo.
 
 |===
 . Seleccione *Guardar*.

@@ -36,7 +36,43 @@ CAUTION: Póngase en contacto con el soporte técnico para obtener ayuda con est
 Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.
 
 
-.. Cambie al directorio donde se encuentran los registros de auditoría: `cd /var/local/log/`
+.. [[substep-1b]]Cambie al directorio donde se encuentran los registros de auditoría.
++
+--
+El directorio de registro de auditoría y los nodos aplicables dependen de la configuración del destino de auditoría.
+
+[cols="1a,2a"]
+|===
+| Opción | Destino 
+
+
+ a| 
+Nodos locales (predeterminado)
+ a| 
+`/var/local/log/localaudit.log`
+
+
+
+ a| 
+Nodos de administración/nodos locales
+ a| 
+*** Nodos de administración (primarios y no primarios): `/var/local/audit/export/audit.log`
+*** Todos los nodos: El `/var/local/log/localaudit.log` archivo normalmente está vacío o falta en este modo.
+
+
+
+
+ a| 
+Servidor de syslog externo
+ a| 
+`/var/local/log/localaudit.log`
+
+|===
+En función de la configuración de destino de auditoría, introduzca: `cd /var/local/log` O. `/var/local/audit/export/`
+
+Para obtener más información, consulte link:../monitor/configure-audit-messages.html#select-audit-information-destinations["Seleccione destinos de información de auditoría"].
+
+--
 .. Utilice grep para extraer el link:../audit/object-ingest-transactions.html["mensajes de auditoría asociados con el objeto potencialmente perdido"] y envíelos a un archivo de salida. Introduzca: `grep uuid-valueaudit_file_name > output_file_name`
 +
 Por ejemplo:
@@ -44,7 +80,7 @@ Por ejemplo:
 +
 [listing]
 ----
-Admin: # grep 926026C4-00A4-449B-AC72-BCCA72DD1311 audit.log > messages_about_lost_object.txt
+Admin: # grep 926026C4-00A4-449B-AC72-BCCA72DD1311 audit.log > /var/local/tmp/messages_about_lost_object.txt
 ----
 .. Utilice grep para extraer los mensajes de auditoría de ubicación perdida (LLST) de este archivo de salida. Introduzca: `grep LLST output_file_name`
 +
@@ -53,7 +89,7 @@ Por ejemplo:
 +
 [listing]
 ----
-Admin: # grep LLST messages_about_lost_objects.txt
+Admin: # grep LLST /var/local/tmp/messages_about_lost_objects.txt
 ----
 +
 Un mensaje de auditoría LLST tiene el aspecto de este mensaje de ejemplo.
@@ -61,12 +97,11 @@ Un mensaje de auditoría LLST tiene el aspecto de este mensaje de ejemplo.
 +
 [listing]
 ----
-[AUDT:\[NOID\(UI32\):12448208\][CBIL(UI64):0x38186FE53E3C49A5]
+[[AUDT:[NOID(UI32):12448208][CBIL(UI64):0x38186FE53E3C49A5]
 [UUID(CSTR):"926026C4-00A4-449B-AC72-BCCA72DD1311"][LTYP(FC32):CLDI]
-[PCLD\(CSTR\):"/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%\#3tN6"\]
-[TSRC(FC32):SYST][RSLT(FC32):NONE][AVER(UI32):10][ATIM(UI64):
-1581535134379225][ATYP(FC32):LLST][ANID(UI32):12448208][AMID(FC32):CLSM]
-[ATID(UI64):7086871083190743409]]
+[PCLD(CSTR):"/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA#3tN6"]
+[TSRC(FC32):SYST][RSLT(FC32):NONE][AVER(UI32):10][ATIM(UI64):1581535134379225]
+[ATYP(FC32):LLST][ANID(UI32):12448208][AMID(FC32):CLSM][ATID(UI64):7086871083190743409]]
 ----
 .. Busque el campo PCLD y EL campo NOID en el mensaje LLST.
 +
@@ -230,7 +265,7 @@ ade 12448208: /proc/OBRP > ObjectByUUID 926026C4-00A4-449B-AC72-BCCA72DD1311
 Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.
 
 
-.. Cambie al directorio donde se encuentran los registros de auditoría: `cd /var/local/log/`
+.. Cambie al directorio donde se encuentran los registros de auditoría. Consulte <<substep-1b,subpaso 1. b>>.
 .. Utilice grep para extraer los mensajes de auditoría asociados con el objeto en un archivo de salida. Introduzca: `grep uuid-valueaudit_file_name > output_file_name`
 +
 Por ejemplo:
@@ -238,7 +273,7 @@ Por ejemplo:
 +
 [listing]
 ----
-Admin: # grep 926026C4-00A4-449B-AC72-BCCA72DD1311 audit.log > messages_about_restored_object.txt
+Admin: # grep 926026C4-00A4-449B-AC72-BCCA72DD1311 audit.log > /var/local/tmp/messages_about_restored_object.txt
 ----
 .. Utilice grep para extraer los mensajes de auditoría Object Rules MET (ORLM) de este archivo de salida. Introduzca: `grep ORLM output_file_name`
 +
@@ -247,7 +282,7 @@ Por ejemplo:
 +
 [listing]
 ----
-Admin: # grep ORLM messages_about_restored_object.txt
+Admin: # grep ORLM /var/local/tmp/messages_about_restored_object.txt
 ----
 +
 Un mensaje de auditoría ORLM tiene el aspecto de este mensaje de ejemplo.

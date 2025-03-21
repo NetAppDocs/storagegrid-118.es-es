@@ -25,6 +25,12 @@ Cada nodo de administración almacena los mensajes de auditoría en archivos de 
 
 Para facilitar el acceso a los registros de auditoría, usted podrá link:../admin/configuring-audit-client-access.html["Configure el acceso del cliente de auditoría para NFS"]. También es posible acceder a los archivos del registro de auditoría directamente desde la línea de comandos del nodo de administración.
 
-De manera opcional, se puede cambiar el destino de los registros de auditoría y enviar información de auditoría a un servidor de syslog externo. Se siguen generando y almacenando registros locales de registros de auditoría cuando se configura un servidor de syslog externo. Consulte link:../monitor/configure-audit-messages.html["Configurar los mensajes de auditoría y los destinos de registro"].
+StorageGRID puede enviar información de auditoría de forma predeterminada o cambiar el destino:
+
+* En función de la instalación, StorageGRID se establece de forma predeterminada en los destinos de auditoría del nodo local o del nodo de administración.
+* Las entradas del registro de auditoría de Grid Manager y Tenant Manager pueden enviarse a un nodo de almacenamiento.
+* De manera opcional, se puede cambiar el destino de los registros de auditoría y enviar información de auditoría a un servidor de syslog externo. Se siguen generando y almacenando registros locales de registros de auditoría cuando se configura un servidor de syslog externo.
+* link:../monitor/configure-audit-messages.html["Obtenga información sobre la configuración de los mensajes de auditoría y los destinos de registro"].
+
 
 Para obtener detalles sobre el archivo de registro de auditoría, el formato de los mensajes de auditoría, los tipos de mensajes de auditoría y las herramientas disponibles para analizar los mensajes de auditoría, consulte link:../audit/index.html["Revisar los registros de auditoría"].
