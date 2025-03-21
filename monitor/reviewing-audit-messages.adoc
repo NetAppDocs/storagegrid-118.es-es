@@ -27,7 +27,7 @@ Para facilitar el acceso a los registros de auditoría, usted podrá link:../adm
 
 StorageGRID puede enviar información de auditoría de forma predeterminada o cambiar el destino:
 
-* En función de la instalación, StorageGRID se establece de forma predeterminada en los destinos de auditoría del nodo local o del nodo de administración.
+* StorageGRID se establece de forma predeterminada en destinos de auditoría de nodo local.
 * Las entradas del registro de auditoría de Grid Manager y Tenant Manager pueden enviarse a un nodo de almacenamiento.
 * De manera opcional, se puede cambiar el destino de los registros de auditoría y enviar información de auditoría a un servidor de syslog externo. Se siguen generando y almacenando registros locales de registros de auditoría cuando se configura un servidor de syslog externo.
 * link:../monitor/configure-audit-messages.html["Obtenga información sobre la configuración de los mensajes de auditoría y los destinos de registro"].
