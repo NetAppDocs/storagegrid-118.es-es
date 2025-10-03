@@ -191,11 +191,18 @@ Se activa una alarma total Events (SMTT) cuando la base de datos de Cassandra ti
 Si se produce un error de falta de memoria en la base de datos de Cassandra, se crea un volcado de pila, se activa una alarma Eventos totales (SMTT) y el recuento de errores de memoria de Cassandra se incrementa en uno.
 
 .Pasos
-. Para ver el evento, seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula* > *Configuración*.
+. Ver el evento:
++
+.. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+.. Expande el sitio y luego selecciona *_grid_node_*.
+.. Seleccione *SSM*, luego seleccione *Eventos* > *Configuración*.
+
+
 . Compruebe que el número de errores de memoria de salida de Cassandra sea 1 o superior.
 +
 Puede hacerlo link:../monitor/running-diagnostics.html["ejecutar diagnóstico"] para obtener información adicional sobre el estado actual de la cuadrícula.
 
+. Inicie sesión en el nodo seleccionado como "admin" usando SSH y cambie al usuario raíz local.
 . Vaya a. `/var/local/core/`, comprima el `Cassandra.hprof` y envíelo al soporte técnico.
 . Haga una copia de seguridad del `Cassandra.hprof` y elimínelo del `/var/local/core/ directory`.
 +
