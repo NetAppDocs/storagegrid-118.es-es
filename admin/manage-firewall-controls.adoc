@@ -62,23 +62,7 @@ Después de guardar la configuración, todos los puertos externos en el nodo de 
 
 
 
-=== Ejemplo 2: Limitar el acceso a Grid Manager y al administrador de inquilinos
-
-Supongamos que desea limitar el acceso a Grid Manager y al gestor de inquilinos (puertos predefinidos) por motivos de seguridad. Puede utilizar estos pasos generales:
-
-. Utilice el conmutador en la pestaña Administrar acceso externo para bloquear el puerto 443.
-. Utilice el conmutador en la pestaña Administrar acceso externo para permitir el acceso al puerto 8443.
-. Utilice el conmutador en la pestaña Administrar acceso externo para permitir el acceso al puerto 9443.
-
-
-Después de guardar la configuración, los hosts no podrán acceder al puerto 443, pero podrán acceder a Grid Manager a través del puerto 8443 y al gestor de inquilinos a través del puerto 9443.
-
-
-NOTE: Los puertos 443, 8443 y 9443 son los puertos predefinidos para Grid Manager y Tenant Manager. Puede alternar cualquier puerto para limitar el acceso a un gestor de inquilinos o Grid Manager específico.
-
-
-
-=== Ejemplo 3: Bloquear puertos sensibles
+=== Ejemplo 2: Bloquear puertos sensibles
 
 Suponga que desea bloquear los puertos confidenciales y el servicio en ese puerto (por ejemplo, SSH en el puerto 22). Puede utilizar los siguientes pasos generales:
 
@@ -93,7 +77,7 @@ Después de guardar la configuración, el puerto 22 y el servicio SSH estarán d
 
 
 
-=== Ejemplo 4: Desactivar el acceso a los servicios no utilizados
+=== Ejemplo 3: Deshabilitar el acceso a servicios no utilizados
 
 A nivel de red, puede desactivar algunos servicios que no desea utilizar. Por ejemplo, si no proporcionará acceso Swift, debe realizar los siguientes pasos generales:
 
