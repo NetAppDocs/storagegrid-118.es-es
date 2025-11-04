@@ -248,6 +248,21 @@ Tráfico interno de metadatos.
 
 
  a| 
+5353
+ a| 
+UDP
+ a| 
+Todos los nodos
+ a| 
+Todos los nodos
+ a| 
+Proporciona el servicio DNS multicast (mDNS) utilizado para cambios de IP en toda la red y para el descubrimiento del nodo de administración principal durante la instalación, expansión y recuperación.
+
+*Nota*: La configuración de este puerto es opcional.
+
+
+
+ a| 
 7001
  a| 
 TCP
