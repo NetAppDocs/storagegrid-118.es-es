@@ -1,5 +1,15 @@
 ---
 indexpage:
+  title: Configure y gestione un sistema StorageGRID
+  summary: Las tareas de configuración necesarias para un nuevo sistema StorageGRID
+    dependen de cómo se utilizará el grid. Como mínimo, debe configurar el acceso
+    al sistema, utilizar los asistentes de FabricPool y S3 y gestionar varias configuraciones
+    de seguridad y almacenamiento.
+  keywords: storagegrid system, configure, manage, security, settings, admin, group
+  lead: Las tareas de configuración necesarias para un nuevo sistema StorageGRID dependen
+    de cómo se utilizará el grid. Como mínimo, debe configurar el acceso al sistema,
+    utilizar los asistentes de FabricPool y S3 y gestionar varias configuraciones
+    de seguridad y almacenamiento.
   tiles:
   - title: Manos a la obra
     links:

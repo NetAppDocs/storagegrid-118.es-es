@@ -1,5 +1,13 @@
 ---
 indexpage:
+  title: Supervisar y solucionar problemas de un sistema StorageGRID
+  summary: Cuando el sistema está en funcionamiento, debe supervisar sus actividades
+    de forma regular y solucionar cualquier alerta. Es posible que también desee configurar
+    un servidor de syslog externo, usar la supervisión SNMP o recoger datos adicionales.
+  keywords: monitor, troubleshoot, storagegrid system, dashboard, audit, message
+  lead: Cuando el sistema está en funcionamiento, debe supervisar sus actividades
+    de forma regular y solucionar cualquier alerta. Es posible que también desee configurar
+    un servidor de syslog externo, usar la supervisión SNMP o recoger datos adicionales.
   tiles:
   - title: Supervise el sistema
     links:

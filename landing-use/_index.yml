@@ -1,5 +1,13 @@
 ---
 indexpage:
+  title: Utilizar clientes y inquilinos de StorageGRID
+  summary: Una vez completada la configuración inicial, las cuentas de inquilino de
+    StorageGRID pueden crear buckets y usar aplicaciones cliente de S3 para procesar,
+    recuperar y eliminar objetos.
+  keywords: applications, tenant, ingest, storagegrid systems, monitor, api, management
+  lead: Una vez completada la configuración inicial, las cuentas de inquilino de StorageGRID
+    pueden crear buckets y usar aplicaciones cliente de S3 para procesar, recuperar
+    y eliminar objetos.
   tiles:
   - title: Aprenda sobre los inquilinos
     links:

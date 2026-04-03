@@ -1,5 +1,11 @@
 ---
 indexpage:
+  title: Expanda una cuadrícula
+  summary: Puede expandir la capacidad o las funcionalidades de su sistema StorageGRID
+    sin interrumpir las operaciones del sistema.
+  keywords: storagegrid system, capacity, grid, capabilities, operations, expansion
+  lead: Puede expandir la capacidad o las funcionalidades de su sistema StorageGRID
+    sin interrumpir las operaciones del sistema.
   tiles:
   - title: Manos a la obra
     links:

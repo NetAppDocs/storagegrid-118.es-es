@@ -1,5 +1,15 @@
 ---
 indexpage:
+  title: Mantener un sistema StorageGRID
+  summary: Puede añadir nodos o sitios para ampliar la capacidad o la funcionalidad
+    del sistema. También puede realizar varios procedimientos de mantenimiento para
+    recuperarse de fallos o mantener el sistema de StorageGRID actualizado y funcionando
+    de forma eficiente.
+  keywords: storagegrid system, maintenance, capacity, grid, remove, maintain, decommission
+  lead: Puede añadir nodos o sitios para ampliar la capacidad o la funcionalidad del
+    sistema. También puede realizar varios procedimientos de mantenimiento para recuperarse
+    de fallos o mantener el sistema de StorageGRID actualizado y funcionando de forma
+    eficiente.
   tiles:
   - title: Manos a la obra
     links:

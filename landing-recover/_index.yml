@@ -1,5 +1,13 @@
 ---
 indexpage:
+  title: Recupere o sustituya nodos
+  summary: Si falla un nodo de cuadrícula, puede recuperarlo reemplazando el servidor
+    físico o virtual que ha fallado, reinstalando el software StorageGRID y restaurando
+    los datos recuperables.
+  keywords: recover, replace, warnings, grid, node, storagegrid systems
+  lead: Si falla un nodo de cuadrícula, puede recuperarlo reemplazando el servidor
+    físico o virtual que ha fallado, reinstalando el software StorageGRID y restaurando
+    los datos recuperables.
   tiles:
   - title: Manos a la obra
     links:
