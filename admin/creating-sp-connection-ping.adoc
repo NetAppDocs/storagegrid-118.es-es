@@ -19,8 +19,7 @@ Puede utilizar PingFederate para crear una conexión de proveedor de servicios (
 * Tiene el *ID de conexión SP* para cada nodo de administración de su sistema. Puede encontrar estos valores en la tabla de detalles Admin Nodes en la página StorageGRID Single Sign-On.
 * Ha descargado los *metadatos SAML* de cada nodo de administración del sistema.
 * Tiene experiencia en la creación de conexiones SP en PingFederate Server.
-* Usted tiene la
-https://docs.pingidentity.com/bundle/pingfederate-103/page/kfj1564002962494.html["Guía de referencia del administrador"^] Para PingFederate Server. La documentación de PingFederate proporciona instrucciones detalladas paso a paso y explicaciones.
+* Tienes el https://docs.pingidentity.com/pingfederate/latest/administrators_reference_guide/pf_administrators_reference_guide.html["Guía de referencia del administrador"^] para PingFederate Server. La documentación de PingFederate ofrece instrucciones detalladas paso a paso y explicaciones.
 * Usted tiene la link:admin-group-permissions.html["Permiso de administrador"] Para PingFederate Server.
 
 

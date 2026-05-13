@@ -174,7 +174,7 @@ NOTE: Si va a recuperar un nodo de grid, debe introducir el nombre del nodo que 
 .. Utilice el menú desplegable *Contraseña de instalación temporal* para especificar una contraseña de instalación temporal, de modo que pueda acceder a la consola de VM o usar SSH antes de que el nuevo nodo se una a la cuadrícula.
 +
 
-NOTE: La contraseña de instalación temporal solo se usa durante la instalación del nodo. Tras agregar un nodo a la cuadrícula, podrá acceder a él mediante la link:../admin/change-node-console.html["contraseña de la consola del nodo"], que aparece en la `Passwords.txt` En el paquete de recuperación.
+NOTE: La contraseña de instalación temporal solo se utiliza durante la instalación del nodo. Después de añadir un nodo a la grid, puedes acceder a él usando la link:../admin/change-node-console-password.html["contraseña de la consola del nodo"], que aparece en el archivo  `Passwords.txt` del Recovery Package.
 
 +
 *** *Usar nombre de nodo*: El valor que proporcionó para el campo *Nombre de nodo* se utiliza como contraseña de instalación temporal.

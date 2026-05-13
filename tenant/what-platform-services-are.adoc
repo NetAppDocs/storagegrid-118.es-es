@@ -81,7 +81,7 @@ Replicación de CloudMirror
 
  a| 
 * link:configuring-cloudmirror-replication.html["Replicación de CloudMirror"]
-* link:../s3/operations-on-buckets.htmll["Operaciones en bloques"]
+* link:../s3/operations-on-buckets.html["Operaciones en bloques"]
 
 
 
@@ -94,7 +94,7 @@ Notificaciones
 
  a| 
 * link:configuring-event-notifications.html["Notificaciones"]
-* link:../s3/s3/operations-on-buckets.html["Operaciones en bloques"]
+* link:../s3/operations-on-buckets.html["Operaciones en bloques"]
 
 
 
